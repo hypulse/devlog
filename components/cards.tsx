@@ -18,19 +18,16 @@ const ArticleCard = ({
           <div
             className="w-full h-full scale-100 bg-center bg-cover group-hover:scale-125 app-transition"
             style={{
-              backgroundImage: `url(${"http://placehold.it/800x450"})`,
+              backgroundImage: `url(${
+                thumbnailImage || "/images/placeholder.png"
+              })`,
             }}
-          ></div>
+          />
         </div>
         <div className="basis-3/4 grow">
           <div className="mb-elementSpacing">
-            <div className="flex items-center mb-tagSpacingY gap-x-columnGap text-meta text-textSecondaryColor">
-              <span>15 hours ago</span>
-              <span>&middot;</span>
-              <span>5 min read</span>
-            </div>
             <h2 className="font-bold text-subTitle mb-columnGap group-hover:text-primary app-transition">
-              AI quiz: Can you tell which person is real?
+              {title}
             </h2>
             <p className="text-caption text-textSecondaryColor line-clamp-3">
               How much do you know about Artificial Intelligence? As the
@@ -38,13 +35,10 @@ const ArticleCard = ({
               life now and its possible impacts in the near future.
             </p>
           </div>
-          <div className="flex items-center gap-x-columnGap">
-            <div className="border rounded px-tagSpacingX py-tagSpacingY border-borderColor text-meta text-secondary">
-              javascript
-            </div>
-            <div className="border rounded px-tagSpacingX py-tagSpacingY border-borderColor text-meta text-secondary">
-              react
-            </div>
+          <div className="flex items-center gap-x-columnGap text-meta text-textSecondaryColor">
+            <span>15 hours ago</span>
+            <span>&middot;</span>
+            <span>5 min read</span>
           </div>
         </div>
       </div>
@@ -52,4 +46,37 @@ const ArticleCard = ({
   );
 };
 
-export { ArticleCard };
+const ArticleCardSmall = ({
+  _id,
+  createdAt,
+  title,
+  tags,
+  type,
+  wordCount,
+  description,
+  thumbnailImage,
+}: ArticleCardData) => {
+  return (
+    <Link href="#">
+      <div className="flex items-start border p-elementSpacing bg-cardColor border-borderColor group gap-x-rowGap">
+        <div className="overflow-hidden rounded aspect-video basis-1/4 grow">
+          <div
+            className="w-full h-full bg-center bg-cover"
+            style={{
+              backgroundImage: `url(${
+                thumbnailImage || "/images/placeholder.png"
+              })`,
+            }}
+          />
+        </div>
+        <div className="basis-3/4 grow">
+          <h2 className="font-bold text-body group-hover:text-primary app-transition">
+            {title}
+          </h2>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+export { ArticleCard, ArticleCardSmall };
