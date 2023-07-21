@@ -59,7 +59,7 @@ const ArticleCardSmall = ({
   return (
     <Link href="#">
       <div className="flex items-start border p-elementSpacing bg-cardColor border-borderColor group gap-x-rowGap">
-        <div className="overflow-hidden rounded aspect-video basis-1/4 grow">
+        <div className="overflow-hidden rounded aspect-video basis-1/3 grow">
           <div
             className="w-full h-full bg-center bg-cover"
             style={{
@@ -69,7 +69,7 @@ const ArticleCardSmall = ({
             }}
           />
         </div>
-        <div className="basis-3/4 grow">
+        <div className="basis-2/3 grow">
           <h2 className="font-bold text-body group-hover:text-primary app-transition">
             {title}
           </h2>
