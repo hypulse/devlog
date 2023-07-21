@@ -45,17 +45,21 @@ body {
   }
 }
 
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) {
   html,
   body {
     font-size: 20px;
     line-height: 1.5;
   }
-}
+} */
 
 .app-transition {
   transition-property: background-color, color, text-decoration-color, font-size,
     line-height, border-color, opacity, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 400ms;
+}
+
+#header {
+  height: 3rem;
 }

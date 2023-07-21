@@ -21,7 +21,15 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <header
+          id="header"
+          className="w-full border-b border-borderColor mb-sectionSpacing bg-cardColor"
+        >
+          <div className="flex items-center h-full mx-auto max-w-screen-desktop px-containerPadding text-extra"></div>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }

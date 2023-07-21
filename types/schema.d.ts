@@ -17,7 +17,7 @@ type ArticleSchema = {
   wordCount: number;
   createdAt: Date;
   updatedAt?: Date;
-  tags: Array<TagSchema>;
+  tags?: Array<TagSchema>;
   type: "article" | "snippet";
 };
 
