@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Header } from "@/components/layouts";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,12 +23,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <header
-          id="header"
-          className="w-full border-b border-borderColor mb-sectionSpacing bg-cardColor"
-        >
-          <div className="flex items-center h-full mx-auto max-w-screen-desktop px-containerPadding text-extra"></div>
-        </header>
+        <Header />
         {children}
       </body>
     </html>

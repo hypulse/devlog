@@ -37,9 +37,12 @@ export function MdiArrowCollapseUp(props: SVGProps<SVGSVGElement>) {
 const ScrollToTopButton = () => {
   return (
     <div className="flex items-center justify-center">
-      <div className="rounded-full p-buttonSpacingY bg-cardColor text-secondary animate-bounce">
+      <button
+        className="rounded-full p-buttonSpacingY bg-cardColor text-secondary animate-bounce"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
         <MdiArrowCollapseUp />
-      </div>
+      </button>
     </div>
   );
 };
@@ -54,4 +57,17 @@ const LoadingSpinner = () => {
   );
 };
 
-export { ScrollToTopButton, LoadingSpinner };
+const Header = () => {
+  return (
+    <header
+      className="w-full border-b border-borderColor mb-sectionSpacing bg-cardColor"
+      style={{
+        height: "3rem",
+      }}
+    >
+      <div className="flex items-center h-full mx-auto max-w-screen-desktop px-containerPadding text-extra"></div>
+    </header>
+  );
+};
+
+export { ScrollToTopButton, LoadingSpinner, Header };
