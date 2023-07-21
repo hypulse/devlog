@@ -44,6 +44,7 @@ module.exports = {
     borderRadius: {
       DEFAULT: "0.5rem",
       small: "0.25rem",
+      full: "9999px",
     },
     fontWeight: {
       light: 200,

@@ -1,6 +1,7 @@
 "use client";
 
 import { ArticleCard, ArticleCardSmall } from "@/components/cards";
+import { LoadingSpinner, ScrollToTopButton } from "@/components/layout";
 import { ArticleCardData } from "@/types/data";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -15,39 +16,39 @@ const articleCardDataDummy: ArticleCardData = {
 };
 
 export default function Home() {
-  const [articles, setArticles] = useState(Array.from({ length: 20 }));
-  const [page, setPage] = useState(1);
+  const [articles, setArticles] = useState(Array.from({ length: 10 }));
+  const [lastIndex, setLastIndex] = useState(100);
   const [loading, setLoading] = useState(false);
   const loader = useRef(null);
 
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
     if (target.isIntersecting) {
-      loadMore();
+      setLoading(true);
     }
   }, []);
 
-  const loadMore = () => {
-    setLoading(true);
-    if (articles.length >= 212) {
+  useEffect(() => {
+    (async () => {
+      if (!loading) return;
+
+      if (articles.length >= lastIndex) {
+        setLoading(false);
+        return;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setArticles((prevArticles) => [
+        ...prevArticles,
+        ...Array.from({ length: 10 }),
+      ]);
       setLoading(false);
-      return;
-    }
-    setPage((prevPage) => prevPage + 1);
-    setArticles((prevArticles) => [
-      ...prevArticles,
-      ...Array.from({ length: 20 }),
-    ]);
-    setLoading(false);
-  };
+    })();
+  }, [loading, articles]);
 
   useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: "20px",
-      threshold: 0,
-    };
-    const observer = new IntersectionObserver(handleObserver, option);
+    const observer = new IntersectionObserver(handleObserver);
     if (loader.current) {
       observer.observe(loader.current);
     }
@@ -56,8 +57,10 @@ export default function Home() {
   }, [handleObserver]);
 
   return (
-    <div>
-      {/* <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
+    <>
+      <LoadingSpinner />
+      <ScrollToTopButton />
+      <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
         <div>
           <div className="flex mb-elementSpacing">
             <h2 className="font-bold text-subTitle">Snippets</h2>
@@ -70,7 +73,6 @@ export default function Home() {
             <ArticleCardSmall {...articleCardDataDummy} />
             <ArticleCardSmall {...articleCardDataDummy} />
             <ArticleCardSmall {...articleCardDataDummy} />
-            <ArticleCardSmall {...articleCardDataDummy} />
           </div>
         </div>
         <div>
@@ -78,25 +80,19 @@ export default function Home() {
             <span className="text-primary">Latest</span> articles
           </h2>
           <div className="flex flex-col gap-y-elementSpacing">
-            <ArticleCard {...articleCardDataDummy} />
-            <ArticleCard {...articleCardDataDummy} />
+            {articles.map((_, index) => (
+              <ArticleCard key={index} {...articleCardDataDummy} />
+            ))}
+            <div ref={loader} className="flex justify-center">
+              {!loading && articles.length >= lastIndex ? (
+                <ScrollToTopButton />
+              ) : (
+                <LoadingSpinner />
+              )}
+            </div>
           </div>
         </div>
-      </main> */}
-      <div className="container">
-        {articles.map((_, index) => (
-          <div key={index} className="p-cardPadding">
-            {index}
-          </div>
-        ))}
-        <div className="loading" ref={loader}>
-          {loading && <h2>로딩중...</h2>}
-          {!loading && articles.length >= 212 && (
-            <h2>더 이상 컨텐츠가 없습니다.</h2>
-          )}
-        </div>
-      </div>
-      {/* <div className="h-sectionSpacing" ref={loader} /> */}
-    </div>
+      </main>
+    </>
   );
 }
