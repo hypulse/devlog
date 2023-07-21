@@ -1,7 +1,7 @@
 "use client";
 
 import { ArticleCard, ArticleCardSmall } from "@/components/cards";
-import { LoadingSpinner, ScrollToTopButton } from "@/components/layout";
+import { LoadingSpinner, ScrollToTopButton } from "@/components/layouts";
 import { ArticleCardData } from "@/types/data";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -57,42 +57,38 @@ export default function Home() {
   }, [handleObserver]);
 
   return (
-    <>
-      <LoadingSpinner />
-      <ScrollToTopButton />
-      <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
-        <div>
-          <div className="flex mb-elementSpacing">
-            <h2 className="font-bold text-subTitle">Snippets</h2>
-            <div className="flex-grow" />
-            <button className="text-caption text-textSecondaryColor px-buttonSpacingX">
-              View all
-            </button>
-          </div>
-          <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
-            <ArticleCardSmall {...articleCardDataDummy} />
-            <ArticleCardSmall {...articleCardDataDummy} />
-            <ArticleCardSmall {...articleCardDataDummy} />
+    <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
+      <div>
+        <div className="flex mb-elementSpacing">
+          <h2 className="font-bold text-subTitle">Snippets</h2>
+          <div className="flex-grow" />
+          <button className="text-caption text-textSecondaryColor px-buttonSpacingX">
+            View all
+          </button>
+        </div>
+        <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
+          <ArticleCardSmall {...articleCardDataDummy} />
+          <ArticleCardSmall {...articleCardDataDummy} />
+          <ArticleCardSmall {...articleCardDataDummy} />
+        </div>
+      </div>
+      <div>
+        <h2 className="font-bold text-subTitle mb-elementSpacing">
+          <span className="text-primary">Latest</span> articles
+        </h2>
+        <div className="flex flex-col gap-y-elementSpacing">
+          {articles.map((_, index) => (
+            <ArticleCard key={index} {...articleCardDataDummy} />
+          ))}
+          <div ref={loader} className="flex justify-center">
+            {!loading && articles.length >= lastIndex ? (
+              <ScrollToTopButton />
+            ) : (
+              <LoadingSpinner />
+            )}
           </div>
         </div>
-        <div>
-          <h2 className="font-bold text-subTitle mb-elementSpacing">
-            <span className="text-primary">Latest</span> articles
-          </h2>
-          <div className="flex flex-col gap-y-elementSpacing">
-            {articles.map((_, index) => (
-              <ArticleCard key={index} {...articleCardDataDummy} />
-            ))}
-            <div ref={loader} className="flex justify-center">
-              {!loading && articles.length >= lastIndex ? (
-                <ScrollToTopButton />
-              ) : (
-                <LoadingSpinner />
-              )}
-            </div>
-          </div>
-        </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
