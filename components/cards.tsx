@@ -12,7 +12,7 @@ const ArticleCard = ({
   thumbnailImage,
 }: ArticleCardData) => {
   return (
-    <Link href="#">
+    <Link href={`/posts/${_id}`}>
       <div className="block border p-cardPadding bg-cardColor border-borderColor group tablet:flex tablet:gap-x-elementSpacing tablet:items-center">
         <div className="overflow-hidden rounded aspect-video tablet:aspect-square basis-1/4 grow mb-elementSpacing tablet:mb-0">
           <div
@@ -57,7 +57,7 @@ const ArticleCardSmall = ({
   thumbnailImage,
 }: ArticleCardData) => {
   return (
-    <Link href="#">
+    <Link href={`posts/${_id}`}>
       <div className="flex items-start border p-elementSpacing bg-cardColor border-borderColor group gap-x-rowGap">
         <div className="overflow-hidden rounded aspect-video basis-1/3 grow">
           <div
