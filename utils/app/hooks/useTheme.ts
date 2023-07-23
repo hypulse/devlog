@@ -5,9 +5,9 @@ export default function useTheme(): {
   toggleTheme: () => void;
 } {
   const [theme, setTheme] = useState<"light" | "dark" | undefined>();
-  const html = document.querySelector("html");
 
   const applyTheme = (theme: "light" | "dark") => {
+    const html = document.querySelector("html");
     if (!html) return;
     html.classList.remove(theme === "light" ? "dark" : "light");
     html.classList.add(theme);
@@ -16,6 +16,7 @@ export default function useTheme(): {
   };
 
   useEffect(() => {
+    const html = document.querySelector("html");
     if (!html) return;
     const localTheme = localStorage.getItem("theme");
     const prefersDarkMode =
@@ -32,9 +33,10 @@ export default function useTheme(): {
     } else {
       applyTheme("light");
     }
-  }, [html]);
+  }, []);
 
   const toggleTheme = () => {
+    const html = document.querySelector("html");
     if (!html) return;
     const newTheme = html.classList.contains("dark") ? "light" : "dark";
     applyTheme(newTheme);

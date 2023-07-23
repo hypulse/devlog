@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Tag = ({ _id, name }: TagSchema) => {
   return (
-    <Link href={`/articles?tag=${_id}`}>
+    <Link href={`/posts?tag=${_id}`}>
       <div className="border rounded px-tagSpacingX py-tagSpacingY border-borderColor text-meta text-secondary">
         {name.toLocaleLowerCase()}
       </div>

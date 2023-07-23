@@ -22,7 +22,7 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
     },
     fontSize: {
-      title: "2rem", // 섹션 제목, 본문 제목
+      title: "2.5rem", // 본문 제목
       subTitle: "1.75rem", // 카드 제목
       extra: "1.25rem", // nav, 사이드 바
       body: "1rem", // 본문, 버튼

@@ -1,16 +1,15 @@
-import { ArticleCardData } from "@/types/data";
+import { CardData } from "@/types/data";
+import { renderDateString, renderReadTime } from "@/utils/app/render-meta";
 import Link from "next/link";
 
 const ArticleCard = ({
   _id,
   createdAt,
   title,
-  tags,
-  type,
   wordCount,
   description,
   thumbnailImage,
-}: ArticleCardData) => {
+}: CardData) => {
   return (
     <Link href={`/posts/${_id}`}>
       <div className="block border p-cardPadding bg-cardColor border-borderColor group tablet:flex tablet:gap-x-elementSpacing tablet:items-center">
@@ -30,15 +29,13 @@ const ArticleCard = ({
               {title}
             </h2>
             <p className="text-caption text-textSecondaryColor line-clamp-3">
-              How much do you know about Artificial Intelligence? As the
-              technology rapidly advances, test your knowledge of how AI affects
-              life now and its possible impacts in the near future.
+              {description}
             </p>
           </div>
           <div className="flex items-center gap-x-columnGap text-meta text-textSecondaryColor">
-            <span>15 hours ago</span>
+            <span>{renderDateString(createdAt)}</span>
             <span>&middot;</span>
-            <span>5 min read</span>
+            <span>{renderReadTime(wordCount)}</span>
           </div>
         </div>
       </div>
@@ -48,16 +45,15 @@ const ArticleCard = ({
 
 const ArticleCardSmall = ({
   _id,
-  createdAt,
   title,
-  tags,
-  type,
-  wordCount,
-  description,
   thumbnailImage,
-}: ArticleCardData) => {
+}: {
+  _id: string;
+  title: string;
+  thumbnailImage?: string;
+}) => {
   return (
-    <Link href={`posts/${_id}`}>
+    <Link href={`/posts/${_id}`}>
       <div className="flex items-start border p-elementSpacing bg-cardColor border-borderColor group gap-x-rowGap">
         <div className="overflow-hidden rounded aspect-video basis-1/3 grow">
           <div

@@ -2,18 +2,8 @@
 
 import { ArticleCard, ArticleCardSmall } from "@/components/cards";
 import { LoadingSpinner, ScrollToTopButton } from "@/components/layouts";
-import { ArticleCardData } from "@/types/data";
+import { cardDataDummy } from "@/utils/app/dummy";
 import { useCallback, useEffect, useRef, useState } from "react";
-
-const articleCardDataDummy: ArticleCardData = {
-  _id: "1",
-  createdAt: new Date(2023, 6, 20),
-  title: "AI quiz: Can you tell which person is real?",
-  type: "article",
-  wordCount: 1000,
-  description:
-    "How much do you know about Artificial Intelligence? As the technology rapidly advances, test your knowledge of how AI affects life now and its possible impacts in the near future.",
-};
 
 export default function Home() {
   const [articles, setArticles] = useState(Array.from({ length: 10 }));
@@ -67,9 +57,9 @@ export default function Home() {
           </button>
         </div>
         <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
-          <ArticleCardSmall {...articleCardDataDummy} />
-          <ArticleCardSmall {...articleCardDataDummy} />
-          <ArticleCardSmall {...articleCardDataDummy} />
+          <ArticleCardSmall {...cardDataDummy} />
+          <ArticleCardSmall {...cardDataDummy} />
+          <ArticleCardSmall {...cardDataDummy} />
         </div>
       </div>
       <div>
@@ -78,9 +68,9 @@ export default function Home() {
         </h2>
         <div className="flex flex-col gap-y-elementSpacing">
           {articles.map((_, index) => (
-            <ArticleCard key={index} {...articleCardDataDummy} />
+            <ArticleCard key={index} {...cardDataDummy} />
           ))}
-          <div ref={loader} className="flex justify-center">
+          <div ref={loader}>
             {!loading && articles.length >= lastIndex ? (
               <ScrollToTopButton />
             ) : (

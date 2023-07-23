@@ -1,14 +1,13 @@
 import type { ArticleSchema } from "./schema";
 
-type SnippetData = Omit<
-  ArticleSchema,
-  "description" | "thumbnailImage" | "wordCount" | "tags"
-> & {
-  type: "snippet";
-};
-
-type ArticleCardData = Omit<ArticleSchema, "content"> & {
+type ArticleData = ArticleSchema & {
   type: "article";
 };
 
-export type { SnippetData, ArticleCardData };
+type SnippetData = ArticleSchema & {
+  type: "snippet";
+};
+
+type CardData = Omit<ArticleSchema, "content" | "tags">;
+
+export type { ArticleData, SnippetData, CardData };

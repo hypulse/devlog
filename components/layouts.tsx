@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   MaterialSymbolsDarkMode,
   MaterialSymbolsLightMode,
@@ -36,28 +35,29 @@ const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button
-      onClick={toggleTheme}
-      style={{
-        width: "1em",
-        height: "1em",
-      }}
-      className="relative"
-    >
-      <MaterialSymbolsLightMode
-        className="absolute top-0 left-0 app-transition"
+    <button onClick={toggleTheme} className="overflow-hidden">
+      <div
+        className="relative"
         style={{
-          transform: theme === "light" ? "scale(1)" : "scale(0)",
-          opacity: theme === "light" ? 1 : 0,
+          width: "1em",
+          height: "1em",
         }}
-      />
-      <MaterialSymbolsDarkMode
-        className="absolute top-0 left-0 app-transition"
-        style={{
-          transform: theme === "dark" ? "scale(1)" : "scale(0)",
-          opacity: theme === "dark" ? 1 : 0,
-        }}
-      />
+      >
+        <MaterialSymbolsLightMode
+          className="absolute top-0 left-0 app-transition"
+          style={{
+            transform: theme === "light" ? "scale(1)" : "scale(0)",
+            opacity: theme === "light" ? 1 : 0,
+          }}
+        />
+        <MaterialSymbolsDarkMode
+          className="absolute top-0 left-0 app-transition"
+          style={{
+            transform: theme === "dark" ? "scale(1)" : "scale(0)",
+            opacity: theme === "dark" ? 1 : 0,
+          }}
+        />
+      </div>
     </button>
   );
 };
