@@ -24,6 +24,26 @@
   }
 }
 
+.light {
+  --bg: 229, 229, 229;
+  --bg-card: 245, 245, 245;
+  --color-text: 51, 51, 51;
+  --color-text-secondary: 119, 119, 119;
+  --color-border: 204, 204, 204;
+  --color-primary: 216, 27, 96;
+  --color-secondary: 77, 182, 172;
+}
+
+.dark {
+  --bg: 18, 18, 18;
+  --bg-card: 30, 30, 30;
+  --color-text: 229, 229, 229;
+  --color-text-secondary: 153, 153, 153;
+  --color-border: 51, 51, 51;
+  --color-primary: 240, 98, 146;
+  --color-secondary: 128, 203, 196;
+}
+
 html,
 body {
   @apply font-sans;
