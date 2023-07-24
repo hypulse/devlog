@@ -9,7 +9,7 @@ import "highlight.js/styles/atom-one-light.css";
 import "github-markdown-css/github-markdown-light.css";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
-  content: string;
+  content?: string;
   className?: string;
   dangerouslySetInnerHTML?: {
     __html: string;
@@ -46,7 +46,7 @@ const Marked = ({
   return (
     <div
       className={`markdown-body ${className}`}
-      dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+      dangerouslySetInnerHTML={{ __html: marked.parse(content || "") }}
       {...props}
     />
   );

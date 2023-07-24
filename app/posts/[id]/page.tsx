@@ -1,10 +1,15 @@
 "use client";
 
+import Marked from "@/components/Marked";
 import { CardSmall, SnippetCard } from "@/components/cards";
 import { LoadingSpinner } from "@/components/layouts";
 import { TagWrapper } from "@/components/tags";
 import { ArticleData, SnippetData } from "@/types/data";
-import { cardDataDummy, snippetDataDummy } from "@/utils/app/dummy";
+import {
+  articleDataDummy,
+  cardDataDummy,
+  snippetDataDummy,
+} from "@/utils/app/dummy";
 import { useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
@@ -12,7 +17,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <main className="mx-auto max-w-screen-desktop tablet:px-containerPadding space-y-sectionSpacing">
-      {loading ? <LoadingSpinner /> : <View data={snippetDataDummy} />}
+      {loading ? <LoadingSpinner /> : <View data={articleDataDummy} />}
       <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
         <div>
           <p className="text-meta text-textSecondaryColor px-tagSpacingX py-tagSpacingY">
@@ -44,7 +49,7 @@ const View = ({ data }: { data: ArticleData | SnippetData }) => {
 
 const ArticleTypeView = ({ data }: { data: ArticleData }) => {
   return (
-    <div className="border p-cardPadding bg-cardColor border-borderColor">
+    <div className="border p-cardPadding bg-cardColor dark:bg-[#0d1117] border-borderColor">
       <div className="mb-sectionSpacing">
         <h1 className="font-bold text-title">{data.title}</h1>
         {data.tags && (
@@ -53,7 +58,9 @@ const ArticleTypeView = ({ data }: { data: ArticleData }) => {
           </div>
         )}
       </div>
-      <article>{data.content}</article>
+      <article>
+        <Marked className="" content={data.content} />
+      </article>
     </div>
   );
 };
