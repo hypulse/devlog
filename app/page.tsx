@@ -1,6 +1,6 @@
 "use client";
 
-import { ArticleCard, ArticleCardSmall } from "@/components/cards";
+import { ArticleCard, CardSmall } from "@/components/cards";
 import {
   HideOnTablet,
   LoadingSpinner,
@@ -70,9 +70,9 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
-          <ArticleCardSmall {...cardDataDummy} />
-          <ArticleCardSmall {...cardDataDummy} />
-          <ArticleCardSmall {...cardDataDummy} />
+          <CardSmall {...cardDataDummy} />
+          <CardSmall {...cardDataDummy} />
+          <CardSmall {...cardDataDummy} />
         </div>
       </div>
       <div>

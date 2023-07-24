@@ -1,6 +1,6 @@
 "use client";
 
-import { ArticleCardSmall } from "@/components/cards";
+import { CardSmall, SnippetCard } from "@/components/cards";
 import { LoadingSpinner } from "@/components/layouts";
 import { TagWrapper } from "@/components/tags";
 import { ArticleData, SnippetData } from "@/types/data";
@@ -18,13 +18,13 @@ export default function Page({ params }: { params: { id: string } }) {
           <p className="text-meta text-textSecondaryColor px-tagSpacingX py-tagSpacingY">
             &larr; Previous
           </p>
-          <ArticleCardSmall {...cardDataDummy} />
+          <CardSmall {...cardDataDummy} />
         </div>
         <div>
           <p className="text-right text-meta text-textSecondaryColor px-tagSpacingX py-tagSpacingY">
             Next &rarr;
           </p>
-          <ArticleCardSmall {...cardDataDummy} />
+          <CardSmall {...cardDataDummy} />
         </div>
       </div>
     </main>
@@ -59,5 +59,5 @@ const ArticleTypeView = ({ data }: { data: ArticleData }) => {
 };
 
 const SnippetTypeView = ({ data }: { data: SnippetData }) => {
-  return <div>Snippet</div>;
+  return <SnippetCard {...data} initOpen={true} />;
 };

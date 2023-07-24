@@ -1,4 +1,4 @@
-import { CardData } from "@/types/data";
+import { CardData, SnippetData } from "@/types/data";
 import { renderDateString, renderReadTime } from "@/utils/app/render-meta";
 import Link from "next/link";
 
@@ -43,7 +43,18 @@ const ArticleCard = ({
   );
 };
 
-const ArticleCardSmall = ({
+const SnippetCard = ({
+  _id,
+  title,
+  content,
+  initOpen = false,
+}: SnippetData & {
+  initOpen: boolean;
+}) => {
+  return <div></div>;
+};
+
+const CardSmall = ({
   _id,
   title,
   thumbnailImage,
@@ -75,4 +86,4 @@ const ArticleCardSmall = ({
   );
 };
 
-export { ArticleCard, ArticleCardSmall };
+export { ArticleCard, SnippetCard, CardSmall };
