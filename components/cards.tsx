@@ -1,6 +1,9 @@
 import { CardData, SnippetData } from "@/types/data";
 import { renderDateString, renderReadTime } from "@/utils/app/render-meta";
 import Link from "next/link";
+import Marked from "./Marked";
+import { MdiChevronDown } from "./icons";
+import { useState } from "react";
 
 const ArticleCard = ({
   _id,
@@ -45,13 +48,41 @@ const ArticleCard = ({
 
 const SnippetCard = ({
   _id,
-  title,
-  content,
+  content = "",
   initOpen = false,
 }: SnippetData & {
   initOpen: boolean;
 }) => {
-  return <div></div>;
+  const [open, setOpen] = useState(initOpen);
+
+  return (
+    <div
+      className="relative overflow-hidden"
+      style={{
+        maxHeight: open ? "100%" : "20rem",
+      }}
+    >
+      <Marked
+        className="border p-containerPadding border-borderColor"
+        content={content}
+      />
+      <button
+        className="absolute left-0 flex items-center justify-center w-full -translate-y-full border-b gap-x-tagSpacingY text-primary border-borderColor py-buttonSpacingY"
+        style={{
+          top: open ? "100%" : "20rem",
+        }}
+        onClick={() => setOpen(!open)}
+      >
+        <span className="text-meta">{open ? "View Less" : "View More"}</span>
+        <MdiChevronDown
+          className="text-extra duration-0"
+          style={{
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
+      </button>
+    </div>
+  );
 };
 
 const CardSmall = ({
