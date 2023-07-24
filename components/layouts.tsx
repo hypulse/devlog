@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  MaterialSymbolsDarkMode,
-  MaterialSymbolsLightMode,
-  MdiArrowCollapseUp,
-  MdiLoading,
-} from "./icons";
-import useTheme from "@/utils/app/hooks/useTheme";
+import { MdiArrowCollapseUp, MdiLoading } from "./icons";
 
 const ScrollToTopButton = () => {
   return (
@@ -31,50 +25,12 @@ const LoadingSpinner = () => {
   );
 };
 
-const ThemeSwitcher = () => {
-  const { theme, toggleTheme } = useTheme();
-
-  return (
-    <button onClick={toggleTheme} className="overflow-hidden">
-      <div
-        className="relative"
-        style={{
-          width: "1em",
-          height: "1em",
-        }}
-      >
-        <MaterialSymbolsLightMode
-          className="absolute top-0 left-0 app-transition"
-          style={{
-            transform: theme === "light" ? "scale(1)" : "scale(0)",
-            opacity: theme === "light" ? 1 : 0,
-          }}
-        />
-        <MaterialSymbolsDarkMode
-          className="absolute top-0 left-0 app-transition"
-          style={{
-            transform: theme === "dark" ? "scale(1)" : "scale(0)",
-            opacity: theme === "dark" ? 1 : 0,
-          }}
-        />
-      </div>
-    </button>
-  );
+const ShowOnTablet = ({ children }: { children: React.ReactNode }) => {
+  return <div className="hidden tablet:block">{children}</div>;
 };
 
-const Header = () => {
-  return (
-    <header
-      className="w-full border-b border-borderColor mb-sectionSpacing bg-cardColor"
-      style={{
-        height: "3rem",
-      }}
-    >
-      <div className="flex items-center h-full mx-auto max-w-screen-desktop px-containerPadding text-extra">
-        <ThemeSwitcher />
-      </div>
-    </header>
-  );
+const HideOnTablet = ({ children }: { children: React.ReactNode }) => {
+  return <div className="tablet:hidden">{children}</div>;
 };
 
-export { ScrollToTopButton, LoadingSpinner, Header };
+export { ScrollToTopButton, LoadingSpinner, ShowOnTablet, HideOnTablet };
