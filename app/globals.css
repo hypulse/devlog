@@ -44,6 +44,13 @@
   --color-secondary: 128, 203, 196;
 }
 
+* {
+  transition-property: background-color, color, text-decoration-color, font-size,
+    line-height, border-color, opacity, transform, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 400ms;
+}
+
 html,
 body {
   @apply font-sans;
@@ -51,10 +58,6 @@ body {
   color: rgb(var(--color-text));
   font-size: 16px;
   line-height: 1.5;
-  transition-property: background-color, color, text-decoration-color, font-size,
-    line-height, border-color, opacity, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 400ms;
 }
 
 @media screen and (min-width: 640px) {
@@ -72,10 +75,3 @@ body {
     line-height: 1.5;
   }
 } */
-
-.app-transition {
-  transition-property: background-color, color, text-decoration-color, font-size,
-    line-height, border-color, opacity, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 400ms;
-}
