@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MdiArrowCollapseUp, MdiLoading, MdiMagnify } from "./icons";
 import { InputBase } from "./inputs";
 
@@ -35,17 +36,30 @@ const HideOnTablet = ({ children }: { children: React.ReactNode }) => {
 };
 
 const SearchBox = () => {
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push(`/search?q=${e.currentTarget.q.value}`);
+  };
+
   return (
-    <div className="flex items-center gap-x-columnGap">
-      <InputBase
-        type="search"
-        className="text-body px-buttonSpacingX py-tagSpacingY bg-bgColor rounded-small"
-        placeholder="Search..."
-      />
-      <button className="rounded-full p-tagSpacingY hover:bg-borderColor">
-        <MdiMagnify />
-      </button>
-    </div>
+    <form onSubmit={handleSearch}>
+      <div className="flex items-center gap-x-columnGap">
+        <InputBase
+          name="q"
+          type="search"
+          className="text-body px-buttonSpacingX py-tagSpacingY bg-bgColor rounded-small"
+          placeholder="Search..."
+        />
+        <button
+          className="rounded-full p-tagSpacingY hover:bg-borderColor"
+          type="submit"
+        >
+          <MdiMagnify />
+        </button>
+      </div>
+    </form>
   );
 };
 
