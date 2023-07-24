@@ -2,7 +2,7 @@
 
 import useTheme from "@/utils/app/hooks/useTheme";
 import { MaterialSymbolsDarkMode, MaterialSymbolsLightMode } from "./icons";
-import { SearchToggle, ShowOnTablet } from "./layouts";
+import { SearchBox, ShowOnTablet } from "./layouts";
 import Link from "next/link";
 
 const ThemeSwitcher = () => {
@@ -77,7 +77,7 @@ const Header = () => {
           <div className="flex items-center gap-x-columnGap">
             <ShowOnTablet>
               <div className="max-w-xs">
-                <SearchToggle />
+                <SearchBox />
               </div>
             </ShowOnTablet>
             <ThemeSwitcher />

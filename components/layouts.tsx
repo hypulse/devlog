@@ -34,7 +34,7 @@ const HideOnTablet = ({ children }: { children: React.ReactNode }) => {
   return <div className="tablet:hidden">{children}</div>;
 };
 
-const SearchToggle = () => {
+const SearchBox = () => {
   return (
     <div className="flex items-center gap-x-columnGap">
       <InputBase
@@ -54,5 +54,5 @@ export {
   LoadingSpinner,
   ShowOnTablet,
   HideOnTablet,
-  SearchToggle,
+  SearchBox,
 };

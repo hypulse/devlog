@@ -5,7 +5,7 @@ import {
   HideOnTablet,
   LoadingSpinner,
   ScrollToTopButton,
-  SearchToggle,
+  SearchBox,
 } from "@/components/layouts";
 import { cardDataDummy } from "@/utils/app/dummy";
 import Link from "next/link";
@@ -56,7 +56,7 @@ export default function Home() {
     <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
       <HideOnTablet>
         <div className="text-extra">
-          <SearchToggle />
+          <SearchBox />
         </div>
       </HideOnTablet>
       <div>
