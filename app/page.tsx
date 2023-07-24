@@ -1,8 +1,14 @@
 "use client";
 
 import { ArticleCard, ArticleCardSmall } from "@/components/cards";
-import { LoadingSpinner, ScrollToTopButton } from "@/components/layouts";
+import {
+  HideOnTablet,
+  LoadingSpinner,
+  ScrollToTopButton,
+  SearchToggle,
+} from "@/components/layouts";
 import { cardDataDummy } from "@/utils/app/dummy";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function Home() {
@@ -48,13 +54,20 @@ export default function Home() {
 
   return (
     <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
+      <HideOnTablet>
+        <div className="text-extra">
+          <SearchToggle />
+        </div>
+      </HideOnTablet>
       <div>
         <div className="flex mb-elementSpacing">
           <h2 className="font-bold text-subTitle">Snippets</h2>
           <div className="flex-grow" />
-          <button className="text-caption text-textSecondaryColor px-buttonSpacingX">
-            View all
-          </button>
+          <Link href={`/snippets`}>
+            <button className="text-caption text-textSecondaryColor px-buttonSpacingX">
+              View all
+            </button>
+          </Link>
         </div>
         <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
           <ArticleCardSmall {...cardDataDummy} />

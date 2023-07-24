@@ -1,6 +1,7 @@
 "use client";
 
-import { MdiArrowCollapseUp, MdiLoading } from "./icons";
+import { MdiArrowCollapseUp, MdiLoading, MdiMagnify } from "./icons";
+import { InputBase } from "./inputs";
 
 const ScrollToTopButton = () => {
   return (
@@ -33,4 +34,25 @@ const HideOnTablet = ({ children }: { children: React.ReactNode }) => {
   return <div className="tablet:hidden">{children}</div>;
 };
 
-export { ScrollToTopButton, LoadingSpinner, ShowOnTablet, HideOnTablet };
+const SearchToggle = () => {
+  return (
+    <div className="flex items-center gap-x-columnGap">
+      <InputBase
+        type="search"
+        className="text-body px-buttonSpacingX py-tagSpacingY bg-bgColor rounded-small"
+        placeholder="Search..."
+      />
+      <button className="rounded-full p-tagSpacingY hover:bg-borderColor">
+        <MdiMagnify />
+      </button>
+    </div>
+  );
+};
+
+export {
+  ScrollToTopButton,
+  LoadingSpinner,
+  ShowOnTablet,
+  HideOnTablet,
+  SearchToggle,
+};

@@ -8,7 +8,7 @@ import { articleDataDummy, cardDataDummy } from "@/utils/app/dummy";
 import { useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   return (
     <main className="mx-auto max-w-screen-desktop tablet:px-containerPadding space-y-sectionSpacing">
