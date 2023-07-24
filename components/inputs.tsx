@@ -7,7 +7,7 @@ const InputBase = forwardRef<
   return (
     <input
       ref={ref}
-      className={`block w-full border-0 outline-none placeholder-textSecondaryColor ring-1 ring-inset ring-borderColor focus:ring-2 focus:ring-secondary focus:ring-inset ${className}`}
+      className={`block w-full border-0 outline-none placeholder-textSecondaryColor ring-1 ring-inset ring-borderColor focus:ring-2 focus:ring-primary focus:ring-inset ${className}`}
       {...props}
     />
   );

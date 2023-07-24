@@ -4,15 +4,15 @@ import { CardSmall, SnippetCard } from "@/components/cards";
 import { LoadingSpinner } from "@/components/layouts";
 import { TagWrapper } from "@/components/tags";
 import { ArticleData, SnippetData } from "@/types/data";
-import { articleDataDummy, cardDataDummy } from "@/utils/app/dummy";
+import { cardDataDummy, snippetDataDummy } from "@/utils/app/dummy";
 import { useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <main className="mx-auto max-w-screen-desktop tablet:px-containerPadding space-y-sectionSpacing">
-      {loading ? <LoadingSpinner /> : <View data={articleDataDummy} />}
+      {loading ? <LoadingSpinner /> : <View data={snippetDataDummy} />}
       <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
         <div>
           <p className="text-meta text-textSecondaryColor px-tagSpacingX py-tagSpacingY">
