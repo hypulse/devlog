@@ -44,21 +44,19 @@ const SearchBox = () => {
   };
 
   return (
-    <form onSubmit={handleSearch}>
-      <div className="flex items-center gap-x-columnGap">
-        <InputBase
-          name="q"
-          type="search"
-          className="text-body px-buttonPaddingX py-tagPaddingY bg-bgColor rounded-small"
-          placeholder="Search..."
-        />
-        <button
-          className="rounded-full p-tagPaddingY hover:bg-borderColor"
-          type="submit"
-        >
-          <MdiMagnify />
-        </button>
-      </div>
+    <form onSubmit={handleSearch} className="flex items-center gap-x-columnGap">
+      <InputBase
+        name="q"
+        type="search"
+        className="text-body px-buttonPaddingX py-tagPaddingY bg-bgColor rounded-small"
+        placeholder="Search..."
+      />
+      <button
+        className="rounded-full p-tagPaddingY hover:bg-borderColor"
+        type="submit"
+      >
+        <MdiMagnify />
+      </button>
     </form>
   );
 };

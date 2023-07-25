@@ -25,16 +25,6 @@ const Profile = () => {
   );
 };
 
-const Search = () => {
-  return (
-    <ShowOnTablet>
-      <div className="max-w-xs">
-        <SearchBox />
-      </div>
-    </ShowOnTablet>
-  );
-};
-
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
 
@@ -75,7 +65,9 @@ const Header = () => {
             <Profile />
           </div>
           <div className="flex items-center gap-x-columnGap">
-            <Search />
+            <ShowOnTablet>
+              <SearchBox />
+            </ShowOnTablet>
             <ThemeSwitcher />
           </div>
         </div>
