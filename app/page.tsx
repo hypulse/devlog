@@ -1,7 +1,10 @@
 "use client";
 
+import Card from "@/components/Card";
 import Search from "@/components/Search";
+import SmallCard from "@/components/SmallCard";
 import { LoadingSpinner, ScrollToTopButton } from "@/components/layouts";
+import { cardDataDummy } from "@/utils/app/dummy";
 import useIntersectionObserver from "@/utils/app/hooks/useIntersectionObserver";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -41,7 +44,7 @@ const Snippets = () => {
 
   return (
     <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
-      {}
+      <SmallCard {...cardDataDummy} />
     </div>
   );
 };
@@ -68,9 +71,9 @@ const Articles = () => {
 
   return (
     <div className="flex flex-col gap-y-elementSpacing">
-      {}
+      <Card {...cardDataDummy} />
       <div ref={loader}>
-        {!loading && items.length >= lastIndex ? (
+        {!true && items.length >= lastIndex ? (
           <ScrollToTopButton />
         ) : (
           <LoadingSpinner />

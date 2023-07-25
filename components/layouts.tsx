@@ -6,7 +6,7 @@ import { InputBase } from "./inputs";
 
 const ScrollToTopButton = () => {
   return (
-    <div className="flex items-center justify-center overflow-hidden">
+    <div className="flex items-center justify-center">
       <button
         className="rounded-full p-buttonPaddingY bg-cardColor text-secondary animate-bounce"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
