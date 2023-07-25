@@ -8,7 +8,7 @@ const ScrollToTopButton = () => {
   return (
     <div className="flex items-center justify-center overflow-hidden">
       <button
-        className="rounded-full p-buttonSpacingY bg-cardColor text-secondary animate-bounce"
+        className="rounded-full p-buttonPaddingY bg-cardColor text-secondary animate-bounce"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         <MdiArrowCollapseUp />
@@ -20,7 +20,7 @@ const ScrollToTopButton = () => {
 const LoadingSpinner = () => {
   return (
     <div className="flex items-center justify-center overflow-hidden">
-      <div className="rounded-full p-buttonSpacingY bg-cardColor text-secondary animate-spin">
+      <div className="rounded-full p-buttonPaddingY bg-cardColor text-secondary animate-spin">
         <MdiLoading />
       </div>
     </div>
@@ -49,11 +49,11 @@ const SearchBox = () => {
         <InputBase
           name="q"
           type="search"
-          className="text-body px-buttonSpacingX py-tagSpacingY bg-bgColor rounded-small"
+          className="text-body px-buttonPaddingX py-tagPaddingY bg-bgColor rounded-small"
           placeholder="Search..."
         />
         <button
-          className="rounded-full p-tagSpacingY hover:bg-borderColor"
+          className="rounded-full p-tagPaddingY hover:bg-borderColor"
           type="submit"
         >
           <MdiMagnify />

@@ -11,7 +11,7 @@ const ThemeSwitcher = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="rounded-full p-tagSpacingY hover:bg-borderColor"
+      className="rounded-full p-tagPaddingY hover:bg-borderColor"
     >
       <div
         className="relative"

@@ -64,7 +64,7 @@ export default function Home() {
           <h2 className="font-bold text-subTitle">Snippets</h2>
           <div className="flex-grow" />
           <Link href={`/snippets`}>
-            <button className="text-caption text-textSecondaryColor px-buttonSpacingX">
+            <button className="text-caption text-textSecondaryColor px-buttonPaddingX">
               View all
             </button>
           </Link>

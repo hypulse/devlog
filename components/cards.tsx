@@ -67,7 +67,7 @@ const SnippetCard = ({
         content={content}
       />
       <button
-        className="absolute left-0 flex items-center justify-center w-full -translate-y-full border-b gap-x-tagSpacingY text-primary border-borderColor py-buttonSpacingY"
+        className="absolute left-0 flex items-center justify-center w-full -translate-y-full border-b gap-x-tagPaddingY text-primary border-borderColor py-buttonPaddingY"
         style={{
           top: open ? "100%" : "20rem",
         }}

@@ -32,10 +32,10 @@ module.exports = {
     },
     spacing: {
       0: "0",
-      buttonSpacingX: "1rem", // 버튼 가로 간격
-      buttonSpacingY: "0.5rem", // 버튼 세로 간격
-      tagSpacingX: "0.5rem", // 태그 가로 간격
-      tagSpacingY: "0.25rem", // 태그 세로 간격
+      buttonPaddingX: "1rem", // 버튼 X 패딩
+      buttonPaddingY: "0.5rem", // 버튼 Y 패딩
+      tagPaddingX: "0.5rem", // 태그 X 패딩
+      tagPaddingY: "0.25rem", // 태그 Y 패딩
       cardPadding: "2rem", // 카드 패딩
       containerPadding: "1rem", // 컨테이너 패딩
       sectionSpacing: "4rem", // 섹션 간격 e.g. 카드와 카드 사이
