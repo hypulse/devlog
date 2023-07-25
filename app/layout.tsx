@@ -20,17 +20,27 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-                  (function() {
-                    try {
-                      var theme = localStorage.getItem('theme');
-                      if (theme === 'dark')
-                        document.body.classList.add('dark');
-                      else
-                        document.body.classList.remove('dark');
-                    } catch (e) {}
-                  })();
-                `,
+            __html: `(function () {
+              try {
+                var applyTheme = (theme) => {
+                  document.body.classList.remove(theme === "light" ? "dark" : "light");
+                  document.body.classList.add(theme);
+                  localStorage.setItem("theme", theme);
+                  setTheme(theme);
+                };
+                var localStorageTheme = localStorage.getItem("theme");
+                var prefersDarkMode =
+                  window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches;
+                if (localStorageTheme) {
+                  applyTheme(localStorageTheme);
+                } else if (prefersDarkMode) {
+                  applyTheme("dark");
+                } else {
+                  applyTheme("light");
+                }
+              } catch (e) {}
+            })();`,
           }}
         />
         <ThemeProvider>

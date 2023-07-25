@@ -12,40 +12,19 @@ const ThemeContext = createContext<{
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<"light" | "dark" | undefined>();
+  const body = typeof window !== "undefined" && document.querySelector("body");
 
   const applyTheme = (theme: "light" | "dark") => {
-    const html = document.querySelector("html");
-    if (!html) return;
-    html.classList.remove(theme === "light" ? "dark" : "light");
-    html.classList.add(theme);
+    if (!body) return;
+    body.classList.remove(theme === "light" ? "dark" : "light");
+    body.classList.add(theme);
     localStorage.setItem("theme", theme);
     setTheme(theme);
   };
 
-  useEffect(() => {
-    const html = document.querySelector("html");
-    if (!html) return;
-    const localTheme = localStorage.getItem("theme");
-    const prefersDarkMode =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (localTheme) {
-      applyTheme(localTheme as "light" | "dark");
-      return;
-    }
-
-    if (prefersDarkMode) {
-      applyTheme("dark");
-    } else {
-      applyTheme("light");
-    }
-  }, []);
-
   const toggleTheme = () => {
-    const html = document.querySelector("html");
-    if (!html) return;
-    const newTheme = html.classList.contains("dark") ? "light" : "dark";
+    if (!body) return;
+    const newTheme = body.classList.contains("dark") ? "light" : "dark";
     applyTheme(newTheme);
   };
 
