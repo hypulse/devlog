@@ -22,6 +22,10 @@
   --color-secondary: 128, 203, 196;
 }
 
+.rendered * {
+  @apply transition duration-200;
+}
+
 html,
 body {
   font-family: "Pretendard Variable", Pretendard, -apple-system,

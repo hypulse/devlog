@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import "./globals.css";
 import { ThemeProvider } from "@/utils/app/hooks/useTheme";
+import Rendered from "@/components/Rendered";
 
 export default function RootLayout({
   children,
@@ -43,6 +44,7 @@ export default function RootLayout({
             })();`,
           }}
         />
+        <Rendered />
         <ThemeProvider>
           <Header />
           {children}
