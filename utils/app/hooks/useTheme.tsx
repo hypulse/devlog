@@ -14,6 +14,20 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<"light" | "dark" | undefined>();
   const body = typeof window !== "undefined" && document.querySelector("body");
 
+  useEffect(() => {
+    var localStorageTheme = localStorage.getItem("theme");
+    var prefersDarkMode =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (localStorageTheme) {
+      setTheme(localStorageTheme as "light" | "dark");
+    } else if (prefersDarkMode) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }, []);
+
   const applyTheme = (theme: "light" | "dark") => {
     if (!body) return;
     body.classList.remove(theme === "light" ? "dark" : "light");
