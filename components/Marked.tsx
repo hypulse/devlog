@@ -34,14 +34,14 @@ const Marked = ({
   dangerouslySetInnerHTML,
   ...props
 }: MarkedProps) => {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
-  useEffect(() => {
-    if (theme === "dark") {
-      import("highlight.js/styles/atom-one-dark.css");
-      import("github-markdown-css/github-markdown-dark.css");
-    }
-  }, [theme]);
+  // useEffect(() => {
+  //   if (theme === "dark") {
+  //     import("highlight.js/styles/atom-one-dark.css");
+  //     import("github-markdown-css/github-markdown-dark.css");
+  //   }
+  // }, [theme]);
 
   return (
     <div

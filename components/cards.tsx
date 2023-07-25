@@ -62,7 +62,7 @@ const SnippetCard = ({
         maxHeight: open ? "100%" : "20rem",
       }}
     >
-      <Marked
+      {/* <Marked
         className="border p-containerPadding border-borderColor"
         content={content}
       />
@@ -80,7 +80,7 @@ const SnippetCard = ({
             transform: open ? "rotate(180deg)" : "rotate(0deg)",
           }}
         />
-      </button>
+      </button> */}
     </div>
   );
 };

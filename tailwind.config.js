@@ -15,6 +15,7 @@ module.exports = {
       borderColor: "rgb(var(--color-border))",
       primary: "rgb(var(--color-primary))",
       secondary: "rgb(var(--color-secondary))",
+      transparent: "transparent",
     },
     screens: {
       tablet: "640px",
