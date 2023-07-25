@@ -1,6 +1,7 @@
-import { ArticleData, SnippetData, CardData } from "@/types/data";
+import { CardData } from "@/types/data";
+import { ArticleSchema } from "@/types/schema";
 
-export const articleDataDummy: ArticleData = {
+export const articleDataDummy: ArticleSchema = {
   _id: "1",
   createdAt: new Date(2023, 6, 20),
   title: "AI quiz: Can you tell which person is real?",
@@ -18,7 +19,7 @@ export const articleDataDummy: ArticleData = {
   updatedAt: new Date(2023, 6, 20),
 };
 
-export const snippetDataDummy: SnippetData = {
+export const snippetDataDummy: ArticleSchema = {
   _id: "1",
   createdAt: new Date(2023, 6, 20),
   title: "AI quiz: Can you tell which person is real?",
