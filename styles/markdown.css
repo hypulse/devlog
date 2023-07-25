@@ -21,7 +21,7 @@
   --smc-code-bg-color: #f6f8fa;
   --smc-link-color: black;
 }
-body.dark {
+html.dark {
   --smc-c-text: #f2f2f2;
   --smc-c-text-light: #ddd;
   --smc-c-text-lighter: #eee;
@@ -32,9 +32,9 @@ body.dark {
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  /* background: var(--smc-bg-color); */
+  background: var(--smc-bg-color);
   color: var(--smc-c-text);
-  /* font-family: var(--smc-font-sans); */
+  font-family: var(--smc-font-sans);
   font-size: 1rem;
   line-height: var(--smc-line-height);
   overflow-wrap: break-word;
@@ -43,14 +43,14 @@ body.dark {
   box-sizing: border-box;
 }
 .markdown-body a {
-  /* background-color: transparent; */
+  background-color: transparent;
 }
 .markdown-body a:active,
 .markdown-body a:hover {
   outline-width: 0;
 }
 .markdown-body hr {
-  /* background-color: var(--smc-c-primary, #333); */
+  background-color: var(--smc-c-primary, #333);
   height: 0.1rem;
   margin: 1.5rem 0;
 }
@@ -60,7 +60,7 @@ body.dark {
   line-height: 10px;
   color: #444d56;
   vertical-align: middle;
-  /* background-color: #fafbfc; */
+  background-color: #fafbfc;
   border: solid 1px #d1d5da;
   border-bottom-color: #c6cbd1;
   border-radius: 3px;
@@ -93,8 +93,8 @@ body.dark {
 }
 .markdown-body code,
 .markdown-body pre {
-  /* font-family: "Source Code Pro", Consolas, Monaco, SFMono-Regular,
-    "Ubuntu Mono", Menlo, monospace; */
+  font-family: "Source Code Pro", Consolas, Monaco, SFMono-Regular,
+    "Ubuntu Mono", Menlo, monospace;
 }
 .markdown-body code {
   padding: 3px 6px;
@@ -123,7 +123,7 @@ body.dark {
   overflow: visible;
   line-height: inherit;
   word-break: normal;
-  /* background-color: transparent; */
+  background-color: transparent;
   border: 0;
 }
 .markdown-body img {
@@ -226,7 +226,7 @@ body.dark {
   font: inherit;
   margin: 0;
   overflow: visible;
-  /* font-family: inherit; */
+  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
@@ -267,10 +267,10 @@ body.dark {
   font-weight: 600;
 }
 .markdown-body table > tbody > tr:hover {
-  /* background-color: rgba(var(--smc-c-primary-rgb), 0.1); */
+  background-color: rgba(var(--smc-c-primary-rgb), 0.1);
 }
 .markdown-body strong {
-  /* font-family: var(--smc-font-serif); */
+  font-family: var(--smc-font-serif);
   font-weight: 900;
 }
 .markdown-body p {
@@ -285,10 +285,10 @@ body.dark {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  /* margin-top: 1.5rem; */
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
-  /* font-weight: 300; */
-  /* line-height: 1.5; */
+  font-weight: 300;
+  line-height: 1.5;
 }
 .markdown-body h1 .octicon-link,
 .markdown-body h2 .octicon-link,
@@ -336,7 +336,7 @@ body.dark {
 .markdown-body h6 {
   font-size: 1rem;
 }
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .markdown-body h1 {
     font-size: 2rem;
   }
@@ -355,7 +355,7 @@ body.dark {
   .markdown-body h6 {
     font-size: 1rem;
   }
-} */
+}
 .markdown-body .anchor {
   float: left;
   padding-right: 4px;

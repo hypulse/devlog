@@ -5,7 +5,7 @@ import { gfmHeadingId } from "marked-gfm-heading-id";
 import { HTMLAttributes } from "react";
 import hljs from "highlight.js";
 import "./../styles/main.scss";
-import "./../styles/star-markdown.css";
+import "./../styles/markdown.css";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   content?: string;
