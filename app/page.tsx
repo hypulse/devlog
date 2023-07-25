@@ -41,6 +41,7 @@ const Snippets = () => {
   return (
     <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
       <SmallCard {...cardDataDummy} />
+      <SmallCard {...cardDataDummy} />
     </div>
   );
 };
@@ -52,6 +53,7 @@ const Articles = () => {
 
   return (
     <div className="flex flex-col gap-y-elementSpacing">
+      <Card {...cardDataDummy} />
       <Card {...cardDataDummy} />
       <Loader
         loader={loader}

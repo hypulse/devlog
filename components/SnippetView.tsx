@@ -1,6 +1,7 @@
 import { ArticleSchema } from "@/types/schema";
 import { useState } from "react";
 import Marked from "./Marked";
+import { MdiChevronDown } from "./icons";
 
 const SnippetView = ({
   _id,
@@ -12,36 +13,29 @@ const SnippetView = ({
   const [open, setOpen] = useState(openStart);
 
   return (
-    <Marked
-      className="border p-containerPadding border-borderColor bg-cardColor"
-      content={content}
-    />
-    // <div
-    //   className="relative overflow-hidden"
-    //   style={{
-    //     maxHeight: open ? "100%" : "20rem",
-    //   }}
-    // >
-    //   {/* <Marked
-    //       className="border p-containerPadding border-borderColor"
-    //       content={content}
-    //     />
-    //     <button
-    //       className="absolute left-0 flex items-center justify-center w-full -translate-y-full border-b gap-x-tagPaddingY text-primary border-borderColor py-buttonPaddingY"
-    //       style={{
-    //         top: open ? "100%" : "20rem",
-    //       }}
-    //       onClick={() => setOpen(!open)}
-    //     >
-    //       <span className="text-meta">{open ? "View Less" : "View More"}</span>
-    //       <MdiChevronDown
-    //         className="text-extra duration-0"
-    //         style={{
-    //           transform: open ? "rotate(180deg)" : "rotate(0deg)",
-    //         }}
-    //       />
-    //     </button> */}
-    // </div>
+    <div className="relative">
+      <Marked
+        className="overflow-hidden border p-elementSpacing border-borderColor bg-cardColor rounded-small"
+        content={content}
+        style={{
+          maxHeight: open ? "100%" : "20rem",
+        }}
+      />
+      <button
+        className="absolute left-0 flex justify-center w-full -translate-y-full py-buttonPaddingY text-extra text-textSecondaryColor"
+        style={{
+          top: open ? "100%" : "20rem",
+          background: open ? "transparent" : "",
+        }}
+        onClick={() => setOpen(!open)}
+      >
+        <MdiChevronDown
+          style={{
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
+      </button>
+    </div>
   );
 };
 

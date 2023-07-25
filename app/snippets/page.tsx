@@ -14,6 +14,7 @@ export default function Page() {
   return (
     <main className="flex flex-col mx-auto max-w-screen-desktop px-containerPadding gap-y-elementSpacing">
       <SnippetView {...articleDataDummy} />
+      <SnippetView {...articleDataDummy} />
       <Loader
         loader={loader}
         loading={loading}
