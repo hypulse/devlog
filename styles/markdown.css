@@ -1,10 +1,8 @@
 @charset "UTF-8";
 :root {
-  --smc-font-sans: Raleway, -apple-system, "PingFang SC", "Microsoft YaHei",
-    Arial, sans-serif;
-  --smc-font-serif: "Songti SC", "Noto Serif SC", STZhongsong, STKaiti, KaiTi,
-    Roboto, serif;
-  --smc-font-mono: Menlo, Monaco, Consolas, "Courier New", monospace;
+  --smc-font-sans: inherit;
+  --smc-font-serif: inherit;
+  --smc-font-mono: inherit;
 }
 :root {
   --smc-c-primary-light: gray;
@@ -21,7 +19,7 @@
   --smc-code-bg-color: #f6f8fa;
   --smc-link-color: black;
 }
-html.dark {
+body.dark {
   --smc-c-text: #f2f2f2;
   --smc-c-text-light: #ddd;
   --smc-c-text-lighter: #eee;
@@ -32,7 +30,6 @@ html.dark {
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  background: var(--smc-bg-color);
   color: var(--smc-c-text);
   font-family: var(--smc-font-sans);
   font-size: 1rem;
@@ -93,8 +90,7 @@ html.dark {
 }
 .markdown-body code,
 .markdown-body pre {
-  font-family: "Source Code Pro", Consolas, Monaco, SFMono-Regular,
-    "Ubuntu Mono", Menlo, monospace;
+  font-family: inherit;
 }
 .markdown-body code {
   padding: 3px 6px;
@@ -335,26 +331,6 @@ html.dark {
 }
 .markdown-body h6 {
   font-size: 1rem;
-}
-@media screen and (max-width: 768px) {
-  .markdown-body h1 {
-    font-size: 2rem;
-  }
-  .markdown-body h2 {
-    font-size: 1.8rem;
-  }
-  .markdown-body h3 {
-    font-size: 1.6rem;
-  }
-  .markdown-body h4 {
-    font-size: 1.4rem;
-  }
-  .markdown-body h5 {
-    font-size: 1.2rem;
-  }
-  .markdown-body h6 {
-    font-size: 1rem;
-  }
 }
 .markdown-body .anchor {
   float: left;
