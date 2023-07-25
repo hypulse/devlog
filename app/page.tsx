@@ -7,7 +7,7 @@ import { LoadingSpinner, ScrollToTopButton } from "@/components/layouts";
 import { cardDataDummy } from "@/utils/app/dummy";
 import useIntersectionObserver from "@/utils/app/hooks/useIntersectionObserver";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
   return (
@@ -38,10 +38,6 @@ export default function Home() {
 const Snippets = () => {
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    (async () => {})();
-  }, []);
-
   return (
     <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
       <SmallCard {...cardDataDummy} />
@@ -54,26 +50,11 @@ const Articles = () => {
   const [items, setItems] = useState([]);
   const [lastIndex, setLastIndex] = useState(0);
 
-  useEffect(() => {
-    (async () => {
-      if (!loading) return;
-
-      if (items.length >= lastIndex) {
-        setLoading(false);
-        return;
-      }
-
-      setItems((prevItems) => [...prevItems]);
-      setLastIndex(0);
-      setLoading(false);
-    })();
-  }, [loading, items]);
-
   return (
     <div className="flex flex-col gap-y-elementSpacing">
       <Card {...cardDataDummy} />
       <div ref={loader}>
-        {!true && items.length >= lastIndex ? (
+        {!loading && items.length >= lastIndex ? (
           <ScrollToTopButton />
         ) : (
           <LoadingSpinner />
