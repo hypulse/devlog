@@ -1,9 +1,9 @@
 "use client";
 
 import Card from "@/components/Card";
+import Loader from "@/components/Loader";
 import Search from "@/components/Search";
 import SmallCard from "@/components/SmallCard";
-import { LoadingSpinner, ScrollToTopButton } from "@/components/layouts";
 import { cardDataDummy } from "@/utils/app/dummy";
 import useIntersectionObserver from "@/utils/app/hooks/useIntersectionObserver";
 import Link from "next/link";
@@ -53,13 +53,12 @@ const Articles = () => {
   return (
     <div className="flex flex-col gap-y-elementSpacing">
       <Card {...cardDataDummy} />
-      <div ref={loader}>
-        {!loading && items.length >= lastIndex ? (
-          <ScrollToTopButton />
-        ) : (
-          <LoadingSpinner />
-        )}
-      </div>
+      <Loader
+        loader={loader}
+        loading={loading}
+        items={items}
+        lastIndex={lastIndex}
+      />
     </div>
   );
 };

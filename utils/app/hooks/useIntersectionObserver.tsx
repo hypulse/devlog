@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const useIntersectionObserver = () => {
   const [loading, setLoading] = useState(false);
-  const loader = useRef(null);
+  const loader = useRef<HTMLDivElement>(null);
 
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
