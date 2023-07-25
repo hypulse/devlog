@@ -8,49 +8,31 @@ import {
   SearchBox,
 } from "@/components/layouts";
 import { cardDataDummy } from "@/utils/app/dummy";
+import useIntersectionObserver from "@/utils/app/hooks/useIntersectionObserver";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [articles, setArticles] = useState(Array.from({ length: 10 }));
-  const [lastIndex, setLastIndex] = useState(100);
-  const [loading, setLoading] = useState(false);
-  const loader = useRef(null);
-
-  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
-    const target = entries[0];
-    if (target.isIntersecting) {
-      setLoading(true);
-    }
-  }, []);
+  const { loader, loading, setLoading } = useIntersectionObserver();
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     (async () => {
       if (!loading) return;
 
-      if (articles.length >= lastIndex) {
-        setLoading(false);
-        return;
-      }
+      // const { lastIndex, data } = await new Promise((resolve) =>
+      //   setTimeout(resolve, 1000)
+      // );
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // if (items.length >= lastIndex) {
+      //   setLoading(false);
+      //   return;
+      // }
 
-      setArticles((prevArticles) => [
-        ...prevArticles,
-        ...Array.from({ length: 10 }),
-      ]);
+      // setItems((prevItems) => [...prevItems, ...data]);
       setLoading(false);
     })();
-  }, [loading, articles]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver);
-    if (loader.current) {
-      observer.observe(loader.current);
-    }
-
-    return () => observer.disconnect();
-  }, [handleObserver]);
+  }, [loading, items]);
 
   return (
     <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
@@ -69,22 +51,18 @@ export default function Home() {
             </button>
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">
-          <CardSmall {...cardDataDummy} />
-          <CardSmall {...cardDataDummy} />
-          <CardSmall {...cardDataDummy} />
-        </div>
+        <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2"></div>
       </div>
       <div>
         <h2 className="font-bold text-subTitle mb-elementSpacing">
           <span className="text-primary">Latest</span> articles
         </h2>
         <div className="flex flex-col gap-y-elementSpacing">
-          {articles.map((_, index) => (
+          {items.map((_, index) => (
             <ArticleCard key={index} {...cardDataDummy} />
           ))}
           <div ref={loader}>
-            {!loading && articles.length >= lastIndex ? (
+            {!loading && items.length >= lastIndex ? (
               <ScrollToTopButton />
             ) : (
               <LoadingSpinner />
