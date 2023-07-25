@@ -2,30 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg: 241, 241, 241;
-  --bg-card: 255, 255, 255;
-  --color-text: 51, 51, 51;
-  --color-text-secondary: 119, 119, 119;
-  --color-border: 204, 204, 204;
-  --color-primary: 216, 27, 96;
-  --color-secondary: 77, 182, 172;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: 18, 18, 18;
-    --bg-card: 30, 30, 30;
-    --color-text: 229, 229, 229;
-    --color-text-secondary: 153, 153, 153;
-    --color-border: 51, 51, 51;
-    --color-primary: 240, 98, 146;
-    --color-secondary: 128, 203, 196;
-  }
-}
-
 .light {
-  --bg: 241, 241, 241;
+  --bg-color: 241, 241, 241;
   --bg-card: 255, 255, 255;
   --color-text: 51, 51, 51;
   --color-text-secondary: 119, 119, 119;
@@ -35,7 +13,7 @@
 }
 
 .dark {
-  --bg: 18, 18, 18;
+  --bg-color: 18, 18, 18;
   --bg-card: 30, 30, 30;
   --color-text: 229, 229, 229;
   --color-text-secondary: 153, 153, 153;
@@ -44,34 +22,27 @@
   --color-secondary: 128, 203, 196;
 }
 
-* {
-  transition-property: background-color, color, text-decoration-color, font-size,
-    line-height, border-color, opacity, transform, box-shadow;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 400ms;
-}
-
 html,
 body {
-  @apply font-sans;
-  background-color: rgb(var(--bg));
-  color: rgb(var(--color-text));
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
-  line-height: 1.5;
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--color-text));
 }
 
 @media screen and (min-width: 640px) {
   html,
   body {
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: 17px;
   }
 }
 
-/* @media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
   html,
   body {
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: 18px;
   }
-} */
+}

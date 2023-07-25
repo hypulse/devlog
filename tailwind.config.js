@@ -8,19 +8,17 @@ module.exports = {
   darkMode: "class",
   theme: {
     colors: {
-      primary: "rgb(var(--color-primary))",
-      secondary: "rgb(var(--color-secondary))",
-      bgColor: "rgb(var(--bg))",
+      bgColor: "rgb(var(--bg-color))",
       cardColor: "rgb(var(--bg-card))",
-      borderColor: "rgb(var(--color-border))",
       textColor: "rgb(var(--color-text))",
       textSecondaryColor: "rgb(var(--color-text-secondary))",
+      borderColor: "rgb(var(--color-border))",
+      primary: "rgb(var(--color-primary))",
+      secondary: "rgb(var(--color-secondary))",
     },
     screens: {
       tablet: "640px",
-      // => @media (min-width: 640px) { ... }
-      desktop: "1024px",
-      // => @media (min-width: 1024px) { ... }
+      desktop: "1280px",
     },
     fontSize: {
       title: "2.5rem", // 본문 제목
@@ -52,11 +50,6 @@ module.exports = {
       light: 200,
       base: 400,
       bold: 600,
-    },
-    extend: {
-      fontFamily: {
-        sans: ["Pretendard", "sans-serif"],
-      },
     },
   },
   plugins: [],
