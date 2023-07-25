@@ -1,13 +1,9 @@
-import { HideOnTablet, SearchBox } from "@/components/layouts";
+import Search from "@/components/Search";
 
 export default function Page() {
   return (
     <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
-      <HideOnTablet>
-        <div className="text-extra">
-          <SearchBox />
-        </div>
-      </HideOnTablet>
+      <Search />
     </main>
   );
 }

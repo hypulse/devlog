@@ -5,11 +5,7 @@ import { CardSmall, SnippetCard } from "@/components/cards";
 import { LoadingSpinner } from "@/components/layouts";
 import { TagWrapper } from "@/components/tags";
 import { ArticleData, SnippetData } from "@/types/data";
-import {
-  articleDataDummy,
-  cardDataDummy,
-  snippetDataDummy,
-} from "@/utils/app/dummy";
+import { articleDataDummy, cardDataDummy } from "@/utils/app/dummy";
 import { useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
