@@ -1,0 +1,11 @@
+.markdown-body .code-block {
+  @apply relative overflow-hidden rounded-small bg-bgColor px-containerPadding py-elementSpacing;
+}
+
+.markdown-body .code-block .copy-button {
+  @apply absolute top-0 right-0 rounded-small py-tagPaddingY px-tagPaddingX bg-primary m-buttonPaddingY text-caption;
+}
+
+.markdown-body .code-block .language {
+  @apply absolute top-0 left-0 rounded-br-small bg-secondary px-tagPaddingX text-meta;
+}
