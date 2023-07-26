@@ -1,40 +1,28 @@
 import { ArticleSchema } from "@/types/schema";
-import { useState } from "react";
 import Marked from "./Marked";
-import { MdiChevronDown } from "./icons";
+import Link from "next/link";
+import { MdiComment } from "./icons";
 
 const SnippetView = ({
   _id,
+  title,
   content = "",
-  openStart = false,
-}: ArticleSchema & {
-  openStart?: boolean;
-}) => {
-  const [open, setOpen] = useState(openStart);
-
+  description = "",
+}: ArticleSchema) => {
   return (
-    <div className="relative">
-      <Marked
-        className="overflow-hidden border p-elementSpacing border-borderColor bg-cardColor rounded-small"
-        content={content}
-        style={{
-          maxHeight: open ? "100%" : "20rem",
-        }}
-      />
-      <button
-        className="absolute left-0 flex justify-center w-full -translate-y-full py-buttonPaddingY text-extra text-textSecondaryColor"
-        style={{
-          top: open ? "100%" : "20rem",
-          background: open ? "transparent" : "",
-        }}
-        onClick={() => setOpen(!open)}
+    <div className="flex flex-col border p-elementSpacing border-borderColor bg-cardColor rounded-small">
+      <h1 className="font-bold text-subTitle mb-rowGap">{title}</h1>
+      <Marked content={content} className="mb-rowGap" />
+      <p className="text-body text-textSecondaryColor mb-elementSpacing">
+        {description}
+      </p>
+      <Link
+        href={`/posts/${_id}`}
+        className="flex items-center self-end border rounded px-buttonPaddingX py-buttonPaddingY border-primary text-caption text-primary"
       >
-        <MdiChevronDown
-          style={{
-            transform: open ? "rotate(180deg)" : "rotate(0deg)",
-          }}
-        />
-      </button>
+        <MdiComment className="mr-columnGap" />
+        <span>View replies</span>
+      </Link>
     </div>
   );
 };

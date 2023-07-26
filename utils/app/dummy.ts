@@ -27,8 +27,7 @@ export const snippetDataDummy: ArticleSchema = {
   wordCount: 1000,
   description:
     "How much do you know about Artificial Intelligence? As the technology rapidly advances, test your knowledge of how AI affects life now and its possible impacts in the near future.",
-  content:
-    "# This is a snippet\n```js\nconst a = 1;\nconst b = 2;\nconst c = a + b;\n```\n```js\nconst a = 1;\nconst b = 2;\nconst c = a + b;\n```\n```js\nconst a = 1;\nconst b = 2;\nconst c = a + b;\n```\n```js\nconst a = 1;\nconst b = 2;\nconst c = a + b;\n```",
+  content: "```js\nconst a = 1;\nconst b = 2;\nconst c = a + b;\n```",
   tags: [
     { _id: "1", name: "AI" },
     { _id: "2", name: "Technology" },

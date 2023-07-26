@@ -85,7 +85,7 @@ export function MdiMagnify(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function MdiChevronDown(props: SVGProps<SVGSVGElement>) {
+export function MdiComment(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ export function MdiChevronDown(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
+        d="M9 22a1 1 0 0 1-1-1v-3H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6.1l-3.7 3.71c-.2.19-.45.29-.7.29H9Z"
       ></path>
     </svg>
   );
