@@ -1,4 +1,4 @@
-const renderReadTime = (words: number = 0): string => {
+const showReadTime = (words: number = 0): string => {
   const wpm = 265;
   const seconds = Math.ceil(words / wpm) * 60;
   if (seconds < 60) {
@@ -11,7 +11,7 @@ const renderReadTime = (words: number = 0): string => {
   }
 };
 
-const renderDateString = (date: Date = new Date()) => {
+const showDateString = (date: Date = new Date()) => {
   const now = new Date();
   const timeDiff = now.getTime() - date.getTime();
   const dayDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
@@ -37,4 +37,4 @@ const renderDateString = (date: Date = new Date()) => {
   }
 };
 
-export { renderReadTime, renderDateString };
+export { showReadTime, showDateString };

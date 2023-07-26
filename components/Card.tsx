@@ -1,5 +1,5 @@
 import { CardData } from "@/types/data";
-import { renderDateString, renderReadTime } from "@/utils/app/render-meta";
+import { showDateString, showReadTime } from "@/utils/app/show";
 import Link from "next/link";
 
 const Card = ({
@@ -35,9 +35,9 @@ const Card = ({
           </p>
         </div>
         <div className="flex items-center gap-x-columnGap text-meta text-textSecondaryColor">
-          <span>{renderDateString(createdAt)}</span>
+          <span>{showDateString(createdAt)}</span>
           <span>&middot;</span>
-          <span>{renderReadTime(wordCount)}</span>
+          <span>{showReadTime(wordCount)}</span>
         </div>
       </div>
     </Link>
