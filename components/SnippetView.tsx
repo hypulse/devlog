@@ -10,13 +10,13 @@ const SnippetView = ({
   description = "",
 }: ArticleSchema) => {
   return (
-    <div className="flex flex-col border p-cardPadding border-borderColor bg-cardColor rounded-small">
-      <h1 className="font-bold text-subTitle mb-rowGap">{title}</h1>
-      <Marked content={content} className="mb-rowGap" />
-      <p className="mb-elementSpacing">{description}</p>
+    <div className="flex flex-col border p-cardPadding bg-cardColor rounded-small space-y-extraSpacing border-borderColor">
+      <h1 className="font-bold text-title">{title}</h1>
+      <Marked content={content} />
+      <p>{description}</p>
       <Link
         href={`/posts/${_id}`}
-        className="flex items-center self-end border rounded px-buttonPaddingX py-buttonPaddingY border-primary text-caption text-primary"
+        className="flex items-center justify-center mt-auto border rounded border-primary text-primary px-buttonPaddingX py-buttonPaddingY text-caption"
       >
         <MdiComment className="mr-columnGap" />
         <span>View replies</span>
