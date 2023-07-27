@@ -33,7 +33,7 @@ body {
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   background-color: rgb(var(--bg-color));
   color: rgb(var(--color-text));
 }
@@ -48,13 +48,6 @@ body {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMiAyMXEtMy43NSAwLTYuMzc1LTIuNjI1VDMgMTJxMC0zLjc1IDIuNjI1LTYuMzc1VDEyIDNxLjM1IDAgLjY4OC4wMjV0LjY2Mi4wNzVxLTEuMDI1LjcyNS0xLjYzOCAxLjg4OFQxMS4xIDcuNXEwIDIuMjUgMS41NzUgMy44MjVUMTYuNSAxMi45cTEuMzc1IDAgMi41MjUtLjYxM1QyMC45IDEwLjY1cS4wNS4zMjUuMDc1LjY2MlQyMSAxMnEwIDMuNzUtMi42MjUgNi4zNzVUMTIgMjFaIi8+PC9zdmc+");
   transform: rotate(360deg);
   @apply bg-center bg-no-repeat bg-cover;
-}
-
-@media screen and (min-width: 600px) {
-  html,
-  body {
-    font-size: 17px;
-  }
 }
 
 @media screen and (min-width: 1024px) {
