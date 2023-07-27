@@ -1,4 +1,4 @@
-.markdown-body .code-block {
+/* .markdown-body .code-block {
   @apply relative overflow-hidden rounded-small bg-bgColor px-containerPadding py-elementSpacing;
 }
 
@@ -8,4 +8,4 @@
 
 .markdown-body .code-block .language {
   @apply absolute top-0 left-0 rounded-br-small bg-secondary px-tagPaddingX text-meta;
-}
+} */

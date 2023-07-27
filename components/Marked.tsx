@@ -4,9 +4,9 @@ import { mangle } from "marked-mangle";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { HTMLAttributes, useEffect } from "react";
 import hljs from "highlight.js";
+import "./../styles/markdown.scss";
 import "./../styles/highlight.scss";
-import "./../styles/markdown.css";
-import "./../styles/code-block.css";
+// import "./../styles/code-block.css";
 import { copyToClipboard } from "@/utils/app";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,21 +17,17 @@ interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   };
 }
 
-const renderer: marked.RendererObject = {
-  code(code: string, language: string) {
-    return `<div class="code-block">
-    <button class="copy-button">Copy</button>
-    <div class="language">${language}</div>
-    <pre><code class="language-${language}">${code}</code></pre>
-  </div>`;
-  },
-};
+// const renderer: marked.RendererObject = {
+// code(code: string, language: string) {
+//   return `<div class="code-block">
+//   <button class="copy-button">Copy</button>
+//   <div class="language">${language}</div>
+//   <pre><code class="language-${language}">${code}</code></pre>
+// </div>`;
+// },
+// };
 
 marked.use(
-  {
-    gfm: true,
-    breaks: true,
-  },
   markedHighlight({
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
@@ -39,8 +35,8 @@ marked.use(
     },
   }),
   mangle(),
-  gfmHeadingId(),
-  { renderer }
+  gfmHeadingId()
+  // { renderer }
 );
 
 const Marked = ({
