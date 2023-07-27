@@ -21,6 +21,13 @@ const Loader = ({
 };
 
 const ScrollToTopButton = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return <div className="flex items-center justify-center"></div>;
 };
 
