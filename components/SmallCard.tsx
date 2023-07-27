@@ -12,7 +12,7 @@ const SmallCard = ({
   return (
     <Link
       href={`/posts/${_id}`}
-      className="flex items-start border p-elementSpacing bg-cardColor border-borderColor rounded-small group gap-x-elementSpacing"
+      className="flex items-start border p-cardPadding bg-cardColor border-borderColor rounded-small group gap-x-elementSpacing"
     >
       <div className="overflow-hidden rounded aspect-video basis-1/3 grow">
         <div

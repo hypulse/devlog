@@ -10,8 +10,8 @@ const Profile = () => {
       href={`/`}
       className="block overflow-hidden rounded-full"
       style={{
-        width: "2rem",
-        height: "2rem",
+        width: "1.875rem",
+        height: "1.875rem",
       }}
     >
       <div
@@ -44,7 +44,7 @@ const Header = () => {
         className="fixed top-0 left-0 z-10 w-full border-b border-borderColor bg-cardColor text-extra"
         style={{ height: "3rem" }}
       >
-        <div className="flex items-center h-full mx-auto max-w-screen-desktop px-containerPadding">
+        <div className="flex items-center h-full max-w-6xl mx-auto px-extraSpacing">
           <div className="flex-grow">
             <Profile />
           </div>

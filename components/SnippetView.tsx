@@ -10,7 +10,7 @@ const SnippetView = ({
   description = "",
 }: ArticleSchema) => {
   return (
-    <div className="flex flex-col border p-elementSpacing border-borderColor bg-cardColor rounded-small">
+    <div className="flex flex-col border p-cardPadding border-borderColor bg-cardColor rounded-small">
       <h1 className="font-bold text-subTitle mb-rowGap">{title}</h1>
       <Marked content={content} className="mb-rowGap" />
       <p className="mb-elementSpacing">{description}</p>
