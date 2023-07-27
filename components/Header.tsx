@@ -1,7 +1,6 @@
 "use client";
 
 import useTheme from "@/utils/app/hooks/useTheme";
-import { MaterialSymbolsDarkMode, MaterialSymbolsLightMode } from "./icons";
 import { SearchBox, ShowOnTablet } from "./layouts";
 import Link from "next/link";
 
@@ -26,29 +25,14 @@ const Profile = () => {
 };
 
 const ThemeSwitcher = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   return (
     <button
       onClick={toggleTheme}
       className="rounded-full p-tagPaddingY hover:bg-borderColor"
     >
-      <div className="relative" style={{ width: "1em", height: "1em" }}>
-        <MaterialSymbolsLightMode
-          className="absolute top-0 left-0"
-          style={{
-            transform: theme === "light" ? "scale(1)" : "scale(0)",
-            opacity: theme === "light" ? 1 : 0,
-          }}
-        />
-        <MaterialSymbolsDarkMode
-          className="absolute top-0 left-0"
-          style={{
-            transform: theme === "dark" ? "scale(1)" : "scale(0)",
-            opacity: theme === "dark" ? 1 : 0,
-          }}
-        />
-      </div>
+      <div id="i-header-mode" style={{ width: "1em", height: "1em" }} />
     </button>
   );
 };
