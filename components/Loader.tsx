@@ -1,5 +1,3 @@
-import { LoadingSpinner, ScrollToTopButton } from "./layouts";
-
 const Loader = ({
   loader,
   loading,
@@ -20,6 +18,14 @@ const Loader = ({
       )}
     </div>
   );
+};
+
+const ScrollToTopButton = () => {
+  return <div className="flex items-center justify-center"></div>;
+};
+
+const LoadingSpinner = () => {
+  return <div className="flex items-center justify-center"></div>;
 };
 
 export default Loader;

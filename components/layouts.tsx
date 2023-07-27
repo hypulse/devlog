@@ -1,31 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { MdiArrowCollapseUp, MdiLoading, MdiMagnify } from "./icons";
+import { MdiMagnify } from "./icons";
 import { InputBase } from "./inputs";
-
-const ScrollToTopButton = () => {
-  return (
-    <div className="flex items-center justify-center">
-      <button
-        className="rounded-full p-buttonPaddingY bg-cardColor text-secondary animate-bounce"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <MdiArrowCollapseUp />
-      </button>
-    </div>
-  );
-};
-
-const LoadingSpinner = () => {
-  return (
-    <div className="flex items-center justify-center overflow-hidden">
-      <div className="rounded-full p-buttonPaddingY bg-cardColor text-secondary animate-spin">
-        <MdiLoading />
-      </div>
-    </div>
-  );
-};
 
 const ShowOnTablet = ({ children }: { children: React.ReactNode }) => {
   return <div className="hidden tablet:block">{children}</div>;
@@ -62,10 +39,4 @@ const SearchBox = () => {
   );
 };
 
-export {
-  ScrollToTopButton,
-  LoadingSpinner,
-  ShowOnTablet,
-  HideOnTablet,
-  SearchBox,
-};
+export { ShowOnTablet, HideOnTablet, SearchBox };
