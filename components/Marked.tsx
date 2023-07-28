@@ -4,10 +4,10 @@ import { mangle } from "marked-mangle";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { HTMLAttributes, useEffect } from "react";
 import hljs from "highlight.js";
-import "./../styles/markdown.scss";
 import "./../styles/highlight.scss";
+import { copyToClipboard } from "@/utils/app/interactiveFeatures";
+// import "./../styles/markdown.scss";
 // import "./../styles/code-block.css";
-import { copyToClipboard } from "@/utils/app";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   content?: string;

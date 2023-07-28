@@ -1,5 +1,8 @@
 import { CardData } from "@/types/data";
-import { showDateString, showReadTime } from "@/utils/app/show";
+import {
+  formatRelativeDate,
+  getEstimatedReadTime,
+} from "@/utils/app/timeAndDateRenders";
 import Link from "next/link";
 
 const Card = ({
@@ -35,9 +38,9 @@ const Card = ({
           </p>
         </div>
         <div className="flex items-center space-x-columnGap text-meta text-textSecondaryColor">
-          <span>{showDateString(createdAt)}</span>
+          <span>{formatRelativeDate(createdAt)}</span>
           <span>&middot;</span>
-          <span>{showReadTime(wordCount)}</span>
+          <span>{getEstimatedReadTime(wordCount)}</span>
         </div>
       </div>
     </Link>
