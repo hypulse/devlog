@@ -1,37 +1,36 @@
 .markdown-body {
-  /* Typography */
   h1,
   h2,
   h3,
+  h4,
+  h5,
+  h6,
   p {
-    @apply leading-relaxed text-textColor;
+    @apply mb-rowGap leading-relaxed;
   }
 
   h1 {
-    @apply text-title font-bold;
+    @apply text-title font-bold mb-extraSpacing;
   }
 
   h2 {
-    @apply text-subTitle font-bold;
+    @apply text-subTitle font-bold mb-elementSpacing;
   }
 
   h3 {
     @apply text-extra font-bold;
   }
 
-  /* em, i */
   em,
   i {
-    @apply italic text-textColor;
+    @apply italic;
   }
 
-  /* strong, b */
   strong,
   b {
-    @apply font-bold text-textColor;
+    @apply font-bold;
   }
 
-  /* a */
   a {
     @apply no-underline text-secondary;
   }
@@ -40,14 +39,24 @@
     @apply underline;
   }
 
-  /* li */
   li {
-    @apply leading-snug mb-elementSpacing text-textColor;
+    @apply leading-snug mb-rowGap;
   }
 
-  /* code */
+  ul li {
+    @apply list-disc list-inside;
+  }
+
+  ol li {
+    @apply list-decimal list-inside;
+  }
+
   code {
     @apply font-mono text-caption whitespace-pre rounded-small;
+  }
+
+  code:not(.hljs) {
+    // @apply ;
   }
 
   /* blockquote */

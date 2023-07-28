@@ -28,9 +28,6 @@ const markedRenderer: marked.RendererObject = {
   code(code: string, language: string) {
     return `<pre><code class="hljs language-${language}">${code}</code></pre>`;
   },
-  codespan(code) {
-    return `<code class="hljs">${code}</code>`;
-  },
 };
 
 marked.use(
