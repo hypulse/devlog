@@ -1,23 +1,18 @@
 import { ArticleSchema } from "@/types/schema";
 import Marked from "./Marked";
 import Link from "next/link";
-import { UilCommentsAlt } from "./icons";
+import { MdiCommentMultiple } from "./icons";
 
-const SnippetView = ({
-  _id,
-  title,
-  content = "",
-  description = "",
-}: ArticleSchema) => {
+const SnippetView = ({ _id, content = "" }: ArticleSchema) => {
   return (
     <div className="flex flex-col border p-cardPadding bg-cardColor rounded-small space-y-extraSpacing border-borderColor">
       <Marked content={content} />
       <Link
         href={`/posts/${_id}`}
-        className="flex items-center justify-center mt-auto border rounded border-primary text-primary px-buttonPaddingX py-buttonPaddingY text-caption"
+        className="flex items-center justify-center border rounded border-primary text-primary px-buttonPaddingX py-buttonPaddingY text-caption"
       >
-        <UilCommentsAlt className="mr-columnGap" />
-        <span>View replies</span>
+        <MdiCommentMultiple className="mr-columnGap" />
+        <span>Read comments</span>
       </Link>
     </div>
   );
