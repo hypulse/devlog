@@ -33,7 +33,7 @@
 
   /* a */
   a {
-    @apply no-underline text-primary;
+    @apply no-underline text-secondary;
   }
 
   a:hover {
@@ -45,13 +45,9 @@
     @apply leading-snug mb-elementSpacing text-textColor;
   }
 
-  pre {
-    @apply overflow-auto rounded-small p-cardPadding;
-  }
-
   /* code */
   code {
-    @apply font-mono text-caption whitespace-pre;
+    @apply font-mono text-caption whitespace-pre rounded-small;
   }
 
   /* blockquote */

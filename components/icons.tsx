@@ -17,7 +17,7 @@ export function MdiMagnify(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function MdiCommentMultiple(props: SVGProps<SVGSVGElement>) {
+export function MdiShare(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ export function MdiCommentMultiple(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M12 23a1 1 0 0 1-1-1v-3H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4.1l-3.7 3.71c-.2.18-.44.29-.7.29H12m-9-8H1V3a2 2 0 0 1 2-2h16v2H3v12Z"
+        d="m21 12l-7-7v4C7 10 4 15 3 20c2.5-3.5 6-5.1 11-5.1V19l7-7Z"
       ></path>
     </svg>
   );

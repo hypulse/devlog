@@ -7,7 +7,7 @@ export default function Page() {
     <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
       <Search />
       <div>
-        <div className="mb-rowGap text-caption text-textSecondaryColor">
+        <div className="mb-elementSpacing text-caption text-textSecondaryColor">
           0 results found
         </div>
         <div className="grid grid-cols-1 gap-y-columnGap gap-x-rowGap tablet:grid-cols-2">

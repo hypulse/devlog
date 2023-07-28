@@ -24,6 +24,15 @@ const markedOptions: marked.MarkedOptions = {
   silent: false,
 };
 
+const markedRenderer: marked.RendererObject = {
+  code(code: string, language: string) {
+    return `<pre><code class="hljs language-${language}">${code}</code></pre>`;
+  },
+  codespan(code) {
+    return `<code class="hljs">${code}</code>`;
+  },
+};
+
 marked.use(
   markedOptions,
   markedHighlight({
@@ -33,7 +42,8 @@ marked.use(
     },
   }),
   mangle(),
-  gfmHeadingId()
+  gfmHeadingId(),
+  { renderer: markedRenderer }
 );
 
 const Marked = ({
@@ -69,7 +79,9 @@ const Marked = ({
 
   return (
     <div
-      className={`markdown-body ${className}`}
+      className={
+        className ? ["markdown-body", className].join(" ") : "markdown-body"
+      }
       dangerouslySetInnerHTML={{ __html: marked.parse(content || "") }}
       {...props}
     />

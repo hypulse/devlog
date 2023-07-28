@@ -37,7 +37,7 @@ module.exports = {
       tagPaddingY: "0.25rem", // 태그 Y 패딩
       cardPadding: "1rem", // 카드 패딩
       containerPadding: "1.5rem", // 컨테이너 패딩
-      sectionSpacing: "2rem", // 섹션 간격 e.g. 카드와 카드 사이
+      sectionSpacing: "4rem", // 섹션 간격 e.g. 카드와 카드 사이
       extraSpacing: "2rem", // 본문과 본문 사이
       elementSpacing: "1.5rem", // 요소 간격 e.g. 카드 내부 영역 사이
       columnGap: "1rem", // 칼럼 간격 e.g. 카드 제목과 내용 사이
