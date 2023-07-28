@@ -30,7 +30,7 @@ const SearchBox = () => {
         placeholder="Search..."
       />
       <button
-        className="rounded-full p-tagPaddingY hover:bg-borderColor"
+        className="rounded-full p-tagPaddingY hover:bg-borderColor text-extra"
         type="submit"
       >
         <MdiMagnify />

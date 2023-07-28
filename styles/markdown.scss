@@ -1,2 +1,94 @@
 .markdown-body {
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  p {
+    @apply leading-relaxed text-textColor;
+  }
+
+  h1 {
+    @apply text-title font-bold;
+  }
+
+  h2 {
+    @apply text-subTitle font-bold;
+  }
+
+  h3 {
+    @apply text-extra font-bold;
+  }
+
+  /* em, i */
+  em,
+  i {
+    @apply italic text-textColor;
+  }
+
+  /* strong, b */
+  strong,
+  b {
+    @apply font-bold text-textColor;
+  }
+
+  /* a */
+  a {
+    @apply no-underline text-primary;
+  }
+
+  a:hover {
+    @apply underline;
+  }
+
+  /* li */
+  li {
+    @apply leading-snug mb-elementSpacing text-textColor;
+  }
+
+  pre {
+    @apply overflow-auto rounded-small p-cardPadding;
+  }
+
+  /* code */
+  code {
+    @apply font-mono text-caption whitespace-pre;
+  }
+
+  /* blockquote */
+  blockquote {
+    @apply ml-0 border-l-4 border-borderColor pl-cardPadding text-textSecondaryColor;
+  }
+
+  /* hr */
+  hr {
+    @apply border-t-4 border-borderColor my-extraSpacing;
+  }
+
+  /* img */
+  img {
+    @apply h-auto max-w-full rounded;
+  }
+
+  /* del */
+  del {
+    @apply line-through text-textSecondaryColor;
+  }
+
+  /* table */
+  table {
+    @apply w-full border-collapse;
+  }
+
+  table th,
+  table td {
+    @apply border border-borderColor px-buttonPaddingX py-buttonPaddingY;
+  }
+
+  table tr:nth-child(even) {
+    @apply bg-cardColor;
+  }
+
+  table th {
+    @apply font-bold bg-cardColor text-textColor;
+  }
 }

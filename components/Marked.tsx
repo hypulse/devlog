@@ -4,10 +4,9 @@ import { mangle } from "marked-mangle";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { HTMLAttributes, useEffect } from "react";
 import hljs from "highlight.js";
-import "./../styles/highlight.scss";
 import { copyToClipboard } from "@/utils/app/interactiveFeatures";
-// import "./../styles/markdown.scss";
-// import "./../styles/code-block.css";
+import "./../styles/highlight.scss";
+import "./../styles/markdown.scss";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   content?: string;
@@ -17,17 +16,16 @@ interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   };
 }
 
-// const renderer: marked.RendererObject = {
-// code(code: string, language: string) {
-//   return `<div class="code-block">
-//   <button class="copy-button">Copy</button>
-//   <div class="language">${language}</div>
-//   <pre><code class="language-${language}">${code}</code></pre>
-// </div>`;
-// },
-// };
+const markedOptions: marked.MarkedOptions = {
+  async: false,
+  breaks: false,
+  gfm: true,
+  pedantic: false,
+  silent: false,
+};
 
 marked.use(
+  markedOptions,
   markedHighlight({
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
@@ -36,7 +34,6 @@ marked.use(
   }),
   mangle(),
   gfmHeadingId()
-  // { renderer }
 );
 
 const Marked = ({
@@ -46,18 +43,28 @@ const Marked = ({
   ...props
 }: MarkedProps) => {
   useEffect(() => {
-    const copyButtons = document.querySelectorAll(
+    const copyButtons = document.querySelectorAll<HTMLButtonElement>(
       ".markdown-body .code-block .copy-button"
     );
+
+    const handleCopy = (event: MouseEvent) => {
+      const copyButton = event.currentTarget as HTMLButtonElement;
+      const codeBlock = copyButton.parentElement;
+      const code = codeBlock?.querySelector("code");
+      if (code) {
+        copyToClipboard(code.innerText);
+      }
+    };
+
     copyButtons.forEach((copyButton) => {
-      copyButton.addEventListener("click", () => {
-        const codeBlock = copyButton.parentElement;
-        const code = codeBlock?.querySelector("code");
-        if (code) {
-          copyToClipboard(code.innerText);
-        }
-      });
+      copyButton.addEventListener("click", handleCopy);
     });
+
+    return () => {
+      copyButtons.forEach((copyButton) => {
+        copyButton.removeEventListener("click", handleCopy);
+      });
+    };
   }, []);
 
   return (
