@@ -9,6 +9,7 @@ import "./../styles/highlight.scss";
 import "./../styles/markdown.scss";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
+  _id?: string;
   content?: string;
   className?: string;
   dangerouslySetInnerHTML?: {
@@ -28,6 +29,10 @@ const markedRenderer: marked.RendererObject = {
   code(code: string, language: string) {
     return `<pre><code class="hljs language-${language}">${code}</code></pre>`;
   },
+  heading(text: string, level: number) {
+    const escapedText = text.toLowerCase().replace(/[^\w]+/g, "-");
+    return `<h${level} id="${escapedText}"><a href="#${escapedText}" class="anchor">#</a> <span>${text}</span></h${level}>`;
+  },
 };
 
 marked.use(
@@ -44,12 +49,30 @@ marked.use(
 );
 
 const Marked = ({
+  _id,
   content,
   className,
   dangerouslySetInnerHTML,
   ...props
 }: MarkedProps) => {
   useEffect(() => {
+    const headings = document.querySelectorAll<HTMLHeadingElement>(
+      ".markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6"
+    );
+
+    if (_id) {
+      headings.forEach((heading) => {
+        const anchor = heading.querySelector<HTMLAnchorElement>(".anchor");
+        const span = heading.querySelector<HTMLSpanElement>("span");
+        if (anchor) {
+          const escapedText =
+            _id + "-" + span?.innerText.toLowerCase().replace(/[^\w]+/g, "-");
+          heading.id = escapedText;
+          anchor.href = `#${escapedText}`;
+        }
+      });
+    }
+
     const copyButtons = document.querySelectorAll<HTMLButtonElement>(
       ".markdown-body .code-block .copy-button"
     );
