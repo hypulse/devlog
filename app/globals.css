@@ -33,7 +33,7 @@ body {
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
-  @apply leading-normal bg-bgColor text-textColor;
+  @apply leading-normal bg-bgColor text-textColor scroll-smooth;
 }
 
 .light #i-header-mode {
