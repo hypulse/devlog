@@ -26,8 +26,12 @@ const markedOptions: marked.MarkedOptions = {
 };
 
 const markedRenderer: marked.RendererObject = {
-  code(code: string, language: string) {
-    return `<pre><code class="hljs language-${language}">${code}</code></pre>`;
+  code(code: string, language: string = "plaintext") {
+    return `<div class="code-block">
+    <div class="code-block-language">${language}</div>
+    <button class="copy-button">Copy</button>
+    <pre><code class="hljs language-${language}">${code}</code></pre>
+    </div>`;
   },
   heading(text: string, level: number) {
     const escapedText = text.toLowerCase().replace(/[^\w]+/g, "-");

@@ -53,8 +53,21 @@
     @apply list-decimal list-inside;
   }
 
-  code {
-    @apply font-mono text-caption whitespace-pre rounded-small my-rowSpacing;
+  .code-block {
+    @apply relative rounded-small my-rowSpacing px-cardPadding py-containerPadding bg-bgColor overflow-hidden;
+
+    .copy-button {
+      @apply absolute top-0 right-0 rounded-bl-small bg-primary px-tagPaddingX py-tagPaddingY text-caption;
+    }
+
+    .code-block-language {
+      @apply absolute text-meta rounded-br-small bg-secondary px-tagPaddingX left-0 top-0;
+    }
+
+    code {
+      @apply bg-transparent font-mono text-caption whitespace-pre;
+      padding: 0 !important;
+    }
   }
 
   code:not(.hljs) {
