@@ -29,7 +29,7 @@ const markedRenderer: marked.RendererObject = {
   code(code: string, language: string = "plaintext") {
     return `<div class="code-block">
     <div class="code-block-language">${language}</div>
-    <button class="copy-button">Copy</button>
+    <button class="copy-button"><span class="copy-button-icon"></span>Copy</button>
     <pre><code class="hljs language-${language}">${code}</code></pre>
     </div>`;
   },

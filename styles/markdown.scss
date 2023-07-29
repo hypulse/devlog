@@ -57,7 +57,14 @@
     @apply relative rounded-small my-rowSpacing px-cardPadding py-containerPadding bg-bgColor overflow-hidden;
 
     .copy-button {
-      @apply absolute top-0 right-0 rounded-bl-small bg-primary px-tagPaddingX py-tagPaddingY text-caption;
+      @apply absolute top-0 right-0 rounded-bl-small bg-primary px-tagPaddingX py-tagPaddingY text-caption flex items-center;
+    }
+
+    .copy-button-icon {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiMxZTFlMWUiIGQ9Ik01IDIycS0uODI1IDAtMS40MTMtLjU4OFQzIDIwVjZoMnYxNGgxMXYySDVabTQtNHEtLjgyNSAwLTEuNDEzLS41ODhUNyAxNlY0cTAtLjgyNS41ODgtMS40MTNUOSAyaDlxLjgyNSAwIDEuNDEzLjU4OFQyMCA0djEycTAgLjgyNS0uNTg4IDEuNDEzVDE4IDE4SDlaIi8+PC9zdmc+");
+      width: 1em;
+      height: 1em;
+      @apply bg-center bg-no-repeat bg-cover text-body mr-tagPaddingY;
     }
 
     .code-block-language {
@@ -75,7 +82,7 @@
   }
 
   blockquote {
-    @apply ml-0 border-l-4 border-primary pl-cardPadding;
+    @apply ml-0 border-l-4 border-secondary pl-cardPadding;
   }
 
   hr {
@@ -106,4 +113,8 @@
   table th {
     @apply font-bold bg-bgColor;
   }
+}
+
+.dark .copy-button-icon {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNmYWZhZmEiIGQ9Ik01IDIycS0uODI1IDAtMS40MTMtLjU4OFQzIDIwVjZoMnYxNGgxMXYySDVabTQtNHEtLjgyNSAwLTEuNDEzLS41ODhUNyAxNlY0cTAtLjgyNS41ODgtMS40MTNUOSAyaDlxLjgyNSAwIDEuNDEzLjU4OFQyMCA0djEycTAgLjgyNS0uNTg4IDEuNDEzVDE4IDE4SDlaIi8+PC9zdmc+") !important;
 }
