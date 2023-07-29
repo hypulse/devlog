@@ -40,8 +40,9 @@ module.exports = {
       sectionSpacing: "4rem", // 섹션 간격 e.g. 카드와 카드 사이
       extraSpacing: "2rem", // 본문과 본문 사이
       elementSpacing: "1.5rem", // 요소 간격 e.g. 카드 내부 영역 사이
-      columnGap: "1rem", // 칼럼 간격 e.g. 카드 제목과 내용 사이
-      rowGap: "0.75rem", // 행 간격 e.g. 태그와 태그 사이
+      rowSpacing: "1rem", // 행 간격 e.g. 본문에서 제목과 내용 사이
+      rowGap: "0.75rem", // 행 간격 e.g. 카드 제목과 내용 사이
+      columnGap: "1rem", // 칼럼 간격 e.g. 태그와 태그 사이
     },
     borderRadius: {
       DEFAULT: "0.5rem",

@@ -1,4 +1,6 @@
 .markdown-body {
+  @apply -m-cardPadding;
+
   h1,
   h2,
   h3,
@@ -6,19 +8,19 @@
   h5,
   h6,
   p {
-    @apply mb-rowGap leading-relaxed;
+    @apply mb-rowSpacing leading-relaxed mt-rowGap;
   }
 
   h1 {
-    @apply text-title font-bold mb-extraSpacing;
+    @apply text-title font-bold mb-extraSpacing mt-rowSpacing;
   }
 
   h2 {
-    @apply text-subTitle font-bold mb-elementSpacing;
+    @apply text-subTitle font-bold mb-elementSpacing mt-rowSpacing;
   }
 
   h3 {
-    @apply text-extra font-bold;
+    @apply text-extra font-bold mt-rowSpacing;
   }
 
   em,
@@ -52,36 +54,31 @@
   }
 
   code {
-    @apply font-mono text-caption whitespace-pre rounded-small;
+    @apply font-mono text-caption whitespace-pre rounded-small my-rowSpacing;
   }
 
   code:not(.hljs) {
-    // @apply ;
+    @apply bg-borderColor rounded-small p-tagPaddingY;
   }
 
-  /* blockquote */
   blockquote {
-    @apply ml-0 border-l-4 border-borderColor pl-cardPadding text-textSecondaryColor;
+    @apply ml-0 border-l-4 border-primary pl-cardPadding;
   }
 
-  /* hr */
   hr {
-    @apply border-t-4 border-borderColor my-extraSpacing;
+    @apply border-b-4 border-borderColor my-extraSpacing;
   }
 
-  /* img */
   img {
-    @apply h-auto max-w-full rounded;
+    @apply h-auto max-w-full;
   }
 
-  /* del */
   del {
     @apply line-through text-textSecondaryColor;
   }
 
-  /* table */
   table {
-    @apply w-full border-collapse;
+    @apply w-full border-collapse my-rowSpacing;
   }
 
   table th,
@@ -90,10 +87,10 @@
   }
 
   table tr:nth-child(even) {
-    @apply bg-cardColor;
+    @apply bg-bgColor;
   }
 
   table th {
-    @apply font-bold bg-cardColor text-textColor;
+    @apply font-bold bg-bgColor;
   }
 }
