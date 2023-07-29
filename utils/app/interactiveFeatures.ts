@@ -27,7 +27,11 @@ async function copyToClipboard(text: string): Promise<void> {
   }
 }
 
-type ModifiedShareData = Omit<ShareData, "files"> & { text: string };
+type ModifiedShareData = Omit<ShareData, "files"> & {
+  title: string;
+  text: string;
+  url: string;
+};
 
 async function shareData(data: ModifiedShareData): Promise<void> {
   if (navigator.share) {
@@ -38,7 +42,7 @@ async function shareData(data: ModifiedShareData): Promise<void> {
       console.error("Failed to share: ", err);
     }
   } else {
-    await copyToClipboard(data.text);
+    await copyToClipboard(data.url);
   }
 }
 
