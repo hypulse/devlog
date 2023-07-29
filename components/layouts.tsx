@@ -17,8 +17,10 @@ const SearchBox = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/search?q=${e.currentTarget.q.value}`);
-    e.currentTarget.q.value = "";
+    if (e.currentTarget.q.value) {
+      router.push(`/search?q=${e.currentTarget.q.value}`);
+      e.currentTarget.q.value = "";
+    }
   };
 
   return (
