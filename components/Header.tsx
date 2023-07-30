@@ -2,27 +2,7 @@
 
 import useTheme from "@/utils/app/hooks/useTheme";
 import { SearchBox, ShowOnTablet } from "./layouts";
-import Link from "next/link";
-
-const Profile = () => {
-  return (
-    <Link
-      href={`/`}
-      className="block overflow-hidden rounded-full"
-      style={{
-        width: "1.875rem",
-        height: "1.875rem",
-      }}
-    >
-      <div
-        className="w-full h-full bg-center bg-cover"
-        style={{
-          backgroundImage: `url(${"https://avatars.githubusercontent.com/u/90980422?v=4"})`,
-        }}
-      />
-    </Link>
-  );
-};
+import Profile from "./Profile";
 
 const ThemeSwitcher = () => {
   const { toggleTheme } = useTheme();
@@ -46,7 +26,7 @@ const Header = () => {
       >
         <div className="flex items-center h-full max-w-6xl mx-auto px-extraSpacing">
           <div className="flex-grow">
-            <Profile />
+            <Profile size={1.875} href="/" />
           </div>
           <div className="flex items-center gap-x-columnGap">
             <ShowOnTablet>
