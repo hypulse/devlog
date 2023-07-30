@@ -1,3 +1,5 @@
+import { BxArrowToTop, LineMdLoadingLoop } from "./icons";
+
 const Loader = ({
   loader,
   loading,
@@ -25,11 +27,26 @@ const ScrollToTopButton = () => {
     window.scrollTo({ top: 0 });
   };
 
-  return <div className="flex items-center justify-center"></div>;
+  return (
+    <div className="flex items-center justify-center">
+      <button
+        className="rounded-full p-tagPaddingY bg-borderColor animate-bounce"
+        onClick={scrollToTop}
+      >
+        <BxArrowToTop className="text-primary text-extra" />
+      </button>
+    </div>
+  );
 };
 
 const LoadingSpinner = () => {
-  return <div className="flex items-center justify-center"></div>;
+  return (
+    <div className="flex items-center justify-center">
+      <div className="rounded-full p-tagPaddingY bg-borderColor">
+        <LineMdLoadingLoop className="text-primary text-extra" />
+      </div>
+    </div>
+  );
 };
 
 export default Loader;
