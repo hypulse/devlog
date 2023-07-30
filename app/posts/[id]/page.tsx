@@ -73,13 +73,13 @@ const PrevAndNext = () => {
   return (
     <div className="grid grid-cols-1 border divide-y tablet:divide-y-0 tablet:divide-x tablet:grid-cols-2 bg-cardColor border-borderColor divide-borderColor">
       <div>
-        <p className="text-meta text-textSecondaryColor px-cardPadding">
+        <p className="text-meta text-textSecondaryColor px-tagPaddingX py-tagPaddingY">
           &larr; Previous
         </p>
         <SmallCard {...cardDataDummy} className="p-cardPadding" />
       </div>
       <div>
-        <p className="text-right text-meta text-textSecondaryColor px-cardPadding">
+        <p className="text-right text-meta text-textSecondaryColor px-tagPaddingX py-tagPaddingY">
           Next &rarr;
         </p>
         <SmallCard {...cardDataDummy} className="p-cardPadding" />
