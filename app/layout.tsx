@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import "./globals.css";
 import { ThemeProvider } from "@/utils/app/hooks/useTheme";
 import Rendered from "@/components/Rendered";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -48,6 +49,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

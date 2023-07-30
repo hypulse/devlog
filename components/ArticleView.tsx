@@ -48,7 +48,6 @@ const ArticleView = ({
         <CommentsAndShare title={title} description={description} _id={_id} />
         {tags && <Tags tags={tags} />}
       </div>
-      <Comments />
     </div>
   );
 };
@@ -115,40 +114,6 @@ const Tags = ({ tags }: { tags: Array<TagSchema> }) => {
       </div>
     </div>
   );
-};
-
-const Comments = () => {
-  const { theme } = useTheme();
-  const utterances = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!utterances.current) return;
-
-    const script = document.createElement("script");
-    script.src = "https://utteranc.es/client.js";
-    script.setAttribute("repo", "hypulse/devlog-comments");
-    script.setAttribute("issue-term", "pathname");
-    script.setAttribute(
-      "theme",
-      `github-${theme === "dark" ? "dark" : "light"}`
-    );
-    script.setAttribute("crossorigin", "anonymous");
-    script.async = true;
-
-    utterances.current.appendChild(script);
-
-    return () => {
-      if (
-        utterances.current &&
-        utterances.current.children &&
-        utterances.current.children[0]
-      ) {
-        utterances.current.removeChild(utterances.current.children[0]);
-      }
-    };
-  }, [utterances, theme]);
-
-  return <div ref={utterances} id="utterances" />;
 };
 
 export default ArticleView;

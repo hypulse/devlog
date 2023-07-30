@@ -4,17 +4,28 @@ const SmallCard = ({
   _id,
   title,
   thumbnailImage,
+  className,
 }: {
   _id: string;
   title: string;
   thumbnailImage?: string;
+  className?: string;
 }) => {
   return (
     <Link
       href={`/posts/${_id}`}
-      className="flex items-start border p-cardPadding bg-cardColor border-borderColor rounded-small group space-x-elementSpacing"
+      className={
+        className
+          ? `flex items-start group space-x-elementSpacing ${className}`
+          : "flex items-start group space-x-elementSpacing"
+      }
     >
-      <div className="overflow-hidden rounded aspect-video basis-1/3">
+      <div
+        className="overflow-hidden rounded aspect-video shrink-0"
+        style={{
+          flexBasis: "8rem",
+        }}
+      >
         <div
           className="w-full h-full bg-center bg-cover"
           style={{
@@ -24,7 +35,7 @@ const SmallCard = ({
           }}
         />
       </div>
-      <h3 className="font-bold text-extra group-hover:text-primary basis-2/3 line-clamp-3">
+      <h3 className="flex-grow font-bold text-extra group-hover:text-primary line-clamp-3">
         {title}
       </h3>
     </Link>
