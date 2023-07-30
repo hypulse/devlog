@@ -5,6 +5,7 @@ import SmallCard from "@/components/SmallCard";
 import SnippetView from "@/components/SnippetView";
 import { ArticleSchema } from "@/types/schema";
 import { articleDataDummy, cardDataDummy } from "@/utils/app/dummy";
+import { useEffect, useRef } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
   return (

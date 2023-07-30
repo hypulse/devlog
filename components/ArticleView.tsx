@@ -4,20 +4,21 @@ import {
   formatRelativeDate,
   getEstimatedReadTime,
 } from "@/utils/app/timeAndDateRenders";
-import {
-  BasilShareBoxSolid,
-  FluentCommentAdd12Regular,
-  MdiGithub,
-} from "./icons";
+import { BasilShareBoxSolid, FluentCommentAdd12Regular } from "./icons";
 import Link from "next/link";
 import Profile from "./Profile";
+import { useEffect, useRef } from "react";
+import useTheme from "@/utils/app/hooks/useTheme";
+import { shareData } from "@/utils/app/interactiveFeatures";
 
 const ArticleView = ({
+  _id,
   title,
   content,
   tags,
   createdAt,
   wordCount,
+  description,
 }: ArticleSchema) => {
   return (
     <div
@@ -40,25 +41,55 @@ const ArticleView = ({
             </div>
           </div>
         </div>
-        <CommentsAndShare />
+        <CommentsAndShare title={title} description={description} _id={_id} />
       </div>
       <Marked content={content} />
       <div className="space-y-extraSpacing">
-        <CommentsAndShare />
+        <CommentsAndShare title={title} description={description} _id={_id} />
         {tags && <Tags tags={tags} />}
       </div>
+      <Comments />
     </div>
   );
 };
 
-const CommentsAndShare = () => {
+const CommentsAndShare = ({
+  title,
+  description,
+  _id,
+}: {
+  title: string;
+  description?: string;
+  _id: string;
+}) => {
+  const handleCommentClick = () => {
+    const utterances = document.getElementById("utterances");
+    if (utterances) {
+      utterances.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleShareClick = () => {
+    shareData({
+      title,
+      text: description || "",
+      url: location.origin + "/posts/" + _id,
+    });
+  };
+
   return (
     <div className="flex items-center justify-end divide-x text-meta text-textSecondaryColor border-y border-borderColor py-buttonPaddingY px-buttonPaddingX divide-borderColor">
-      <button className="flex items-center justify-center grow basis-0 space-x-columnGap">
+      <button
+        className="flex items-center justify-center grow basis-0 space-x-columnGap"
+        onClick={handleCommentClick}
+      >
         <FluentCommentAdd12Regular className="text-extra" />
         <span className="text-caption">Comments</span>
       </button>
-      <button className="flex items-center justify-center grow basis-0 space-x-columnGap">
+      <button
+        className="flex items-center justify-center grow basis-0 space-x-columnGap"
+        onClick={handleShareClick}
+      >
         <BasilShareBoxSolid className="text-extra" />
         <span className="text-caption">Share</span>
       </button>
@@ -84,6 +115,40 @@ const Tags = ({ tags }: { tags: Array<TagSchema> }) => {
       </div>
     </div>
   );
+};
+
+const Comments = () => {
+  const { theme } = useTheme();
+  const utterances = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!utterances.current) return;
+
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.setAttribute("repo", "hypulse/devlog-comments");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute(
+      "theme",
+      `github-${theme === "dark" ? "dark" : "light"}`
+    );
+    script.setAttribute("crossorigin", "anonymous");
+    script.async = true;
+
+    utterances.current.appendChild(script);
+
+    return () => {
+      if (
+        utterances.current &&
+        utterances.current.children &&
+        utterances.current.children[0]
+      ) {
+        utterances.current.removeChild(utterances.current.children[0]);
+      }
+    };
+  }, [utterances, theme]);
+
+  return <div ref={utterances} id="utterances" />;
 };
 
 export default ArticleView;
