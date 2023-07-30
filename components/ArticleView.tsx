@@ -7,8 +7,6 @@ import {
 import { BasilShareBoxSolid, FluentCommentAdd12Regular } from "./icons";
 import Link from "next/link";
 import Profile from "./Profile";
-import { useEffect, useRef } from "react";
-import useTheme from "@/utils/app/hooks/useTheme";
 import { shareData } from "@/utils/app/interactiveFeatures";
 
 const ArticleView = ({
