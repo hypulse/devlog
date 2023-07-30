@@ -18,7 +18,7 @@ const SnippetView = ({
   };
 
   return (
-    <div className="flex flex-col border p-cardPadding bg-cardColor rounded-small gap-y-extraSpacing border-borderColor">
+    <div className="flex flex-col border p-containerPadding bg-cardColor rounded-small gap-y-extraSpacing border-borderColor">
       <Marked content={content} _id={_id} />
       <button
         className="flex items-center justify-center border rounded border-primary text-primary px-buttonPaddingX py-buttonPaddingY"

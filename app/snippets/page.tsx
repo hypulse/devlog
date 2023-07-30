@@ -12,7 +12,7 @@ export default function Page() {
   const [lastIndex, setLastIndex] = useState(0);
 
   return (
-    <main className="flex flex-col mx-auto max-w-screen-desktop px-containerPadding gap-y-extraSpacing">
+    <main className="flex flex-col mx-auto max-w-screen-desktop tablet:px-containerPadding gap-y-extraSpacing">
       <SnippetView {...snippetDataDummy} />
       <SnippetView {...snippetDataDummy} />
       <Loader
