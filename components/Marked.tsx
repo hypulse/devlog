@@ -94,30 +94,7 @@ const Marked = ({
         }
       });
     }
-
-    const copyButtons = document.querySelectorAll<HTMLButtonElement>(
-      ".markdown-body .code-block .copy-button"
-    );
-
-    const handleCopy = (event: MouseEvent) => {
-      const copyButton = event.currentTarget as HTMLButtonElement;
-      const codeBlock = copyButton.parentElement;
-      const code = codeBlock?.querySelector("code");
-      if (code) {
-        copyToClipboard(code.innerText);
-      }
-    };
-
-    copyButtons.forEach((copyButton) => {
-      copyButton.addEventListener("click", handleCopy);
-    });
-
-    return () => {
-      copyButtons.forEach((copyButton) => {
-        copyButton.removeEventListener("click", handleCopy);
-      });
-    };
-  }, []);
+  }, [_id]);
 
   return (
     <div
