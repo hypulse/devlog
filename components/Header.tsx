@@ -30,7 +30,9 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-x-columnGap">
             <ShowOnTablet>
-              <SearchBox />
+              <div className="max-w-xs">
+                <SearchBox />
+              </div>
             </ShowOnTablet>
             <ThemeSwitcher />
           </div>
