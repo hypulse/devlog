@@ -2,6 +2,7 @@ import { ArticleSchema } from "@/types/schema";
 import Marked from "./Marked";
 import { BasilShareBoxSolid } from "./icons";
 import { shareData } from "@/utils/app/interactiveFeatures";
+import useSnackBar from "@/utils/app/hooks/useSnackbar";
 
 const SnippetView = ({
   _id,
@@ -9,12 +10,22 @@ const SnippetView = ({
   description,
   content = "",
 }: ArticleSchema) => {
-  const handleShare = () => {
-    shareData({
-      title,
-      text: description || "",
-      url: location.origin + "/posts/" + _id,
-    });
+  const { showSnackBar } = useSnackBar();
+
+  const handleShare = async () => {
+    try {
+      const { navigator } = await shareData({
+        title,
+        text: description || "",
+        url: location.origin + "/posts/" + _id,
+      });
+      navigator
+        ? showSnackBar("Shared successfully", "success")
+        : showSnackBar("Copied URL to clipboard", "success");
+    } catch (err) {
+      showSnackBar("Failed to share", "error");
+      console.error(err);
+    }
   };
 
   return (

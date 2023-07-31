@@ -18,16 +18,15 @@ type ModifiedShareData = Omit<ShareData, "files"> & {
   url: string;
 };
 
-async function shareData(data: ModifiedShareData): Promise<void> {
+async function shareData(data: ModifiedShareData): Promise<{
+  navigator: boolean;
+}> {
   if (navigator.share) {
-    try {
-      await navigator.share(data);
-      console.log("Data shared successfully");
-    } catch (err) {
-      console.error("Failed to share: ", err);
-    }
+    await navigator.share(data);
+    return { navigator: true };
   } else {
     await copyToClipboard(data.url);
+    return { navigator: false };
   }
 }
 

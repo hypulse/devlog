@@ -3,6 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/utils/app/hooks/useTheme";
 import Rendered from "@/components/Rendered";
 import Footer from "@/components/Footer";
+import SnackBar from "@/components/Snackbar";
+import { SnackBarProvider } from "@/utils/app/hooks/useSnackbar";
 
 export default function RootLayout({
   children,
@@ -47,9 +49,12 @@ export default function RootLayout({
         />
         <Rendered />
         <ThemeProvider>
-          <Header />
-          {children}
-          <Footer />
+          <SnackBarProvider>
+            <Header />
+            {children}
+            <Footer />
+            <SnackBar />
+          </SnackBarProvider>
         </ThemeProvider>
       </body>
     </html>

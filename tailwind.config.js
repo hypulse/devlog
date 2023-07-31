@@ -16,6 +16,8 @@ module.exports = {
       primary: "rgb(var(--color-primary))",
       secondary: "rgb(var(--color-secondary))",
       transparent: "transparent",
+      successColor: "rgb(var(--color-success))",
+      errorColor: "rgb(var(--color-error))",
     },
     screens: {
       tablet: "600px",

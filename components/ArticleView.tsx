@@ -8,6 +8,7 @@ import { BasilShareBoxSolid, FluentCommentAdd12Regular } from "./icons";
 import Link from "next/link";
 import Profile from "./Profile";
 import { shareData } from "@/utils/app/interactiveFeatures";
+import useSnackBar from "@/utils/app/hooks/useSnackbar";
 
 const ArticleView = ({
   _id,
@@ -59,6 +60,8 @@ const CommentsAndShare = ({
   description?: string;
   _id: string;
 }) => {
+  const { showSnackBar } = useSnackBar();
+
   const handleCommentClick = () => {
     const utterances = document.getElementById("utterances");
     if (utterances) {
@@ -66,12 +69,20 @@ const CommentsAndShare = ({
     }
   };
 
-  const handleShareClick = () => {
-    shareData({
-      title,
-      text: description || "",
-      url: location.origin + "/posts/" + _id,
-    });
+  const handleShareClick = async () => {
+    try {
+      const { navigator } = await shareData({
+        title,
+        text: description || "",
+        url: location.origin + "/posts/" + _id,
+      });
+      navigator
+        ? showSnackBar("Shared successfully", "success")
+        : showSnackBar("Copied URL to clipboard", "success");
+    } catch (err) {
+      showSnackBar("Failed to share", "error");
+      console.error(err);
+    }
   };
 
   return (

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  --color-success: 76, 175, 80; /* RGB values for a clear green */
+  --color-error: 244, 67, 54; /* RGB values for a strong red */
+}
+
 .light {
   --bg-color: 230, 235, 240;
   --bg-card: 240, 245, 250;

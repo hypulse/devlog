@@ -7,6 +7,7 @@ import hljs from "highlight.js";
 import { copyToClipboard } from "@/utils/app/interactiveFeatures";
 import "./../styles/highlight.scss";
 import "./../styles/markdown.scss";
+import useSnackBar from "@/utils/app/hooks/useSnackbar";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   _id?: string;
@@ -60,6 +61,8 @@ const Marked = ({
   onClick,
   ...props
 }: MarkedProps) => {
+  const { showSnackBar } = useSnackBar();
+
   const handleCopy = async (event: React.MouseEvent) => {
     const target = event.target as HTMLElement;
     const copyButton = target.closest(".copy-button") as HTMLButtonElement;
@@ -69,8 +72,9 @@ const Marked = ({
       if (code) {
         try {
           await copyToClipboard(code.innerText);
-          console.log("Copied to clipboard");
+          showSnackBar("Copied code to clipboard", "success");
         } catch (err) {
+          showSnackBar("Failed to copy to clipboard", "error");
           console.error(err);
         }
       }
