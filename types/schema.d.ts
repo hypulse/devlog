@@ -19,6 +19,7 @@ type ArticleSchema = {
   updatedAt?: Date;
   tags?: Array<TagSchema>;
   type: "article" | "snippet";
+  status: "draft" | "published" | "deleted";
 };
 
 export type { UserSchema, TagSchema, ArticleSchema };
