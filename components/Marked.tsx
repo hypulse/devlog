@@ -57,8 +57,26 @@ const Marked = ({
   content,
   className,
   dangerouslySetInnerHTML,
+  onClick,
   ...props
 }: MarkedProps) => {
+  const handleCopy = async (event: React.MouseEvent) => {
+    const target = event.target as HTMLElement;
+    const copyButton = target.closest(".copy-button") as HTMLButtonElement;
+    if (copyButton) {
+      const codeBlock = copyButton.parentElement;
+      const code = codeBlock?.querySelector("code");
+      if (code) {
+        try {
+          await copyToClipboard(code.innerText);
+          console.log("Copied to clipboard");
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const headings = document.querySelectorAll<HTMLHeadingElement>(
       ".markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6"
@@ -107,6 +125,7 @@ const Marked = ({
         className ? ["markdown-body", className].join(" ") : "markdown-body"
       }
       dangerouslySetInnerHTML={{ __html: marked.parse(content || "") }}
+      onClick={handleCopy}
       {...props}
     />
   );
