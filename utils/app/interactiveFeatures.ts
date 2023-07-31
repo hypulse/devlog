@@ -1,25 +1,15 @@
-async function copyToClipboard(text: string): Promise<void> {
-  if (navigator.clipboard) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return;
-    } catch (err) {
-      console.error("Failed to copy with navigator.clipboard:", err);
-    }
-  }
-
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  textArea.style.position = "fixed";
-  document.body.appendChild(textArea);
-  textArea.select();
-  try {
+function copyToClipboard(text: string): Promise<void> {
+  return new Promise((resolve) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
     document.execCommand("copy");
-  } catch (err) {
-    console.error("Failed to copy with execCommand:", err);
-  } finally {
     document.body.removeChild(textArea);
-  }
+    resolve();
+  });
 }
 
 type ModifiedShareData = Omit<ShareData, "files"> & {
