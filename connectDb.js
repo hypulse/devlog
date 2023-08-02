@@ -1,8 +1,8 @@
-import mongoose, { ConnectOptions, Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 mongoose.set("strictQuery", false);
 
-async function connectDb(): Promise<Mongoose> {
+async function connectDb() {
   console.log("Connecting to database...");
   try {
     const uri = process.env.DB_URI;
@@ -10,7 +10,7 @@ async function connectDb(): Promise<Mongoose> {
     const db = await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    } as ConnectOptions);
+    });
     console.log("Connected to database");
     return db;
   } catch (error) {
