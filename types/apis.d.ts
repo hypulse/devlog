@@ -47,7 +47,7 @@ type GetPrevAndNext = (_id: string) => Promise<
 >;
 
 type SearchArticles = (
-  query: { q: string } | { tag: string }
+  query: { q: string } | { tag: IdList }
 ) => Promise<Array<ArticleSchema> & DefaultResponse>;
 
 type Login = ({
