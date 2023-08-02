@@ -21,5 +21,6 @@ const ArticleModel: Schema = new Schema(
   { timestamps: true }
 );
 
-const Article = mongoose.model<IArticle>("Article", ArticleModel);
+const Article =
+  mongoose.models.Article || mongoose.model<IArticle>("Article", ArticleModel);
 export default Article;
