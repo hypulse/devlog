@@ -1,7 +1,7 @@
 const { createServer } = require("http");
 const { parse } = require("url");
 const next = require("next");
-const { default: connectDb } = require("./connectDb");
+const { default: connectDb } = require("./connectDb.mjs");
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
