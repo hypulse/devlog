@@ -38,7 +38,7 @@ const Button = forwardRef<
 
 const Tag = ({ _id, name }: TagSchema) => {
   return (
-    <Link key={_id} href={`/posts?tag=${_id}`} className="m-tagPaddingY">
+    <Link key={_id} href={`/search?tag=${_id}`} className="m-tagPaddingY">
       <div className="inline-flex items-center border rounded-full px-tagPaddingX py-tagPaddingY text-caption border-borderColor text-primary bg-cardColor">
         {name.toLocaleLowerCase()}
       </div>

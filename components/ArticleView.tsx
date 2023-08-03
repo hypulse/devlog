@@ -9,6 +9,7 @@ import Link from "next/link";
 import Profile from "./Profile";
 import { shareData } from "@/utils/app/interactiveFeatures";
 import useSnackBar from "@/utils/app/hooks/useSnackbar";
+import { Tags } from "./inputs";
 
 const ArticleView = ({
   _id,
@@ -101,26 +102,6 @@ const CommentsAndShare = ({
         <BasilShareBoxSolid className="text-extra" />
         <span className="text-caption">Share</span>
       </button>
-    </div>
-  );
-};
-
-const Tags = ({ tags }: { tags: Array<TagSchema> }) => {
-  return (
-    <div className="flex flex-wrap items-center">
-      <div className="flex flex-wrap items-center justify-center -m-tagPaddingY">
-        {tags.map((tag) => (
-          <Link
-            key={tag._id}
-            href={`/posts?tag=${tag._id}`}
-            className="m-tagPaddingY"
-          >
-            <div className="inline-flex items-center border rounded-full px-tagPaddingX py-tagPaddingY text-caption border-borderColor text-primary bg-cardColor">
-              {tag.name.toLocaleLowerCase()}
-            </div>
-          </Link>
-        ))}
-      </div>
     </div>
   );
 };
