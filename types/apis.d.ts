@@ -9,57 +9,22 @@ type DefaultResponse = {
 
 type HandleError = ({ success }: DefaultResponse) => void;
 
-type GetCards = ({
-  page,
-  limit,
-  admin,
-  type,
-  status,
-}: {
-  page?: number;
-  limit?: number;
-  admin?: boolean;
-  type?: "article" | "snippet";
-  status?: "draft" | "published" | "deleted";
-}) => Promise<
-  Array<
-    CardData & {
-      maxIndex: number;
-      page: number;
-      limit: number;
-    } & DefaultResponse
-  >
->;
+type HandleAuth = () => void | never;
 
-type GetArticle = ({
-  _id,
-  admin,
-}: {
-  id: string;
-  admin?: boolean;
-}) => Promise<ArticleSchema & DefaultResponse>;
-
-type GetPrevAndNext = (_id: string) => Promise<
-  {
-    prev: ArticleSchema | null;
-    next: ArticleSchema | null;
-  } & DefaultResponse
->;
-
-type SearchArticles = (
-  query: { q: string } | { tag: IdList }
-) => Promise<Array<ArticleSchema> & DefaultResponse>;
-
-type Login = ({
-  email,
-  password,
-}: {
+// USER
+type Login = (payload: {
   email: string;
   password: string;
 }) => Promise<DefaultResponse>;
 
 type Logout = () => Promise<DefaultResponse>;
 
+type Register = (payload: {
+  email: string;
+  password: string;
+}) => Promise<DefaultResponse>;
+
+// ARTICLE
 type CreateArticle = (payload: {
   title: string;
   content?: string;
@@ -83,9 +48,30 @@ type UpdateArticle = (payload: {
   status?: "draft" | "published" | "deleted";
 }) => Promise<DefaultResponse>;
 
-type DeleteArticle = (payload: IdList) => Promise<DefaultResponse>;
+type DeleteArticles = (payload: IdList) => Promise<DefaultResponse>;
 
-type CreateTag = (payload: IdList) => Promise<DefaultResponse>;
+type GetArticles = (payload: {
+  query: { q: string } | { tag: IdList };
+  page?: number;
+  limit?: number;
+  admin?: boolean;
+  card?: boolean;
+  type?: "article" | "snippet";
+  status?: "draft" | "published" | "deleted";
+}) => Promise<
+  Array<
+    (ArticleSchema | CardData) & {
+      maxIndex: number;
+      page: number;
+      limit: number;
+    } & DefaultResponse
+  >
+>;
+
+// TAG
+type CreateTags = (payload: IdList) => Promise<DefaultResponse>;
+
+type ReadTags = () => Promise<DefaultResponse>;
 
 type UpdateTag = (payload: {
   _id: string;
@@ -93,3 +79,19 @@ type UpdateTag = (payload: {
 }) => Promise<DefaultResponse>;
 
 type DeleteTag = (payload: IdList) => Promise<DefaultResponse>;
+
+export type {
+  HandleError,
+  HandleAuth,
+  Login,
+  Logout,
+  Register,
+  CreateArticle,
+  UpdateArticle,
+  DeleteArticles,
+  GetArticles,
+  CreateTags,
+  ReadTags,
+  UpdateTag,
+  DeleteTag,
+};
