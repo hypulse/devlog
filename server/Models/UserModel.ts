@@ -4,18 +4,18 @@ import bcrypt from "bcrypt";
 
 type IUser = UserSchema & Document;
 
-const UserModel: Schema = new Schema({
+const User: Schema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
 });
 
-UserModel.pre("save", async function () {
+User.pre("save", async function () {
   const salt = await bcrypt.genSalt();
   const hashedPassword = await bcrypt.hash(this.password, salt);
   this.password = hashedPassword;
 });
 
-UserModel.statics.login = async function ({
+User.statics.login = async function ({
   email,
   password,
 }: {
@@ -29,5 +29,5 @@ UserModel.statics.login = async function ({
   return user;
 };
 
-const User = mongoose.models.User || mongoose.model<IUser>("User", UserModel);
-export default User;
+const UserModel = mongoose.models.User || mongoose.model<IUser>("User", User);
+export default UserModel;

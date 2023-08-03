@@ -3,7 +3,7 @@ import { ArticleSchema } from "@/types/schema";
 
 type IArticle = ArticleSchema & Document;
 
-const ArticleModel: Schema = new Schema(
+const Article: Schema = new Schema(
   {
     title: { type: String, required: true },
     content: { type: String },
@@ -21,6 +21,6 @@ const ArticleModel: Schema = new Schema(
   { timestamps: true }
 );
 
-const Article =
-  mongoose.models.Article || mongoose.model<IArticle>("Article", ArticleModel);
-export default Article;
+const ArticleModel =
+  mongoose.models.Article || mongoose.model<IArticle>("Article", Article);
+export default ArticleModel;
