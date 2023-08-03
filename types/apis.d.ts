@@ -4,10 +4,9 @@ import { ArticleSchema } from "./schema";
 type IdList = Array<string>;
 
 type DefaultResponse = {
-  success: true | string;
+  success: boolean;
+  message?: string;
 };
-
-type HandleError = ({ success }: DefaultResponse) => void;
 
 type HandleAuth = () => void | never;
 
@@ -81,7 +80,6 @@ type UpdateTag = (payload: {
 type DeleteTag = (payload: IdList) => Promise<DefaultResponse>;
 
 export type {
-  HandleError,
   HandleAuth,
   Login,
   Logout,
