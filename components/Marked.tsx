@@ -8,6 +8,7 @@ import { copyToClipboard } from "@/utils/app/interactiveFeatures";
 import "./../styles/highlight.scss";
 import "./../styles/markdown.scss";
 import useSnackBar from "@/utils/app/hooks/useSnackbar";
+import conditionalClassName from "@/utils/app/conditionalClassName";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   _id?: string;
@@ -104,9 +105,7 @@ const Marked = ({
 
   return (
     <div
-      className={
-        className ? ["markdown-body", className].join(" ") : "markdown-body"
-      }
+      className={conditionalClassName("markdown-body", className)}
       dangerouslySetInnerHTML={{ __html: marked.parse(content || "") }}
       onClick={handleCopy}
       {...props}
