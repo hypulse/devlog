@@ -36,6 +36,8 @@ const markedRenderer: marked.RendererObject = {
   },
   heading(text: string, level: number) {
     const escapedText = text.toLowerCase().replace(/[^\w]+/g, "-");
+    if (level === 1)
+      return `<h${level} id="${escapedText}"><span>${text}</span></h${level}>`;
     return `<h${level} id="${escapedText}"><a href="#${escapedText}" class="anchor">#</a> <span>${text}</span></h${level}>`;
   },
 };
