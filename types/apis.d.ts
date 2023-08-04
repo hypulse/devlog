@@ -8,21 +8,6 @@ type DefaultResponse = {
   message?: string;
 };
 
-type HandleAuth = () => void | never;
-
-// USER
-type Login = (payload: {
-  email: string;
-  password: string;
-}) => Promise<DefaultResponse>;
-
-type Logout = () => Promise<DefaultResponse>;
-
-type Register = (payload: {
-  email: string;
-  password: string;
-}) => Promise<DefaultResponse>;
-
 // ARTICLE
 type CreateArticle = (payload: {
   title: string;
@@ -79,8 +64,20 @@ type UpdateTag = (payload: {
 
 type DeleteTag = (payload: IdList) => Promise<DefaultResponse>;
 
+// USER
+type Login = (payload: {
+  email: string;
+  password: string;
+}) => Promise<DefaultResponse>;
+
+type Logout = () => Promise<DefaultResponse>;
+
+type Register = (payload: {
+  email: string;
+  password: string;
+}) => Promise<DefaultResponse>;
+
 export type {
-  HandleAuth,
   Login,
   Logout,
   Register,
