@@ -8,7 +8,7 @@ export default function handlerWithMethods(methods: {
 
     if (method && typeof methods[method] === "function") {
       const result = await methods[method](req.body);
-      handleResult(result, res);
+      handleResultResponse(result, res);
     } else {
       res.setHeader("Allow", Object.keys(methods));
       res.status(405).end(`Method ${method} Not Allowed`);
@@ -16,7 +16,7 @@ export default function handlerWithMethods(methods: {
   };
 }
 
-const handleResult = (result: any, res: NextApiResponse) => {
+const handleResultResponse = (result: any, res: NextApiResponse) => {
   if (result.success) {
     res.status(200).json(result);
   } else {
