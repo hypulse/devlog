@@ -1,13 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default function handlerWithMethods(methods: {
-  [key: string]: (payload: any) => Promise<any>;
+  [key: string]: {
+    controller: (payload: any) => Promise<any>;
+    auth?: boolean;
+  };
 }) {
   return async function (req: NextApiRequest, res: NextApiResponse) {
     const { method } = req;
 
     if (method && typeof methods[method] === "function") {
-      const result = await methods[method](req.body);
+      const { auth } = methods[method];
+      if (auth) {
+        // Check if user is authenticated
+        // If not, return 401
+      }
+      const result = await methods[method].controller(req.body);
       handleResultResponse(result, res);
     } else {
       res.setHeader("Allow", Object.keys(methods));

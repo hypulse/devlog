@@ -1,6 +1,8 @@
-import { createArticle } from "@/server/Controllers/ArticleController";
+import { getArticlesUnauth } from "@/server/Controllers/ArticleController";
 import handlerWithMethods from "@/utils/server/handlerWithMethods";
 
 export default handlerWithMethods({
-  POST: createArticle,
+  GET: {
+    controller: getArticlesUnauth,
+  },
 });

@@ -42,7 +42,7 @@ type GetArticles = (payload: {
   type?: "article" | "snippet";
   status?: "draft" | "published" | "deleted";
   query?: QueryType;
-  admin?: boolean;
+  auth?: boolean;
   card?: boolean;
 }) => Promise<
   | Array<

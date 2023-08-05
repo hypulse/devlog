@@ -57,7 +57,7 @@ export const getArticles: GetArticles = async (payload) => {
       query = { ...query, type: payload.type };
     }
 
-    if (payload.status && payload.admin) {
+    if (payload.status && payload.auth) {
       query = { ...query, status: payload.status };
     } else {
       query = { ...query, status: "published" };
@@ -95,4 +95,8 @@ export const getArticles: GetArticles = async (payload) => {
   } catch (error) {
     return catchErrorObject(error);
   }
+};
+
+export const getArticlesUnauth = (payload: any) => {
+  return getArticles({ ...payload, auth: false });
 };
