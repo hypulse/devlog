@@ -38,7 +38,7 @@ const Card = ({
           </p>
         </div>
         <div className="flex items-center space-x-columnGap text-meta text-textSecondaryColor">
-          <span>{formatRelativeDate(createdAt)}</span>
+          <span>{formatRelativeDate(new Date(createdAt))}</span>
           <span>&middot;</span>
           <span>{getEstimatedReadTime(wordCount)}</span>
         </div>

@@ -1,4 +1,4 @@
-import { TagSchema } from "@/types/schema";
+import { TagData } from "@/types/data";
 import conditionalClassName from "@/utils/app/conditionalClassName";
 import Link from "next/link";
 import { ButtonHTMLAttributes, InputHTMLAttributes, forwardRef } from "react";
@@ -36,7 +36,7 @@ const Button = forwardRef<
   );
 });
 
-const Tag = ({ _id, name }: TagSchema) => {
+const Tag = ({ _id, name }: TagData) => {
   return (
     <Link key={_id} href={`/search?tag=${_id}`} className="m-tagPaddingY">
       <div className="inline-flex items-center border rounded-full px-tagPaddingX py-tagPaddingY text-caption border-borderColor text-primary bg-cardColor">
@@ -46,7 +46,7 @@ const Tag = ({ _id, name }: TagSchema) => {
   );
 };
 
-const Tags = ({ tags }: { tags: Array<TagSchema> }) => {
+const Tags = ({ tags }: { tags: Array<TagData> }) => {
   return (
     <div className="flex flex-wrap items-center">
       <div className="flex flex-wrap items-center justify-center -m-tagPaddingY">

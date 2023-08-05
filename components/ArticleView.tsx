@@ -1,15 +1,14 @@
-import { ArticleSchema, TagSchema } from "@/types/schema";
 import Marked from "./Marked";
 import {
   formatRelativeDate,
   getEstimatedReadTime,
 } from "@/utils/app/timeAndDateRenders";
 import { BasilShareBoxSolid, FluentCommentAdd12Regular } from "./icons";
-import Link from "next/link";
 import Profile from "./Profile";
 import { shareData } from "@/utils/app/interactiveFeatures";
 import useSnackBar from "@/utils/app/hooks/useSnackbar";
 import { Tags } from "./inputs";
+import { ArticleData } from "@/types/data";
 
 const ArticleView = ({
   _id,
@@ -19,7 +18,7 @@ const ArticleView = ({
   createdAt,
   wordCount,
   description,
-}: ArticleSchema) => {
+}: ArticleData) => {
   return (
     <div
       className="flex flex-col border p-containerPadding bg-cardColor border-borderColor gap-y-sectionSpacing"
@@ -35,7 +34,7 @@ const ArticleView = ({
           <div>
             <span className="text-caption">Hypulse</span>
             <div className="flex items-center space-x-columnGap text-meta text-textSecondaryColor">
-              <span>{formatRelativeDate(createdAt)}</span>
+              <span>{formatRelativeDate(new Date(createdAt))}</span>
               <span>&middot;</span>
               <span>{getEstimatedReadTime(wordCount)}</span>
             </div>

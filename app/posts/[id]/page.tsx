@@ -3,7 +3,7 @@
 import ArticleView from "@/components/ArticleView";
 import SmallCard from "@/components/SmallCard";
 import SnippetView from "@/components/SnippetView";
-import { ArticleSchema } from "@/types/schema";
+import { ArticleData } from "@/types/data";
 import { articleDataDummy, cardDataDummy } from "@/utils/app/dummy";
 import useTheme from "@/utils/app/hooks/useTheme";
 import { useEffect, useRef } from "react";
@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { id: string } }) {
   );
 }
 
-const View = (data: ArticleSchema) => {
+const View = (data: ArticleData) => {
   switch (data.type) {
     case "article":
       return <ArticleView {...data} />;

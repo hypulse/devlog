@@ -1,15 +1,15 @@
-import { ArticleSchema } from "@/types/schema";
 import Marked from "./Marked";
 import { BasilShareBoxSolid } from "./icons";
 import { shareData } from "@/utils/app/interactiveFeatures";
 import useSnackBar from "@/utils/app/hooks/useSnackbar";
+import { ArticleData } from "@/types/data";
 
 const SnippetView = ({
   _id,
   title,
   description,
   content = "",
-}: ArticleSchema) => {
+}: ArticleData) => {
   const { showSnackBar } = useSnackBar();
 
   const handleShare = async () => {
