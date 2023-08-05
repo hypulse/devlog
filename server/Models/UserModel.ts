@@ -1,8 +1,17 @@
-import { UserSchema } from "@/types/schema";
 import mongoose, { Document, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
-type IUser = UserSchema & Document;
+type UserSchema = {
+  email: string;
+  password: string;
+};
+
+export interface IUser extends Document, UserSchema {
+  login: (payload: {
+    email: string;
+    password: string;
+  }) => Promise<IUser & { _id: string }>;
+}
 
 const User: Schema = new Schema({
   email: { type: String, required: true },

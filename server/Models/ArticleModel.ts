@@ -1,7 +1,17 @@
-import mongoose, { Schema, Document } from "mongoose";
-import { ArticleSchema } from "@/types/schema";
+import mongoose, { Schema, Document, Types } from "mongoose";
 
-type IArticle = ArticleSchema & Document;
+type ArticleSchema = {
+  title: string;
+  content?: string;
+  description?: string;
+  thumbnailImage?: string;
+  wordCount: number;
+  tags?: Types.ObjectId[];
+  type: "article" | "snippet";
+  status?: "draft" | "published" | "deleted";
+};
+
+export interface IArticle extends Document, ArticleSchema {}
 
 const Article: Schema = new Schema(
   {
@@ -10,7 +20,7 @@ const Article: Schema = new Schema(
     description: { type: String },
     thumbnailImage: { type: String },
     wordCount: { type: Number, required: true },
-    tags: { type: [Schema.Types.Mixed] },
+    tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
     type: { type: String, enum: ["article", "snippet"], required: true },
     status: {
       type: String,

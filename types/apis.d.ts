@@ -1,12 +1,14 @@
-import { CardData } from "./data";
-import { ArticleSchema } from "./schema";
+import { Types } from "mongoose";
+import { ArticleData, CardData } from "./data";
 
-type IdList = Array<string>;
+type IdList = Types.ObjectId[];
 
 type DefaultResponse = {
   success: boolean;
   message?: string;
 };
+
+type QueryType = { q: string } | { tag: string };
 
 // ARTICLE
 type CreateArticle = (payload: {
@@ -35,21 +37,22 @@ type UpdateArticle = (payload: {
 type DeleteArticles = (payload: IdList) => Promise<DefaultResponse>;
 
 type GetArticles = (payload: {
-  query: { q: string } | { tag: IdList };
   page?: number;
   limit?: number;
-  admin?: boolean;
-  card?: boolean;
   type?: "article" | "snippet";
   status?: "draft" | "published" | "deleted";
+  query?: QueryType;
+  admin?: boolean;
+  card?: boolean;
 }) => Promise<
-  Array<
-    (ArticleSchema | CardData) & {
-      maxIndex: number;
-      page: number;
-      limit: number;
-    } & DefaultResponse
-  >
+  | Array<
+      (ArticleData | CardData) & {
+        maxIndex: number;
+        page: number;
+        limit: number;
+      } & DefaultResponse
+    >
+  | DefaultResponse
 >;
 
 // TAG
