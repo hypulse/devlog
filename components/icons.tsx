@@ -164,3 +164,31 @@ export function BxError(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function IcBaselineSkipPrevious(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"></path>
+    </svg>
+  );
+}
+
+export function IcBaselineSkipNext(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path fill="currentColor" d="m6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+    </svg>
+  );
+}

@@ -1,8 +1,14 @@
+"use client";
+
+import Pagination from "@/components/Pagination";
 import Search from "@/components/Search";
 import SmallCard from "@/components/SmallCard";
 import { cardDataDummy } from "@/utils/app/dummy";
+import { useState } from "react";
 
 export default function Page() {
+  const [currentPage, setCurrentPage] = useState(1);
+
   return (
     <main className="mx-auto max-w-screen-desktop px-containerPadding space-y-sectionSpacing">
       <Search />
@@ -40,6 +46,11 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <Pagination
+        totalPages={10}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </main>
   );
 }
