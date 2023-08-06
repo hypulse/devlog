@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IcBaselineSkipNext, IcBaselineSkipPrevious } from "./icons";
+import { IcOutlineArrowCircleLeft, IcOutlineArrowCircleRight } from "./icons";
 
 export default function Pagination({
   totalPages,
@@ -48,7 +48,7 @@ export default function Pagination({
           onClick={handlePrev}
           className="rounded-full p-tagPaddingY hover:bg-borderColor"
         >
-          <IcBaselineSkipPrevious className="text-extra" />
+          <IcOutlineArrowCircleLeft className="text-extra" />
         </button>
       )}
       {pages.map((page, idx) => (
@@ -69,7 +69,7 @@ export default function Pagination({
           onClick={handleNext}
           className="rounded-full p-tagPaddingY hover:bg-borderColor"
         >
-          <IcBaselineSkipNext className="text-extra" />
+          <IcOutlineArrowCircleRight className="text-extra" />
         </button>
       )}
     </div>

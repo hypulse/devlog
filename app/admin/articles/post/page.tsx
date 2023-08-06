@@ -66,7 +66,7 @@ const CreateArticle = () => {
         </select>
       </div>
       <input type="file" onChange={handleFileChange} />
-      <Button onClick={createArticle}>Create</Button>
+      <Button onClick={createArticle}>Post</Button>
     </div>
   );
 };
@@ -128,7 +128,7 @@ const CreateSnippet = () => {
           ref={description}
         />
       </div>
-      <Button onClick={createSnippet}>Create</Button>
+      <Button onClick={createSnippet}>Post</Button>
     </div>
   );
 };

@@ -165,7 +165,7 @@ export function BxError(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function IcBaselineSkipPrevious(props: SVGProps<SVGSVGElement>) {
+export function IcOutlineArrowCircleRight(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -174,12 +174,15 @@ export function IcBaselineSkipPrevious(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 24 24"
       {...props}
     >
-      <path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"></path>
+      <path
+        fill="currentColor"
+        d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12s4.48 10 10 10s10-4.48 10-10zM4 12c0-4.42 3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8s-8-3.58-8-8zm12 0l-4 4l-1.41-1.41L12.17 13H8v-2h4.17l-1.59-1.59L12 8l4 4z"
+      ></path>
     </svg>
   );
 }
 
-export function IcBaselineSkipNext(props: SVGProps<SVGSVGElement>) {
+export function IcOutlineArrowCircleLeft(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +191,10 @@ export function IcBaselineSkipNext(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 24 24"
       {...props}
     >
-      <path fill="currentColor" d="m6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+      <path
+        fill="currentColor"
+        d="M2 12c0 5.52 4.48 10 10 10s10-4.48 10-10S17.52 2 12 2S2 6.48 2 12zm18 0c0 4.42-3.58 8-8 8s-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8zM8 12l4-4l1.41 1.41L11.83 11H16v2h-4.17l1.59 1.59L12 16l-4-4z"
+      ></path>
     </svg>
   );
 }
