@@ -114,3 +114,4 @@ const Marked = ({
 };
 
 export default Marked;
+export { marked };

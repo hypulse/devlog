@@ -1,7 +1,12 @@
 import { TagData } from "@/types/data";
 import conditionalClassName from "@/utils/app/conditionalClassName";
 import Link from "next/link";
-import { ButtonHTMLAttributes, InputHTMLAttributes, forwardRef } from "react";
+import {
+  ButtonHTMLAttributes,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+  forwardRef,
+} from "react";
 
 const InputBase = forwardRef<
   HTMLInputElement,
@@ -9,6 +14,22 @@ const InputBase = forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <input
+      ref={ref}
+      className={conditionalClassName(
+        "block w-full border-0 outline-none placeholder-textSecondaryColor ring-1 ring-inset ring-borderColor focus:ring-2 focus:ring-primary/50 focus:ring-inset",
+        className
+      )}
+      {...props}
+    />
+  );
+});
+
+const Textarea = forwardRef<
+  HTMLTextAreaElement,
+  TextareaHTMLAttributes<HTMLTextAreaElement>
+>(({ className, ...props }, ref) => {
+  return (
+    <textarea
       ref={ref}
       className={conditionalClassName(
         "block w-full border-0 outline-none placeholder-textSecondaryColor ring-1 ring-inset ring-borderColor focus:ring-2 focus:ring-primary/50 focus:ring-inset",
@@ -58,4 +79,4 @@ const Tags = ({ tags }: { tags: Array<TagData> }) => {
   );
 };
 
-export { InputBase, Button, Tag, Tags };
+export { InputBase, Textarea, Button, Tag, Tags };
