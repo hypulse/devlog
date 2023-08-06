@@ -46,10 +46,12 @@ export default function Page() {
       </div>
       <div className="grid grid-cols-1 divide-y gap-x-rowGap divide-borderColor border-y border-borderColor">
         <div className="flex items-start py-elementSpacing px-cardPadding even:bg-cardColor">
-          <div className="flex-grow">
-            <h3 className="font-bold text-extra line-clamp-3">
-              {cardDataDummy.title}
-            </h3>
+          <div className="flex flex-col items-start flex-grow">
+            <Link href={`/posts/${cardDataDummy._id}`}>
+              <h3 className="font-bold text-extra line-clamp-3 hover:text-primary">
+                {cardDataDummy.title}
+              </h3>
+            </Link>
             <p className="text-meta text-textSecondaryColor">
               {formatRelativeDate(cardDataDummy.createdAt)}
             </p>

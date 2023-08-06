@@ -114,7 +114,9 @@ const CreateSnippet = () => {
         />
         <select name="language" className="bg-transparent" ref={language}>
           {highlightLanguages.map((lang) => (
-            <option value={lang}>{lang}</option>
+            <option value={lang} key={lang}>
+              {lang}
+            </option>
           ))}
         </select>
         <Textarea
