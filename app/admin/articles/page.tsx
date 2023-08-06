@@ -41,7 +41,7 @@ export default function Page() {
         </div>
         <div className="flex-grow" />
         <Link href="/admin/articles/post">
-          <Button>Post Article</Button>
+          <Button>New Article</Button>
         </Link>
       </div>
       <div className="grid grid-cols-1 divide-y gap-x-rowGap divide-borderColor border-y border-borderColor">
