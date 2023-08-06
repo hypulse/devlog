@@ -10,29 +10,25 @@ type DefaultResponse = {
 
 type QueryType = { q: string } | { tag: string };
 
-// ARTICLE
-type CreateArticle = (payload: {
+export type CreateArticlePayload = {
   title: string;
-  content?: string;
-  description?: string;
-  thumbnailImage?: string;
-  wordCount: number;
-  tags?: IdList;
-  type: "article" | "snippet";
-  status: "draft" | "published" | "deleted";
-}) => Promise<DefaultResponse>;
-
-type UpdateArticle = (payload: {
-  _id: string;
-  title?: string;
   content?: string;
   description?: string;
   thumbnailImage?: string;
   wordCount?: number;
   tags?: IdList;
-  type?: "article" | "snippet";
-  status?: "draft" | "published" | "deleted";
-}) => Promise<DefaultResponse>;
+  type: "article" | "snippet";
+  status: "draft" | "published" | "deleted";
+};
+
+// ARTICLE
+type CreateArticle = (
+  payload: CreateArticlePayload
+) => Promise<DefaultResponse>;
+
+type UpdateArticle = (
+  payload: CreateArticlePayload & { _id: string }
+) => Promise<DefaultResponse>;
 
 type DeleteArticles = (payload: IdList) => Promise<DefaultResponse>;
 

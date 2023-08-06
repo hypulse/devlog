@@ -5,10 +5,10 @@ type ArticleSchema = {
   content?: string;
   description?: string;
   thumbnailImage?: string;
-  wordCount: number;
+  wordCount?: number;
   tags?: Types.ObjectId[];
   type: "article" | "snippet";
-  status?: "draft" | "published" | "deleted";
+  status: "draft" | "published" | "deleted";
 };
 
 export interface IArticle extends Document, ArticleSchema {}
@@ -19,13 +19,13 @@ const Article: Schema = new Schema(
     content: { type: String },
     description: { type: String },
     thumbnailImage: { type: String },
-    wordCount: { type: Number, required: true },
+    wordCount: { type: Number, default: 0 },
     tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
     type: { type: String, enum: ["article", "snippet"], required: true },
     status: {
       type: String,
       enum: ["draft", "published", "deleted"],
-      default: "draft",
+      required: true,
     },
   },
   { timestamps: true }
