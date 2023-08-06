@@ -66,6 +66,7 @@ const CreateArticle = () => {
         </select>
       </div>
       <input type="file" onChange={handleFileChange} />
+      <div>태그 UI</div>
       <Button onClick={createArticle}>Post</Button>
     </div>
   );
