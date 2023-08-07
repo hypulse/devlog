@@ -3,8 +3,8 @@
 import { Button, InputBase, Textarea } from "@/components/inputs";
 import { CreateArticlePayload } from "@/types/apis";
 import articleParser from "@/utils/app/articleParser";
-import { highlightLanguages } from "@/utils/app/hardCoded";
 import useSnackBar from "@/utils/app/hooks/useSnackbar";
+import { supportedLanguages } from "@/utils/hard";
 import { useRef, useState } from "react";
 
 export default function Page() {
@@ -113,7 +113,7 @@ const CreateSnippet = () => {
           ref={title}
         />
         <select name="language" className="bg-transparent" ref={language}>
-          {highlightLanguages.map((lang) => (
+          {supportedLanguages.map((lang) => (
             <option value={lang} key={lang}>
               {lang}
             </option>
