@@ -1,7 +1,6 @@
 "use client";
 
 import Pagination from "@/components/Pagination";
-import SmallCard from "@/components/SmallCard";
 import {
   IcBaselineDelete,
   IcBaselineDisabledVisible,
@@ -45,7 +44,7 @@ export default function Page() {
         </Link>
       </div>
       <div className="grid grid-cols-1 divide-y gap-x-rowGap divide-borderColor border-y border-borderColor">
-        <div className="flex items-start py-elementSpacing px-cardPadding even:bg-cardColor">
+        <div className="flex items-start p-cardPadding even:bg-cardColor">
           <div className="flex flex-col items-start flex-grow">
             <Link href={`/posts/${cardDataDummy._id}`}>
               <h3 className="font-bold text-extra line-clamp-3 hover:text-primary">
@@ -53,7 +52,7 @@ export default function Page() {
               </h3>
             </Link>
             <p className="text-meta text-textSecondaryColor">
-              {formatRelativeDate(cardDataDummy.createdAt)}
+              {formatRelativeDate(new Date(cardDataDummy.createdAt))}
             </p>
           </div>
           <div className="flex gap-x-tagPaddingY">
