@@ -1,16 +1,19 @@
+import { mergeClasses } from "@/utils";
+
 export default function IconButton({
-  children,
-  onClick,
-}: {
-  children: React.ReactNode;
-  onClick: () => void;
-}) {
+  className,
+  ...props
+}: React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>) {
   return (
     <button
-      className="rounded-full p-inputPadding hover:bg-border"
-      onClick={onClick}
-    >
-      {children}
-    </button>
+      className={mergeClasses(
+        className,
+        "rounded-full p-inputPadding hover:bg-border"
+      )}
+      {...props}
+    ></button>
   );
 }
