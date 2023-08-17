@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-export function RiMoonFill(props: SVGProps<SVGSVGElement>) {
+export function RiMoonCloudyFill(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ export function RiMoonFill(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6A9.996 9.996 0 0 1 12.001 22C6.477 22 2 17.523 2 12c0-5.315 4.146-9.66 9.38-9.98Z"
+        d="M8.67 5.007a7 7 0 0 1 7.55-3.901a4.5 4.5 0 0 0 5.674 5.674a7.038 7.038 0 0 1-.759 4.593A5.5 5.5 0 0 1 17.5 21H9a8 8 0 0 1-.33-15.993Zm2.177.207a8.016 8.016 0 0 1 5.61 4.885a5.533 5.533 0 0 1 2.96.245a4.97 4.97 0 0 0 .488-1.37a6.502 6.502 0 0 1-5.878-5.88a5.003 5.003 0 0 0-3.18 2.12Z"
       ></path>
     </svg>
   );
@@ -34,7 +34,7 @@ export function RiSunFill(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function RiSearch2Line(props: SVGProps<SVGSVGElement>) {
+export function RiSearchLine(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ export function RiSearch2Line(props: SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M11 2c4.968 0 9 4.032 9 9s-4.032 9-9 9s-9-4.032-9-9s4.032-9 9-9Zm0 16c3.867 0 7-3.133 7-7s-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7Zm8.485.071l2.829 2.828l-1.415 1.415l-2.828-2.829l1.414-1.414Z"
+        d="m18.031 16.617l4.283 4.282l-1.415 1.415l-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9s9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617Zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.867-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15Z"
       ></path>
     </svg>
   );
