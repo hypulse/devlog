@@ -1,21 +1,22 @@
 import Card from "@/components/Card";
-import { RiArrowUpFill, RiLoaderFill } from "@/icons";
+import { RiArrowUpFill, RiLoaderLine } from "@/icons";
 
 export default function Page() {
   return (
-    <div className="flex-col space-y-extraGap">
+    <div className="flex flex-col gap-y-extraGap">
       <Card />
       <Card />
-      <Loader />
+      <div className="flex justify-center">
+        <Loader />
+      </div>
     </div>
   );
 }
 
-const Loader = () => {
+const Loader = ({ loading = true }) => {
   return (
-    <div className="p-inputPadding">
-      <RiLoaderFill />
-      <RiArrowUpFill />
+    <div className="rounded-full p-inputPadding bg-border text-primary">
+      {loading ? <RiLoaderLine /> : <RiArrowUpFill />}
     </div>
   );
 };

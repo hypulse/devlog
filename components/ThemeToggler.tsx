@@ -1,9 +1,10 @@
 import { RiMoonClearFill } from "@/icons";
+import IconButton from "./IconButton";
 
 export default function ThemeToggler() {
   return (
-    <div className="p-inputPadding">
+    <IconButton>
       <RiMoonClearFill />
-    </div>
+    </IconButton>
   );
 }

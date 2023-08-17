@@ -53,7 +53,7 @@ export default function RootLayout({
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="mx-auto p-cardPadding max-w-screen-desktop">
+    <main className="mx-auto p-containerPadding max-w-screen-desktop">
       {children}
     </main>
   );

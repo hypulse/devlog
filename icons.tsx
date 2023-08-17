@@ -34,7 +34,7 @@ export function RiLightbulbFill(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function RiLoaderFill(props: SVGProps<SVGSVGElement>) {
+export function RiLoaderLine(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
