@@ -1,11 +1,16 @@
 export default function IconButton({
   children,
+  onClick,
 }: {
   children: React.ReactNode;
+  onClick: () => void;
 }) {
   return (
-    <div className="rounded-full p-inputPadding hover:bg-border">
+    <button
+      className="rounded-full p-inputPadding hover:bg-border"
+      onClick={onClick}
+    >
       {children}
-    </div>
+    </button>
   );
 }

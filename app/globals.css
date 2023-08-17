@@ -42,3 +42,7 @@ body {
     font-size: 18px;
   }
 }
+
+svg {
+  @apply text-h3;
+}
