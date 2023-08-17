@@ -1,10 +1,6 @@
-import Header from "@/components/Header";
 import "./globals.css";
-import { ThemeProvider } from "@/utils/app/hooks/useTheme";
-import Rendered from "@/components/Rendered";
-import Footer from "@/components/Footer";
-import SnackBar from "@/components/Snackbar";
-import { SnackBarProvider } from "@/utils/app/hooks/useSnackbar";
+import AppRendered from "@/components/AppRendered";
+import ThemeToggler from "@/components/ThemeToggler";
 
 export default function RootLayout({
   children,
@@ -47,16 +43,29 @@ export default function RootLayout({
             })();`,
           }}
         />
-        <Rendered />
-        <ThemeProvider>
-          <SnackBarProvider>
-            <Header />
-            {children}
-            <Footer />
-            <SnackBar />
-          </SnackBarProvider>
-        </ThemeProvider>
+        <AppRendered />
+        <Header />
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
 }
+
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <main className="mx-auto p-cardPadding max-w-screen-desktop">
+      {children}
+    </main>
+  );
+};
+
+const Header = () => {
+  return (
+    <header className="flex items-center max-w-6xl mx-auto p-cardPadding space-x-elementGap mb-sectionGap">
+      <h1 className="grow text-h3">Hypulse Log</h1>
+      <a>Home</a>
+      <a>About</a>
+      <ThemeToggler />
+    </header>
+  );
+};
