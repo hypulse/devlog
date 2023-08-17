@@ -6,8 +6,8 @@ export default function Page() {
     <div className="space-y-sectionGap">
       <SearchBox />
       <div className="flex flex-col gap-y-extraGap">
-        <Card _id="" />
-        <Card _id="" />
+        <Card _id="1" />
+        <Card _id="2" />
       </div>
     </div>
   );
