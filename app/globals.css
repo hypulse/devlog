@@ -28,7 +28,7 @@
 
 html,
 body {
-  @apply leading-normal scroll-smooth bg-background text-text;
+  @apply leading-snug scroll-smooth bg-background text-text font-base;
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
@@ -45,4 +45,8 @@ body {
 
 svg {
   @apply text-h3;
+}
+
+a:hover {
+  @apply underline;
 }

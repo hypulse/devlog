@@ -48,14 +48,15 @@ export default function RootLayout({
         <AppRendered />
         <ThemeProvider>
           <Header />
-          <Layout>{children}</Layout>
+          <PageLayout>{children}</PageLayout>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
   );
 }
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const PageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="mx-auto px-containerPadding max-w-screen-desktop">
       {children}
@@ -81,5 +82,13 @@ const Header = () => {
       <Link href="/about">About</Link>
       <ThemeToggler />
     </header>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer className="flex justify-center text-xs mt-sectionGap p-containerPadding text-textSecondary">
+      CopyRight &copy; {new Date().getFullYear()} hypulse. All rights reserved.
+    </footer>
   );
 };
