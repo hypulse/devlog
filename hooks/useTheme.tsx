@@ -2,33 +2,31 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-const ThemeContext = createContext<{
-  theme: "light" | "dark" | undefined;
+type ThemeType = "light" | "dark";
+
+interface ThemeContextProps {
+  theme: ThemeType | undefined;
   toggleTheme: () => void;
-}>({
+}
+
+const ThemeContext = createContext<ThemeContextProps>({
   theme: "light",
   toggleTheme: () => {},
 });
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<"light" | "dark" | undefined>();
-  const body = typeof window !== "undefined" && document.querySelector("body");
+  const [theme, setTheme] = useState<ThemeType | undefined>();
 
   useEffect(() => {
-    var localStorageTheme = localStorage.getItem("theme");
-    var prefersDarkMode =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (localStorageTheme) {
-      setTheme(localStorageTheme as "light" | "dark");
-    } else if (prefersDarkMode) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+    const localStorageTheme = localStorage.getItem("theme") as ThemeType | null;
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    applyTheme(localStorageTheme || (prefersDarkMode ? "dark" : "light"));
   }, []);
 
-  const applyTheme = (theme: "light" | "dark") => {
+  const applyTheme = (theme: ThemeType) => {
+    const body = document.querySelector("body");
     if (!body) return;
     body.classList.remove(theme === "light" ? "dark" : "light");
     body.classList.add(theme);
@@ -37,9 +35,10 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const toggleTheme = () => {
-    if (!body) return;
-    const newTheme = body.classList.contains("dark") ? "light" : "dark";
-    applyTheme(newTheme);
+    if (theme) {
+      const newTheme = theme === "dark" ? "light" : "dark";
+      applyTheme(newTheme);
+    }
   };
 
   return (
@@ -49,12 +48,12 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const useTheme = () => {
+const useTheme = (): ThemeContextProps => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
-  return useContext(ThemeContext);
+  return context;
 };
 
 export default useTheme;
