@@ -11,7 +11,8 @@ interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
 
 const renderer: marked.RendererObject = {
   code(code, lang) {
-    return `<pre><code class="hljs language-${lang}">${code}</code></pre>`;
+    lang = lang || "plaintext";
+    return `<div class="code-block"><div class="code-block-lang">${lang}</div><button class="code-block-copy">Copy</button><pre><code class="hljs language-${lang}">${code}</code></pre></div>`;
   },
   codespan(code) {
     return `<code class="hljs">${code}</code>`;

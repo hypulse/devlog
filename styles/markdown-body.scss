@@ -9,6 +9,18 @@
     @include meta.load-css("highlight.js/styles/atom-one-dark");
   }
 
+  .code-block {
+    @apply relative;
+
+    .code-block-lang {
+      @apply absolute top-0 left-0 text-xs rounded-br-sm bg-secondary px-tagPaddingX;
+    }
+
+    .code-block-copy {
+      @apply absolute top-0 right-0 text-caption rounded-bl-sm bg-primary px-buttonPaddingX py-buttonPaddingY;
+    }
+  }
+
   h4,
   h5,
   h6,
@@ -19,7 +31,7 @@
   ol,
   dl,
   table,
-  pre {
+  .code-block {
     @apply mt-rowGap;
   }
 
