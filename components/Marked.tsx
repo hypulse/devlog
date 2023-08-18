@@ -1,33 +1,36 @@
 import { mergeClasses } from "@/utils";
 import hljs from "highlight.js";
 import { marked } from "marked";
-import { gfmHeadingId } from "marked-gfm-heading-id";
 import { markedHighlight } from "marked-highlight";
-import { mangle } from "marked-mangle";
 import { HTMLAttributes } from "react";
+import "./../styles/markdown-body.scss";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
 }
 
-const markedOptions: marked.MarkedOptions = {
-  async: false,
-  breaks: false,
-  gfm: true,
-  pedantic: false,
-  silent: false,
+const renderer: marked.RendererObject = {
+  code(code, lang) {
+    return `<pre><code class="hljs language-${lang}">${code}</code></pre>`;
+  },
+  codespan(code) {
+    return `<code class="hljs">${code}</code>`;
+  },
+};
+
+const options: marked.MarkedOptions = {
+  renderer: renderer as marked.Renderer,
+  gfm: false,
 };
 
 marked.use(
-  markedOptions,
   markedHighlight({
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
       return hljs.highlight(code, { language }).value;
     },
   }),
-  mangle(),
-  gfmHeadingId()
+  options
 );
 
 const Marked = ({ text, className, ...props }: MarkedProps) => {
