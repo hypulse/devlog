@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function Card({ _id }: { _id: string }) {
   return (
-    <div className="flex-col space-y-rowGap group">
+    <div className="flex flex-col gap-y-rowGap group">
       <Link href={`/posts/${_id}`}>
         <h2 className="font-bold text-h2 group-hover:text-primary">
           Target sales suffer after Pride month backlash
         </h2>
       </Link>
-      <p className="flex text-caption space-x-colGap">
+      <p className="flex text-caption gap-x-colGap">
         <span>10 hours ago</span>
         <span>&middot;</span>
         <span>3 mins read</span>

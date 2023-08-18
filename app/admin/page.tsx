@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-y-elementGap">
+    <div>
       <Button>Post</Button>
     </div>
   );

@@ -65,7 +65,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
 const Header = () => {
   return (
-    <header className="flex items-center max-w-6xl mx-auto p-cardPadding space-x-elementGap mb-sectionGap">
+    <header className="flex items-center max-w-6xl mx-auto p-cardPadding gap-x-elementGap mb-sectionGap">
       <Link href="/admin" className="grow text-h3">
         <img
           src="https://avatars.githubusercontent.com/u/90980422?v=4"
