@@ -5,5 +5,24 @@ const text = JSON.parse(
 );
 
 export default function Page() {
-  return <Marked text={text} />;
+  const date = new Date();
+  return (
+    <div className="max-w-2xl mx-auto">
+      <h1 className="font-bold text-h1">
+        AI quiz: Can you tell which person is real?
+      </h1>
+      <div className="flex mt-elementGap gap-x-colGap">
+        <time dateTime={date.toISOString()}>{date.toLocaleTimeString()}</time>
+        <span>&middot;</span>
+        <a href="javascript:void(0)">Share</a>
+      </div>
+      <p className="mt-elementGap text-primary">
+        US retail giant Target saw sales fall in-store and online for the first
+        time in years after a backlash over its Pride Month offering. Sales
+        dropped 5% in the April to June period compared with the same time last
+        year - its first fall in six years.
+      </p>
+      <Marked text={text} className="mt-extraGap" />
+    </div>
+  );
 }
