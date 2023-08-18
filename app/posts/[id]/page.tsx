@@ -14,7 +14,7 @@ export default function Page() {
       <div className="flex mt-elementGap gap-x-colGap">
         <time dateTime={date.toISOString()}>{date.toLocaleTimeString()}</time>
         <span>&middot;</span>
-        <a href="javascript:void(0)">Share</a>
+        <a>Share</a>
       </div>
       <p className="mt-elementGap text-primary">
         US retail giant Target saw sales fall in-store and online for the first
