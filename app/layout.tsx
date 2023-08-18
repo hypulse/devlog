@@ -88,7 +88,7 @@ const Header = () => {
 const Footer = () => {
   return (
     <footer className="flex justify-center text-xs mt-sectionGap p-containerPadding text-textSecondary">
-      CopyRight &copy; {new Date().getFullYear()} hypulse. All rights reserved.
+      Copyright &copy; {new Date().getFullYear()} hypulse. All rights reserved.
     </footer>
   );
 };

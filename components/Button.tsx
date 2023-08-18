@@ -10,7 +10,7 @@ const Button = forwardRef<
       ref={ref}
       className={mergeClasses(
         className,
-        "px-buttonPaddingX py-buttonPaddingY rounded bg-primary text-white"
+        "px-buttonPaddingX py-buttonPaddingY rounded bg-primary text-white outline-none"
       )}
       {...props}
     />
