@@ -17,7 +17,7 @@
     }
 
     .code-block-copy {
-      @apply absolute top-0 right-0 text-caption rounded-bl-sm bg-primary px-buttonPaddingX py-buttonPaddingY text-black;
+      @apply absolute top-0 right-0 text-caption rounded-bl-sm bg-primary px-buttonPaddingX py-buttonPaddingY;
     }
 
     code {
