@@ -1,6 +1,13 @@
-import mongoose from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
 
-const postSchema = new mongoose.Schema(
+interface PostDocument extends Document {
+  title: string;
+  summary: string;
+  wordCount: number;
+  content: string;
+}
+
+const postSchema = new Schema<PostDocument>(
   {
     title: {
       type: String,
@@ -24,6 +31,6 @@ const postSchema = new mongoose.Schema(
   }
 );
 
-const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+const Post = models.Post || model<PostDocument>("Post", postSchema);
 
-module.exports = Post;
+export default Post;

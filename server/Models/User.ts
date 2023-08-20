@@ -1,14 +1,19 @@
-import mongoose, { CallbackError } from "mongoose";
+import { CallbackError, Document, Schema, model, models } from "mongoose";
 import bcrypt from "bcrypt";
 
 const SALT_ROUNDS = 10;
+
+interface UserDocument extends Document {
+  email: string;
+  password: string;
+}
 
 type LoginParams = {
   email: string;
   password: string;
 };
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema<UserDocument>({
   email: {
     type: String,
     required: true,
@@ -34,7 +39,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-User.statics.login = async function ({ email, password }: LoginParams) {
+userSchema.statics.login = async function ({ email, password }: LoginParams) {
   const user = await this.findOne({ email });
   if (!user) throw new Error("No user associated with this email address.");
 
@@ -44,6 +49,6 @@ User.statics.login = async function ({ email, password }: LoginParams) {
   return user;
 };
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User = models.User || model("User", userSchema);
 
 module.exports = User;
