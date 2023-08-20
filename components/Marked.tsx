@@ -4,6 +4,8 @@ import { marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import { HTMLAttributes } from "react";
 import "./../styles/markdown-body.scss";
+import { mangle } from "marked-mangle";
+import { gfmHeadingId } from "marked-gfm-heading-id";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
@@ -41,6 +43,8 @@ marked.use(
       return hljs.highlight(code, { language }).value;
     },
   }),
+  mangle(),
+  gfmHeadingId(),
   options
 );
 
