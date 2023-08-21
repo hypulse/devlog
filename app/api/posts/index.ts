@@ -5,10 +5,20 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const { page = 1, limit = 10, state = "active" } = req.query;
+
   switch (req.method) {
     case "GET":
       try {
-        const posts = await Post.find({});
+        const posts = await Post.find({ state: state as string })
+          .skip((Number(page) - 1) * Number(limit))
+          .limit(Number(limit));
+
+        if (!posts.length) {
+          return res
+            .status(404)
+            .json({ error: true, message: "No posts found" });
+        }
         res.status(200).json({ error: false, data: posts });
       } catch (error) {
         res
