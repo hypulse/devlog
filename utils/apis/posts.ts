@@ -13,8 +13,13 @@ async function fetchAPI(path: string, options = {}) {
   return response.json();
 }
 
-export const getPosts = async () => {
-  return await fetchAPI(API_BASE);
+export const getPosts = async (
+  state: PostState = "active",
+  page: number = 1,
+  limit: number = 10
+) => {
+  const url = `${API_BASE}?state=${state}&page=${page}&limit=${limit}`;
+  return await fetchAPI(url);
 };
 
 export const getPost = async (id: string) => {
