@@ -1,11 +1,7 @@
 import { mergeClasses } from "@/utils";
-import hljs from "highlight.js";
-import { marked } from "marked";
-import { markedHighlight } from "marked-highlight";
+import marked from "./../utils/baseMarked";
 import { HTMLAttributes } from "react";
 import "./../styles/markdown-body.scss";
-import { mangle } from "marked-mangle";
-import { gfmHeadingId } from "marked-gfm-heading-id";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
@@ -31,27 +27,14 @@ const renderer: marked.RendererObject = {
   },
 };
 
-const options: marked.MarkedOptions = {
+marked.setOptions({
   renderer: renderer as marked.Renderer,
-  gfm: false,
-};
-
-marked.use(
-  markedHighlight({
-    highlight(code, lang) {
-      const language = hljs.getLanguage(lang) ? lang : "plaintext";
-      return hljs.highlight(code, { language }).value;
-    },
-  }),
-  mangle(),
-  gfmHeadingId(),
-  options
-);
+});
 
 const Marked = ({ text, className, ...props }: MarkedProps) => {
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: marked.parse(text) }}
+      dangerouslySetInnerHTML={{ __html: marked(text) }}
       className={mergeClasses(className, "markdown-body")}
       {...props}
     />
