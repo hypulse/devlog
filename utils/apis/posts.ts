@@ -1,3 +1,5 @@
+import { PostState } from "@/types";
+
 const API_BASE = "/api/posts";
 
 async function fetchAPI(path: string, options = {}) {
@@ -31,11 +33,21 @@ export const createPost = async (post: any) => {
 
 export const updatePost = async (id: string, updatedPost: any) => {
   return await fetchAPI(`${API_BASE}/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(updatedPost),
+  });
+};
+
+export const updatePostState = async (id: string, newState: PostState) => {
+  return await fetchAPI(`${API_BASE}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ state: newState }),
   });
 };
 

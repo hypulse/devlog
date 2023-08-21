@@ -1,3 +1,4 @@
+import { PostState } from "@/types";
 import { Document, Schema, model, models } from "mongoose";
 
 interface PostDocument extends Document {
@@ -5,13 +6,7 @@ interface PostDocument extends Document {
   summary: string;
   wordCount: number;
   content: string;
-  state: "active" | "removed" | "draft";
-}
-
-enum PostStatus {
-  Active = "active",
-  Removed = "removed",
-  Draft = "draft",
+  state: PostState;
 }
 
 const postSchema = new Schema<PostDocument>(
@@ -34,8 +29,8 @@ const postSchema = new Schema<PostDocument>(
     },
     state: {
       type: String,
-      enum: Object.values(PostStatus),
-      default: PostStatus.Draft,
+      enum: ["active", "removed", "draft"],
+      default: "draft",
       required: true,
     },
   },

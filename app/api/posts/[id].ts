@@ -27,7 +27,7 @@ export default async function handler(
       }
       break;
 
-    case "PUT":
+    case "PATCH":
       try {
         const post = await Post.findByIdAndUpdate(id, req.body, {
           new: true,
