@@ -27,8 +27,8 @@ const renderer: marked.RendererObject = {
   },
 };
 
-marked.setOptions({
-  renderer: renderer as marked.Renderer,
+marked.use({
+  renderer,
 });
 
 const Marked = ({ text, className, ...props }: MarkedProps) => {
