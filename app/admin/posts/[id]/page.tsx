@@ -1,21 +1,24 @@
+"use client";
+
 import { PostState, PostTypePost } from "@/types";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
 import parseContent from "@/utils/parseContent";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const { query, isReady, push } = useRouter();
-  const id = query.id as string | undefined;
+  const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id") as string | null;
 
   const [markdownContent, setMarkdownContent] = useState<string>("");
   const [state, setState] = useState<PostState>("draft");
 
   useEffect(() => {
-    if (isReady && id) {
+    if (id) {
       fetchPost(id);
     }
-  }, [isReady, id]);
+  }, [id]);
 
   const fetchPost = async (postId: string) => {
     const fetchedPost = await getPost(postId);

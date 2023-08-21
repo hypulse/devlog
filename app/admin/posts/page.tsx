@@ -1,6 +1,8 @@
+"use client";
+
 import { PostState, PostTypeGet } from "@/types";
 import { getPosts, updatePostState } from "@/utils/apis/posts";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function Page() {
