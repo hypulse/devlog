@@ -13,7 +13,7 @@ export default function Card({ _id }: { _id: string }) {
         <span>&middot;</span>
         <span>3 mins read</span>
         <span>&middot;</span>
-        <Link href={`/admin/posts/${_id}`}>
+        <Link href={`/admin/editor?id=${_id}`}>
           <span className="text-textSecondary">edit</span>
         </Link>
       </p>
