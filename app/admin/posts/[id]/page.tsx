@@ -1,7 +1,8 @@
-import { PostTypePost } from "@/types";
+import { PostState, PostTypePost } from "@/types";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import marked from "./../../../../utils/baseMarked";
 
 export default function Page() {
   const { query, isReady, push } = useRouter();
@@ -21,12 +22,20 @@ export default function Page() {
     setMarkdownContent(fetchedPost.content || "");
     setState(fetchedPost.state);
   };
-  };
+
+  // const parseContent = (content: string) => {
+  //   return { title, summary, wordCount };
+  // };
 
   const handleSubmit = async () => {
+    // const { title, summary, wordCount } = parseContent(markdownContent);
+
     const updatedPost: PostTypePost = {
-      title: "Markdown Post",
+      // title,
+      // summary,
+      // wordCount,
       content: markdownContent,
+      state,
     };
 
     if (id) {
