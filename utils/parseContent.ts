@@ -1,4 +1,5 @@
-import baseMarked from "@/utils/baseMarked";
+import baseMarked from "./baseMarked";
+
 const parseMarkdownToHTML = (markdown: string): Document => {
   const htmlContent = baseMarked(markdown);
   const parser = new DOMParser();

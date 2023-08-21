@@ -1,7 +1,8 @@
 import { mergeClasses } from "@/utils";
-import marked from "./../utils/baseMarked";
 import { HTMLAttributes } from "react";
 import "./../styles/markdown-body.scss";
+import baseMarked from "@/utils/baseMarked";
+import { marked } from "marked";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
@@ -27,14 +28,14 @@ const renderer: marked.RendererObject = {
   },
 };
 
-marked.use({
+baseMarked.use({
   renderer,
 });
 
 const Marked = ({ text, className, ...props }: MarkedProps) => {
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: marked(text) }}
+      dangerouslySetInnerHTML={{ __html: baseMarked(text) }}
       className={mergeClasses(className, "markdown-body")}
       {...props}
     />

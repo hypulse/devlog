@@ -4,11 +4,13 @@ import { markedHighlight } from "marked-highlight";
 import { mangle } from "marked-mangle";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 
+const baseMarked = marked;
+
 const options: marked.MarkedOptions = {
   gfm: false,
 };
 
-marked.use(
+baseMarked.use(
   markedHighlight({
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
@@ -20,4 +22,4 @@ marked.use(
   options
 );
 
-export default marked;
+export default baseMarked;
