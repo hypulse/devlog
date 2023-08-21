@@ -17,6 +17,15 @@ export default async function handler(
       }
       break;
 
+    case "POST":
+      try {
+        const post = await Post.create(req.body);
+        res.status(201).json({ error: false, data: post });
+      } catch (error) {
+        res.status(400).json({ error: true, message: "Failed to create post" });
+      }
+      break;
+
     default:
       res.status(400).json({ error: true, message: "Invalid request method" });
       break;
