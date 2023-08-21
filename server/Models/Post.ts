@@ -5,6 +5,13 @@ interface PostDocument extends Document {
   summary: string;
   wordCount: number;
   content: string;
+  state: "active" | "removed" | "draft";
+}
+
+enum PostStatus {
+  Active = "active",
+  Removed = "removed",
+  Draft = "draft",
 }
 
 const postSchema = new Schema<PostDocument>(
@@ -23,6 +30,12 @@ const postSchema = new Schema<PostDocument>(
     },
     content: {
       type: String,
+      required: true,
+    },
+    state: {
+      type: String,
+      enum: Object.values(PostStatus),
+      default: PostStatus.Draft,
       required: true,
     },
   },
