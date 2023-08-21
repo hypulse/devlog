@@ -1,11 +1,11 @@
-import { PostState, PostType } from "@/types";
+import { PostState, PostTypeGet } from "@/types";
 import { getPosts, updatePostState } from "@/utils/apis/posts";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
 export default function Page() {
   const router = useRouter();
-  const [posts, setPosts] = useState<Array<PostType>>([]);
+  const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
   const [state, setState] = useState<PostState>("active");
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);

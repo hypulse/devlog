@@ -1,4 +1,4 @@
-import { PostState } from "@/types";
+import { PostState, PostTypePost } from "@/types";
 
 const API_BASE = "/api/posts";
 
@@ -26,7 +26,7 @@ export const getPost = async (id: string) => {
   return await fetchAPI(`${API_BASE}/${id}`);
 };
 
-export const createPost = async (post: any) => {
+export const createPost = async (post: PostTypePost) => {
   return await fetchAPI(API_BASE, {
     method: "POST",
     headers: {
@@ -36,7 +36,7 @@ export const createPost = async (post: any) => {
   });
 };
 
-export const updatePost = async (id: string, updatedPost: any) => {
+export const updatePost = async (id: string, updatedPost: PostTypePost) => {
   return await fetchAPI(`${API_BASE}/${id}`, {
     method: "PATCH",
     headers: {
