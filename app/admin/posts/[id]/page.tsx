@@ -1,4 +1,4 @@
-import { PostState, PostTypePost } from "@/types";
+import { PostTypePost } from "@/types";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
@@ -7,15 +7,7 @@ export default function Page() {
   const { query, isReady, push } = useRouter();
   const id = query.id as string | undefined;
 
-  const [post, setPost] = useState<PostTypePost>({
-    title: "",
-    content: "",
-    state: "draft",
-  });
-
-  const titleRef = useRef<HTMLInputElement>(null);
-  const contentRef = useRef<HTMLTextAreaElement>(null);
-  const stateRef = useRef<HTMLSelectElement>(null);
+  const [markdownContent, setMarkdownContent] = useState<string>("");
 
   useEffect(() => {
     if (isReady && id) {
@@ -25,18 +17,13 @@ export default function Page() {
 
   const fetchPost = async (postId: string) => {
     const fetchedPost = await getPost(postId);
-    setPost(fetchedPost);
+    setMarkdownContent(fetchedPost.content || "");
   };
 
   const handleSubmit = async () => {
-    const currentTitle = titleRef.current?.value || "";
-    const currentContent = contentRef.current?.value || "";
-    const currentState = (stateRef.current?.value as PostState) || "draft";
-
-    const updatedPost = {
-      title: currentTitle,
-      content: currentContent,
-      state: currentState,
+    const updatedPost: PostTypePost = {
+      title: "Markdown Post",
+      content: markdownContent,
     };
 
     if (id) {
@@ -54,16 +41,11 @@ export default function Page() {
 
   return (
     <div>
-      <input ref={titleRef} defaultValue={post.title} placeholder="Title" />
       <textarea
-        ref={contentRef}
-        defaultValue={post.content}
-        placeholder="Content"
+        value={markdownContent}
+        onChange={(e) => setMarkdownContent(e.target.value)}
+        placeholder="Write your markdown content here..."
       />
-      <select ref={stateRef} defaultValue={post.state}>
-        <option value="draft">Draft</option>
-        <option value="active">Publish</option>
-      </select>
       <button onClick={handleSubmit}>{id ? "Update" : "Create"}</button>
     </div>
   );
