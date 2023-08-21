@@ -1,8 +1,8 @@
 import { PostState, PostTypePost } from "@/types";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
+import parseContent from "@/utils/parseContent";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import marked from "./../../../../utils/baseMarked";
 
 export default function Page() {
   const { query, isReady, push } = useRouter();
@@ -23,17 +23,13 @@ export default function Page() {
     setState(fetchedPost.state);
   };
 
-  // const parseContent = (content: string) => {
-  //   return { title, summary, wordCount };
-  // };
-
   const handleSubmit = async () => {
-    // const { title, summary, wordCount } = parseContent(markdownContent);
+    const { title, summary, wordCount } = parseContent(markdownContent);
 
     const updatedPost: PostTypePost = {
-      // title,
-      // summary,
-      // wordCount,
+      title,
+      summary,
+      wordCount,
       content: markdownContent,
       state,
     };
