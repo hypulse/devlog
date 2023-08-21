@@ -17,15 +17,15 @@ const postSchema = new Schema<PostDocument>(
     },
     summary: {
       type: String,
-      required: true,
+      required: false,
     },
     wordCount: {
       type: Number,
-      required: true,
+      required: false,
     },
     content: {
       type: String,
-      required: true,
+      required: false,
     },
     state: {
       type: String,
