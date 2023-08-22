@@ -17,8 +17,11 @@ export default function Page() {
   }, []);
 
   const fetchPost = async (postId: string) => {
-    const { error, data } = await getPost(postId);
-    if (error || !data) return;
+    const { error, data, message } = await getPost(postId);
+    if (error || !data) {
+      alert(message);
+      return;
+    }
     setMarkdownContent(data.content || "");
     setState(data.state);
   };
@@ -34,26 +37,18 @@ export default function Page() {
       state,
     };
 
-    const id = new URLSearchParams(window.location.search).get("id");
-    if (id) {
-      const { error, message } = await updatePost(id, updatedPost);
-      if (error) {
-        alert(message);
-      } else {
-        navigateToPost(id);
-      }
-    } else {
-      const { error, message, data } = await createPost(updatedPost);
-      if (error || !data) {
-        alert(message);
-        return;
-      }
-      navigateToPost(data._id);
-    }
-  };
+    const postId = new URLSearchParams(window.location.search).get("id");
 
-  const navigateToPost = (postId: string) => {
-    router.push(`/admin/posts/${postId}`);
+    const result = postId
+      ? await updatePost(postId, updatedPost)
+      : await createPost(updatedPost);
+
+    if (result.error || !result.data) {
+      alert(result.message);
+      return;
+    }
+
+    router.push(`/admin/posts/${result.data._id}`);
   };
 
   return (
