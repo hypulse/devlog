@@ -1,5 +1,6 @@
-import { PostTypeGet } from "@/types";
-import { estimateReadingTime, timeSince } from "@/utils";
+import { PostTypeGet } from "@/types/post";
+import { estimateReadingTime } from "@/utils/estimateReadingTime";
+import timeSince from "@/utils/timeSince";
 import Link from "next/link";
 
 export default function Card({

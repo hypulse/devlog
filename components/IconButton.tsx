@@ -1,4 +1,4 @@
-import { mergeClasses } from "@/utils";
+import mergeClasses from "@/utils/mergeClasses";
 
 export default function IconButton({
   className,

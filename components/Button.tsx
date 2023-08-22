@@ -1,4 +1,4 @@
-import { mergeClasses } from "@/utils";
+import mergeClasses from "@/utils/mergeClasses";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
 const Button = forwardRef<

@@ -1,14 +1,14 @@
-import { mergeClasses } from "@/utils";
 import { HTMLAttributes } from "react";
-import "./../styles/markdown-body.scss";
+import { RendererObject } from "marked";
+import mergeClasses from "@/utils/mergeClasses";
 import baseMarked from "@/utils/baseMarked";
-import { marked } from "marked";
+import "./../styles/markdown-body.scss";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
 }
 
-const renderer: marked.RendererObject = {
+const renderer: RendererObject = {
   code(code, lang) {
     lang = lang || "plaintext";
     return `<div class="code-block">

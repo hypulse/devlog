@@ -1,4 +1,4 @@
-import { mergeClasses } from "@/utils";
+import mergeClasses from "@/utils/mergeClasses";
 import { InputHTMLAttributes, forwardRef } from "react";
 
 const Input = forwardRef<
