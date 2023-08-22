@@ -11,6 +11,7 @@ export default async function handler(
     case "GET":
       try {
         const posts = await Post.find({ state: state as string })
+          .select("-content")
           .skip((Number(page) - 1) * Number(limit))
           .limit(Number(limit));
 
