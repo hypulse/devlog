@@ -27,7 +27,7 @@ export const createPost = async (post: PostTypePost) => {
 };
 
 export const updatePost = async (id: string, updatedPost: PostTypePost) => {
-  return await fetchAPI(`${API_BASE}/${id}`, {
+  return await fetchAPI<PostTypeGet>(`${API_BASE}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const updatePost = async (id: string, updatedPost: PostTypePost) => {
 };
 
 export const updatePostState = async (id: string, newState: PostState) => {
-  return await fetchAPI(`${API_BASE}/${id}`, {
+  return await fetchAPI<PostTypeGet>(`${API_BASE}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const updatePostState = async (id: string, newState: PostState) => {
 };
 
 export const deletePost = async (id: string) => {
-  return await fetchAPI(`${API_BASE}/${id}`, {
+  return await fetchAPI<{}>(`${API_BASE}/${id}`, {
     method: "DELETE",
   });
 };
