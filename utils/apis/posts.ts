@@ -1,17 +1,7 @@
-import { PostState, PostTypePost } from "@/types";
+import { PostState, PostTypeGet, PostTypePost } from "@/types/post";
+import fetchAPI from "../fetchAPI";
 
 const API_BASE = "/api/posts";
-
-async function fetchAPI(path: string, options = {}) {
-  const response = await fetch(path, options);
-
-  if (!response.ok) {
-    const data = await response.json();
-    throw new Error(data.message || "An error occurred");
-  }
-
-  return response.json();
-}
 
 export const getPosts = async (
   state: PostState = "active",
@@ -19,7 +9,7 @@ export const getPosts = async (
   limit: number = 10
 ) => {
   const url = `${API_BASE}?state=${state}&page=${page}&limit=${limit}`;
-  return await fetchAPI(url);
+  return await fetchAPI<Array<PostTypeGet>>(url);
 };
 
 export const getPost = async (id: string) => {
