@@ -2,7 +2,7 @@ import { HTMLAttributes } from "react";
 import { RendererObject } from "marked";
 import mergeClasses from "@/utils/mergeClasses";
 import baseMarked from "@/utils/baseMarked";
-import "./../styles/markdown-body.scss";
+import "@/styles/markdown-body.module.scss";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
