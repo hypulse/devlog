@@ -10,11 +10,14 @@ const extractTitle = (doc: Document): string => {
   return doc.querySelector("h1")?.textContent || "Untitled";
 };
 
-const extractSummary = (doc: Document, length = 3): string => {
-  const paragraphs = Array.from(doc.querySelectorAll("p"))
-    .slice(0, length)
-    .map((p) => p.textContent);
-  return paragraphs.join(" ").trim();
+const extractSummary = (doc: Document): string => {
+  const fullText = doc.body.textContent || "";
+
+  if (fullText.length > 200) {
+    return fullText.slice(0, 200);
+  } else {
+    return fullText;
+  }
 };
 
 const countWords = (text: string): number => {
