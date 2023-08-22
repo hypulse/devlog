@@ -14,7 +14,7 @@ export function estimateReadingTime(wordCount: number = 0): string {
   return `${minutes} min read`;
 }
 
-export function formatDate(inputDate: Date = new Date()): string {
+export function timeSince(inputDate: Date = new Date()): string {
   const now = new Date();
   const diffInMilliseconds = now.getTime() - inputDate.getTime();
 

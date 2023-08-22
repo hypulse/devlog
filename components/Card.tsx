@@ -1,5 +1,5 @@
 import { PostTypeGet } from "@/types";
-import { estimateReadingTime, formatDate } from "@/utils";
+import { estimateReadingTime, timeSince } from "@/utils";
 import Link from "next/link";
 
 export default function Card({
@@ -15,7 +15,7 @@ export default function Card({
         <h2 className="font-bold text-h2 group-hover:text-primary">{title}</h2>
       </Link>
       <p className="flex text-caption gap-x-colGap">
-        <span>{formatDate(createdAt)}</span>
+        <span>{timeSince(createdAt)}</span>
         <span>&middot;</span>
         <span>{estimateReadingTime(wordCount)}</span>
         <span>&middot;</span>
