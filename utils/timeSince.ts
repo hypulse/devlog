@@ -1,20 +1,4 @@
-export function mergeClasses(externalClass?: string, internalClass?: string) {
-  if (!externalClass && !internalClass) return undefined;
-  if (!externalClass) return internalClass;
-  if (!internalClass) return externalClass;
-
-  return `${externalClass} ${internalClass}`;
-}
-
-export function estimateReadingTime(wordCount: number = 0): string {
-  const wordsPerMinute = 265;
-  const minutes = Math.ceil(wordCount / wordsPerMinute);
-
-  if (minutes <= 1) return "1 min read";
-  return `${minutes} min read`;
-}
-
-export function timeSince(inputDate: Date = new Date()): string {
+export default function timeSince(inputDate: Date = new Date()): string {
   const now = new Date();
   const diffInMilliseconds = now.getTime() - inputDate.getTime();
 
