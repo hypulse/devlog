@@ -1,4 +1,4 @@
-type APIResponse<T> = { error: boolean; data?: T };
+type APIResponse<T> = { error: boolean; data?: T; message?: string };
 
 export default async function fetchAPI<T>(
   path: string,
@@ -9,6 +9,6 @@ export default async function fetchAPI<T>(
   if (response.ok) {
     return await response.json();
   } else {
-    return { error: true };
+    return { error: true, message: `An error has occured: ${response.status}` };
   }
 }

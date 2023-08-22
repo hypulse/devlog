@@ -13,11 +13,11 @@ export const getPosts = async (
 };
 
 export const getPost = async (id: string) => {
-  return await fetchAPI(`${API_BASE}/${id}`);
+  return await fetchAPI<PostTypeGet>(`${API_BASE}/${id}`);
 };
 
 export const createPost = async (post: PostTypePost) => {
-  return await fetchAPI(API_BASE, {
+  return await fetchAPI<PostTypeGet>(API_BASE, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
