@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import Card from "@/components/Card";
 import SearchBox from "@/components/SearchBox";
