@@ -16,7 +16,7 @@ export default function Card({
         <h2 className="font-bold text-h2 group-hover:text-primary">{title}</h2>
       </Link>
       <p className="flex text-caption gap-x-colGap">
-        <span>{timeSince(createdAt)}</span>
+        <span>{timeSince(new Date(createdAt))}</span>
         <span>&middot;</span>
         <span>{estimateReadingTime(wordCount)}</span>
         <span>&middot;</span>
