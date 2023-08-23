@@ -46,8 +46,8 @@ export default function Page() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="space-y-extraGap">
+      <div className="flex justify-between">
         <label>
           State:
           <select
@@ -61,21 +61,16 @@ export default function Page() {
         </label>
 
         <label>
-          Page:
-          <input
-            type="number"
-            value={page}
-            onChange={(e) => setPage(parseInt(e.target.value, 10))}
-          />
-        </label>
-
-        <label>
           Posts per page:
-          <input
-            type="number"
+          <select
             value={limit}
             onChange={(e) => setLimit(parseInt(e.target.value, 10))}
-          />
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+            <option value={20}>20</option>
+          </select>
         </label>
       </div>
 
@@ -87,6 +82,13 @@ export default function Page() {
           <button onClick={() => handleDelete(post._id)}>Delete</button>
         </div>
       ))}
+      <div className="flex justify-center items-center gap-x-colGap">
+        <button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
+          Previous
+        </button>
+        <span>Page {page}</span>
+        <button onClick={() => setPage((prev) => prev + 1)}>Next</button>
+      </div>
     </div>
   );
 }
