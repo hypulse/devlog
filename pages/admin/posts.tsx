@@ -76,22 +76,20 @@ export default function Page() {
         </label>
       </div>
 
-      <table className="min-w-full border-collapse">
-        <thead className="bg-card">
-          <tr className="text-left">
-            <th className="p-xsGap">Date</th>
-            <th className="p-xsGap">Title</th>
-            <th className="p-xsGap">Actions</th>
+      <table className="min-w-full">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {posts.map((post) => (
-            <tr key={post._id} className="even:bg-card">
-              <td className="p-xsGap">
-                {new Date(post.createdAt).toLocaleString()}
-              </td>
-              <td className="p-xsGap">{post.title}</td>
-              <td className="p-xsGap flex gap-x-colGap">
+            <tr key={post._id}>
+              <td>{new Date(post.createdAt).toLocaleString()}</td>
+              <td>{post.title}</td>
+              <td className="flex gap-x-colGap">
                 <button onClick={() => handlePublish(post._id)}>Publish</button>
                 <button onClick={() => handleEdit(post._id)}>Edit</button>
                 <button onClick={() => handleDelete(post._id)}>Delete</button>
