@@ -52,7 +52,7 @@ export default function ({ data }: PageProps) {
       <h1 className="font-bold text-h1">{title}</h1>
       <div className="flex mt-elementGap gap-x-colGap">
         <time dateTime={createdAtDate.toISOString()}>
-          {createdAtDate.toLocaleTimeString()}
+          {createdAtDate.toLocaleString()}
         </time>
         <span>&middot;</span>
         <button onClick={sharePost}>Share</button>

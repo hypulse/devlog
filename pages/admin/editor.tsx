@@ -53,21 +53,22 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-y-elementGap">
       <textarea
         value={markdownContent}
         onChange={(e) => setMarkdownContent(e.target.value)}
         placeholder="Write your markdown content here..."
-        className="bg-transparent border rounded outline-none p-inputPadding border-border placeholder-textSecondary mb-elementGap"
+        className="bg-transparent border rounded outline-none p-inputPadding border-border placeholder-textSecondary"
         rows={20}
       />
-      <div className="mb-xsGap space-x-colGap">
+      <div className="space-x-colGap">
         <label>
           <input
             type="radio"
             value="draft"
             checked={state === "draft"}
             onChange={() => setState("draft")}
+            className="mr-xsGap"
           />
           Draft
         </label>
@@ -77,6 +78,7 @@ export default function Page() {
             value="active"
             checked={state === "active"}
             onChange={() => setState("active")}
+            className="mr-xsGap"
           />
           Publish
         </label>
