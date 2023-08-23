@@ -18,11 +18,6 @@ export default async function handler(
           .skip((Number(page) - 1) * Number(limit))
           .limit(Number(limit));
 
-        if (!posts.length) {
-          return res
-            .status(404)
-            .json({ error: true, message: "No posts found" });
-        }
         res.status(200).json({ error: false, data: posts });
       } catch (error) {
         res

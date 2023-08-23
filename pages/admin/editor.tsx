@@ -17,7 +17,7 @@ export default function Page() {
       setPostId(id);
       fetchPost(id);
     }
-  }, []);
+  }, [router]);
 
   const fetchPost = async (postId: string) => {
     const { error, data, message } = await getPost(postId);

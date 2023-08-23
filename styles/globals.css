@@ -50,3 +50,11 @@ svg {
 a:hover {
   @apply underline;
 }
+
+select {
+  @apply bg-transparent;
+}
+
+option {
+  @apply bg-background;
+}
