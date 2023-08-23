@@ -3,7 +3,7 @@ import mongoose, { ConnectOptions } from "mongoose";
 mongoose.set("strictQuery", false);
 
 async function connectToDatabase(): Promise<void> {
-  const DATABASE_URI = process.env.DATABASE_URI;
+  const DATABASE_URI = process.env.NEXT_PUBLIC_DATABASE_URI;
 
   if (!DATABASE_URI) {
     throw new Error("Database URI missing.");
