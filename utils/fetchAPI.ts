@@ -9,7 +9,7 @@ export default async function fetchAPI<T>(
 
     if (response.ok) {
       const data = await response.json();
-      return { error: false, data };
+      return data;
     } else {
       throw new Error(`Server returned a ${response.status} status.`);
     }
