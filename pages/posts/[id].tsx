@@ -1,61 +1,66 @@
+import { GetServerSideProps } from "next";
 import Marked from "@/components/Marked";
 import { PostTypeGet } from "@/types/post";
 import copyToClipboard from "@/utils/copyToClipboard";
-import { GetServerSideProps } from "next";
+
+type PageProps = {
+  data: PostTypeGet;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const postId = context.params?.id;
 
   if (typeof postId !== "string") {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (!data) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 
   return {
     props: {
-      data,
+      data: {
+        title: "title",
+        createdAt: new Date().toISOString(),
+        summary: "summary",
+        content: "content",
+      },
     },
   };
 };
 
-export default function Page({ data }: { data: PostTypeGet }) {
-  const { title, createdAt, summary, content } = data;
+export default function ({ data }: PageProps) {
+  const { title, createdAt, summary, content = "" } = data;
+  const createdAtDate = new Date(createdAt);
 
   const sharePost = async () => {
+    const shareData = {
+      title,
+      text: summary,
+      url: window.location.href,
+    };
+
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: title,
-          text: summary,
-          url: window.location.href,
-        });
+        await navigator.share(shareData);
         return;
       } catch (error) {
         console.error("Error sharing:", error);
       }
     }
-    copyToClipboard(window.location.href);
+
+    copyToClipboard(shareData.url);
   };
 
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="font-bold text-h1">{title}</h1>
       <div className="flex mt-elementGap gap-x-colGap">
-        <time dateTime={createdAt.toISOString()}>
-          {createdAt.toLocaleTimeString()}
+        <time dateTime={createdAtDate.toISOString()}>
+          {createdAtDate.toLocaleTimeString()}
         </time>
         <span>&middot;</span>
         <button onClick={sharePost}>Share</button>
       </div>
       <p className="mt-elementGap text-primary">{summary}</p>
-      <Marked text={content || ""} className="mt-extraGap" />
+      <Marked text={content} className="mt-extraGap" />
     </div>
   );
 }

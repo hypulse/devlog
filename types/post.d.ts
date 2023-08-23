@@ -7,8 +7,8 @@ export type PostTypeGet = {
   wordCount?: number;
   content?: string;
   state: PostState;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type PostTypePost = {
