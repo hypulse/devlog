@@ -1,10 +1,13 @@
 import Post from "@/server/Models/Post";
+import connectToDatabase from "@/server/connectToDatabase";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await connectToDatabase();
+
   const {
     query: { id },
     method,

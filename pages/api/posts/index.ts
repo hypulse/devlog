@@ -1,10 +1,13 @@
 import Post from "@/server/Models/Post";
+import connectToDatabase from "@/server/connectToDatabase";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await connectToDatabase();
+
   const { page = 1, limit = 10, state = "active" } = req.query;
 
   switch (req.method) {
