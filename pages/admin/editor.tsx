@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { PostState, PostTypePost } from "@/types/post";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
 import parseContent from "@/utils/parseContent";
@@ -8,10 +9,12 @@ export default function Page() {
   const router = useRouter();
   const [markdownContent, setMarkdownContent] = useState<string>("");
   const [state, setState] = useState<PostState>("draft");
+  const [postId, setPostId] = useState<string | null>(null);
 
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("id");
     if (id) {
+      setPostId(id);
       fetchPost(id);
     }
   }, []);
@@ -37,8 +40,6 @@ export default function Page() {
       state,
     };
 
-    const postId = new URLSearchParams(window.location.search).get("id");
-
     const result = postId
       ? await updatePost(postId, updatedPost)
       : await createPost(updatedPost);
@@ -48,26 +49,39 @@ export default function Page() {
       return;
     }
 
-    router.push(`/admin/posts/${result.data._id}`);
+    router.push(`/admin/editor?id=${result.data._id}`);
   };
 
   return (
-    <div>
+    <div className="flex flex-col">
       <textarea
         value={markdownContent}
         onChange={(e) => setMarkdownContent(e.target.value)}
         placeholder="Write your markdown content here..."
+        className="bg-transparent border rounded outline-none p-inputPadding border-border placeholder-textSecondary mb-elementGap"
+        rows={20}
       />
-      <select
-        value={state}
-        onChange={(e) => setState(e.target.value as PostState)}
-      >
-        <option value="draft">Draft</option>
-        <option value="active">Publish</option>
-      </select>
-      <button onClick={handleSubmit}>
-        {state === "draft" ? "Save Draft" : "Publish"}
-      </button>
+      <div className="mb-xsGap space-x-colGap">
+        <label>
+          <input
+            type="radio"
+            value="draft"
+            checked={state === "draft"}
+            onChange={() => setState("draft")}
+          />
+          Draft
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="active"
+            checked={state === "active"}
+            onChange={() => setState("active")}
+          />
+          Publish
+        </label>
+      </div>
+      <Button onClick={handleSubmit}>{postId ? "수정" : "생성"}</Button>
     </div>
   );
 }
