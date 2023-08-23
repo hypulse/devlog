@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import Marked from "@/components/Marked";
 import { PostTypeGet } from "@/types/post";
 import copyToClipboard from "@/utils/copyToClipboard";
+import { getPost } from "@/utils/apis/posts";
 
 type PageProps = {
   data: PostTypeGet;
@@ -10,20 +11,17 @@ type PageProps = {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const postId = context.params?.id;
 
-  if (typeof postId !== "string") {
+  if (typeof postId !== "string" || !postId) {
     return { notFound: true };
   }
 
-  return {
-    props: {
-      data: {
-        title: "title",
-        createdAt: new Date().toISOString(),
-        summary: "summary",
-        content: "content",
-      },
-    },
-  };
+  const { error, data } = await getPost(postId);
+
+  if (error || !data) {
+    return { notFound: true };
+  }
+
+  return { props: { data } };
 };
 
 export default function ({ data }: PageProps) {
