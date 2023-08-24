@@ -61,28 +61,33 @@ export default function Page() {
         className="bg-transparent border rounded outline-none p-inputPadding border-border placeholder-textSecondary"
         rows={20}
       />
-      <div className="space-x-colGap">
-        <label>
-          <input
-            type="radio"
-            value="draft"
-            checked={state === "draft"}
-            onChange={() => setState("draft")}
-            className="mr-xsGap"
-          />
-          Draft
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="active"
-            checked={state === "active"}
-            onChange={() => setState("active")}
-            className="mr-xsGap"
-          />
-          Publish
-        </label>
-      </div>
+      <fieldset>
+        <legend className="text-caption text-textSecondary">
+          Select status
+        </legend>
+        <div className="flex space-x-colGap">
+          <label>
+            <input
+              type="radio"
+              value="draft"
+              checked={state === "draft"}
+              onChange={() => setState("draft")}
+              className="mr-xsGap"
+            />
+            <span>Draft</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="active"
+              checked={state === "active"}
+              onChange={() => setState("active")}
+              className="mr-xsGap"
+            />
+            <span>Publish</span>
+          </label>
+        </div>
+      </fieldset>
       <Button onClick={handleSubmit}>{postId ? "수정" : "생성"}</Button>
     </div>
   );
