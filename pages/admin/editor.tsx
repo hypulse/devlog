@@ -66,23 +66,21 @@ export default function Page() {
           Select status
         </legend>
         <div className="flex space-x-colGap">
-          <label>
+          <label className="flex space-x-xsGap">
             <input
               type="radio"
               value="draft"
               checked={state === "draft"}
               onChange={() => setState("draft")}
-              className="mr-xsGap"
             />
             <span>Draft</span>
           </label>
-          <label>
+          <label className="flex space-x-xsGap">
             <input
               type="radio"
               value="active"
               checked={state === "active"}
               onChange={() => setState("active")}
-              className="mr-xsGap"
             />
             <span>Publish</span>
           </label>
