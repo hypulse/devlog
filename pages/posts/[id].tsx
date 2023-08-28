@@ -24,8 +24,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: { data } };
 };
 
-export default function ({ data }: PageProps) {
-  const { title, createdAt, summary, content = "" } = data;
+export default function ({
+  data: { title, createdAt, summary, content },
+}: PageProps) {
   const createdAtDate = new Date(createdAt);
 
   const sharePost = async () => {
@@ -58,7 +59,7 @@ export default function ({ data }: PageProps) {
         <button onClick={sharePost}>Share</button>
       </div>
       <p className="mt-elementGap text-primary">{summary}</p>
-      <Marked text={content} className="mt-extraGap" />
+      <Marked text={content || ""} className="mt-extraGap" />
     </div>
   );
 }
