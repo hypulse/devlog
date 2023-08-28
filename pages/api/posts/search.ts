@@ -11,7 +11,7 @@ export default async function handler(
   let { page = 1, limit = 10, state = "active", q = "" } = req.query;
   limit = Math.min(Number(limit), 50);
 
-  if (!["active", "snnipet"].includes(state as string)) {
+  if (!["active", "snippet"].includes(state as string)) {
     return res
       .status(400)
       .json({ error: true, message: "Invalid state provided" });
@@ -34,7 +34,7 @@ export default async function handler(
 
       let query = Post.find(queryOptions).skip(skipValue).limit(Number(limit));
 
-      if (state !== "snnipet") {
+      if (state !== "snippet") {
         query = query.select("-content");
       }
 

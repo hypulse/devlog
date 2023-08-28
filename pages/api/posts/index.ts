@@ -23,7 +23,7 @@ export default async function handler(
           .skip(skipValue)
           .limit(Number(limit));
 
-        if (state !== "snnipet") {
+        if (state !== "snippet") {
           query = query.select("-content");
         }
 

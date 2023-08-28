@@ -53,7 +53,7 @@ export const deletePost = async (id: string) => {
 };
 
 export const searchPosts = async (
-  state: "active" | "snnipet",
+  state: "active" | "snippet",
   page: number = 1,
   q: string = ""
 ) => {
