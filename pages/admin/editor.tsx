@@ -6,18 +6,18 @@ import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 
 export default function Page() {
-  const router = useRouter();
+  const { isReady, query, push } = useRouter();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [state, setState] = useState<PostState>("draft");
   const [postId, setPostId] = useState<string | null>(null);
 
   useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get("id");
-    if (id) {
+    if (isReady && query.id) {
+      const id = query.id as string;
       setPostId(id);
       fetchPost(id);
     }
-  }, [router]);
+  }, [isReady, query.id]);
 
   const fetchPost = async (postId: string) => {
     const { error, data, message } = await getPost(postId);
@@ -74,7 +74,7 @@ export default function Page() {
       alert("Success");
     }
 
-    router.push(`/admin/editor?id=${result.data._id}`);
+    push(`/admin/editor?id=${result.data._id}`);
   };
 
   return (

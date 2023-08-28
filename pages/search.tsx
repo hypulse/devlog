@@ -7,34 +7,38 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const router = useRouter();
+  const { isReady, query } = useRouter();
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = router.query.q;
-      if (!q) return;
+      const searchTerm = query.q;
+      if (!searchTerm) {
+        setLoading(false);
+        return;
+      }
 
-      const { error, data } = await searchPosts(q as string, page);
+      const { error, data } = await searchPosts(searchTerm as string, page);
 
       if (error || !data) {
         setLoading(false);
         return;
       }
+
       setPosts(data);
       setLoading(false);
     };
 
-    fetchData();
-  }, [router, page]);
+    if (isReady) {
+      fetchData();
+    }
+  }, [isReady, query.q, page]);
 
   const renderPosts = () => {
     if (loading) return <div>Loading...</div>;
-
     if (posts.length === 0) return <div>No search results found.</div>;
-
     return posts.map((post) => <Card key={post._id} {...post} />);
   };
 
