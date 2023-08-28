@@ -24,9 +24,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: { data } };
 };
 
-export default function ({
-  data: { title, createdAt, summary, content },
-}: PageProps) {
+export default function ({ data }: PageProps) {
+  const { title, createdAt, summary, content } = data;
   const createdAtDate = new Date(createdAt);
 
   const sharePost = async () => {
