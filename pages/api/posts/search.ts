@@ -32,13 +32,13 @@ export default async function handler(
         content: new RegExp(q as string, "i"),
       };
 
-      let findOptions: any = { skip: skipValue, limit: Number(limit) };
+      let query = Post.find(queryOptions).skip(skipValue).limit(Number(limit));
 
       if (state !== "snnipet") {
-        findOptions.select = "-content";
+        query = query.select("-content");
       }
 
-      const posts = await Post.find(queryOptions, findOptions);
+      const posts = await query.exec();
 
       res.status(200).json({ error: false, data: posts });
     } catch (error) {
