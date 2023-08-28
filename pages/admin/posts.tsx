@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import { PostState, PostTypeGet } from "@/types/post";
 import { getPosts, updatePostState } from "@/utils/apis/posts";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -89,7 +90,9 @@ export default function Page() {
           {posts.map((post) => (
             <tr key={post._id}>
               <TD>{new Date(post.createdAt).toLocaleString()}</TD>
-              <TD>{post.title}</TD>
+              <TD>
+                <Link href={`/posts/${post._id}`}>{post.title}</Link>
+              </TD>
               <TD>
                 <div className="flex gap-x-colGap gap-y-rowGap flex-wrap">
                   <Button onClick={() => handlePublish(post._id)}>
