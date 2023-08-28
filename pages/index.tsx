@@ -50,7 +50,7 @@ export default function Page() {
 
   return (
     <div className="space-y-sectionGap">
-      <SearchBox />
+      <SearchBox state="active" />
       <div className="space-y-extraGap">
         {posts.map((post, index) => (
           <Card key={index} {...post} />

@@ -1,12 +1,23 @@
+import { useRouter } from "next/router";
 import IconButton from "./IconButton";
 import Input from "./Input";
 import { SVGProps, useRef } from "react";
 
-export default function SearchBox() {
+export default function SearchBox({ state }: { state: "active" | "snippet" }) {
   const ref = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+
+  const handleSearch = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const q = ref.current?.value;
+    if (q && q.length >= 2) {
+      router.push(`/search?state=${state}&q=${q}`);
+    }
+  };
 
   return (
-    <form className="flex items-center gap-x-colGap">
+    <form className="flex items-center gap-x-colGap" onSubmit={handleSearch}>
       <Input type="text" placeholder="Search..." className="grow" ref={ref} />
       <IconButton type="submit">
         <RiSearchLine />

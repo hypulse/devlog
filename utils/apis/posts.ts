@@ -55,8 +55,8 @@ export const deletePost = async (id: string) => {
 export const searchPosts = async (
   state: "active" | "snnipet",
   page: number = 1,
-  query: string = ""
+  q: string = ""
 ) => {
-  const url = `${API_BASE}/search?state=${state}&page=${page}&q=${query}`;
+  const url = `${API_BASE}/search?state=${state}&page=${page}&q=${q}`;
   return await fetchAPI<Array<PostTypeGet>>(url);
 };
