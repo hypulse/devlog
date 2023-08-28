@@ -51,3 +51,12 @@ export const deletePost = async (id: string) => {
     method: "DELETE",
   });
 };
+
+export const searchPosts = async (
+  state: "active" | "snnipet",
+  page: number = 1,
+  query: string = ""
+) => {
+  const url = `${API_BASE}/search?state=${state}&page=${page}&q=${query}`;
+  return await fetchAPI<Array<PostTypeGet>>(url);
+};
