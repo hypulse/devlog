@@ -50,16 +50,12 @@ export default function Page() {
 
   return (
     <div className="space-y-sectionGap">
-      <SearchBox state="active" />
+      <SearchBox />
       <div className="space-y-extraGap">
-        {posts.map((post, index) => (
-          <Card key={index} {...post} />
+        {posts.map((post) => (
+          <Card key={post._id} {...post} />
         ))}
-        {hasMore && (
-          <div ref={lastPostElementRef} className="loading">
-            Loading...
-          </div>
-        )}
+        {hasMore && <div ref={lastPostElementRef}>Loading...</div>}
       </div>
     </div>
   );
