@@ -29,7 +29,6 @@
   h5,
   h6,
   p,
-  blockquote,
   img,
   ul,
   ol,
@@ -67,7 +66,7 @@
   }
 
   blockquote {
-    @apply border-l-2 border-border pl-colGap;
+    @apply border-l-4 border-secondary bg-card pl-colGap my-elementGap italic;
   }
 
   img {

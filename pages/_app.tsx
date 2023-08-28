@@ -1,9 +1,10 @@
 import AppRendered from "@/components/AppRendered";
 import ThemeToggler from "@/components/ThemeToggler";
 import { ThemeProvider } from "@/hooks/useTheme";
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Link from "next/link";
+import "@/styles/globals.css";
+import "@/styles/markdown-body.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
