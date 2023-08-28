@@ -8,15 +8,24 @@ export default async function handler(
 ) {
   await connectToDatabase();
 
-  const { page = 1, limit = 10, state = "active" } = req.query;
+  let { page = 1, limit = 10, state = "active" } = req.query;
+  limit = Math.min(Number(limit), 50);
 
   switch (req.method) {
     case "GET":
       try {
-        const posts = await Post.find({ state: state as string })
-          .select("-content")
-          .skip((Number(page) - 1) * Number(limit))
-          .limit(Number(limit));
+        const skipValue = (Number(page) - 1) * Number(limit);
+        const queryOptions = {
+          state: state as string,
+        };
+
+        let findOptions: any = { skip: skipValue, limit: Number(limit) };
+
+        if (state !== "snnipet") {
+          findOptions.select = "-content";
+        }
+
+        const posts = await Post.find(queryOptions, findOptions);
 
         res.status(200).json({ error: false, data: posts });
       } catch (error) {
