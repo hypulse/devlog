@@ -3,11 +3,11 @@ import { PostState, PostTypePost } from "@/types/post";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
 import parseContent from "@/utils/parseContent";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function Page() {
   const router = useRouter();
-  const [markdownContent, setMarkdownContent] = useState<string>("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [state, setState] = useState<PostState>("draft");
   const [postId, setPostId] = useState<string | null>(null);
 
@@ -25,7 +25,9 @@ export default function Page() {
       alert(message);
       return;
     }
-    setMarkdownContent(data.content || "");
+    if (textareaRef.current) {
+      textareaRef.current.value = data.content || "";
+    }
     setState(data.state);
   };
 
@@ -36,8 +38,8 @@ export default function Page() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      if (typeof reader.result === "string") {
-        setMarkdownContent(reader.result);
+      if (typeof reader.result === "string" && textareaRef.current) {
+        textareaRef.current.value = reader.result;
       }
     };
 
@@ -50,13 +52,14 @@ export default function Page() {
   };
 
   const handleSubmit = async () => {
-    const { title, summary, wordCount } = parseContent(markdownContent);
+    const content = textareaRef.current?.value || "";
+    const { title, summary, wordCount } = parseContent(content);
 
     const updatedPost: PostTypePost = {
       title,
       summary,
       wordCount,
-      content: markdownContent,
+      content,
       state,
     };
 
@@ -77,8 +80,7 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-y-elementGap">
       <textarea
-        value={markdownContent}
-        onChange={(e) => setMarkdownContent(e.target.value)}
+        ref={textareaRef}
         placeholder="Write your markdown content here..."
         className="bg-transparent border rounded outline-none p-inputPadding border-border placeholder-textSecondary"
         rows={20}
@@ -110,7 +112,7 @@ export default function Page() {
           <label className="flex space-x-xsGap items-center">
             <input
               type="radio"
-              value="active"
+              value="snippet"
               checked={state === "snippet"}
               onChange={() => setState("snippet")}
             />
