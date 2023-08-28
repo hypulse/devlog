@@ -29,6 +29,26 @@ export default function Page() {
     setState(data.state);
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        setMarkdownContent(reader.result);
+      }
+    };
+
+    reader.onerror = () => {
+      console.error("Error reading the file");
+      reader.abort();
+    };
+
+    reader.readAsText(file);
+  };
+
   const handleSubmit = async () => {
     const { title, summary, wordCount } = parseContent(markdownContent);
 
@@ -47,6 +67,8 @@ export default function Page() {
     if (result.error || !result.data) {
       alert(result.message);
       return;
+    } else {
+      alert("Success");
     }
 
     router.push(`/admin/editor?id=${result.data._id}`);
@@ -61,6 +83,7 @@ export default function Page() {
         className="bg-transparent border rounded outline-none p-inputPadding border-border placeholder-textSecondary"
         rows={20}
       />
+      <input type="file" onChange={handleFileChange}></input>
       <fieldset>
         <legend className="text-caption text-textSecondary">
           Select state
