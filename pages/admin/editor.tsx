@@ -63,7 +63,7 @@ export default function Page() {
       />
       <fieldset>
         <legend className="text-caption text-textSecondary">
-          Select status
+          Select state
         </legend>
         <div className="flex space-x-colGap">
           <label className="flex space-x-xsGap">
@@ -82,7 +82,16 @@ export default function Page() {
               checked={state === "active"}
               onChange={() => setState("active")}
             />
-            <span>Publish</span>
+            <span>Article</span>
+          </label>
+          <label className="flex space-x-xsGap items-center">
+            <input
+              type="radio"
+              value="active"
+              checked={state === "snippet"}
+              onChange={() => setState("snippet")}
+            />
+            <span>Snippet</span>
           </label>
         </div>
       </fieldset>
