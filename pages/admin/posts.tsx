@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { PostState, PostTypeGet } from "@/types/post";
 import { getPosts, updatePostState } from "@/utils/apis/posts";
 import { useRouter } from "next/router";
@@ -48,8 +49,8 @@ export default function Page() {
   return (
     <div className="space-y-extraGap">
       <div className="flex justify-between">
-        <label>
-          State:
+        <label className="flex items-center gap-x-xsGap">
+          <span>State:</span>
           <select
             value={state}
             onChange={(e) => setState(e.target.value as PostState)}
@@ -61,8 +62,8 @@ export default function Page() {
           </select>
         </label>
 
-        <label>
-          Posts per page:
+        <label className="flex items-center gap-x-xsGap">
+          <span>Posts per page:</span>
           <select
             value={limit}
             onChange={(e) => setLimit(parseInt(e.target.value, 10))}
@@ -79,20 +80,22 @@ export default function Page() {
       <table className="min-w-full">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Title</th>
-            <th>Actions</th>
+            <th className="p-gap bg-card">Date</th>
+            <th className="p-gap bg-card">Title</th>
+            <th className="p-gap bg-card">Actions</th>
           </tr>
         </thead>
         <tbody>
           {posts.map((post) => (
             <tr key={post._id}>
-              <td>{new Date(post.createdAt).toLocaleString()}</td>
-              <td>{post.title}</td>
-              <td className="flex gap-x-colGap">
-                <button onClick={() => handlePublish(post._id)}>Publish</button>
-                <button onClick={() => handleEdit(post._id)}>Edit</button>
-                <button onClick={() => handleDelete(post._id)}>Delete</button>
+              <td className="p-gap border-t border-border">
+                {new Date(post.createdAt).toLocaleString()}
+              </td>
+              <td className="p-gap border-t border-border">{post.title}</td>
+              <td className="p-gap border-t border-border space-x-colGap">
+                <Button onClick={() => handlePublish(post._id)}>Publish</Button>
+                <Button onClick={() => handleEdit(post._id)}>Edit</Button>
+                <Button onClick={() => handleDelete(post._id)}>Delete</Button>
               </td>
             </tr>
           ))}
@@ -100,11 +103,11 @@ export default function Page() {
       </table>
 
       <div className="flex justify-center items-center gap-x-colGap">
-        <button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
-          Previous
-        </button>
+        <Button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
+          &larr; Prev
+        </Button>
         <span>Page {page}</span>
-        <button onClick={() => setPage((prev) => prev + 1)}>Next</button>
+        <Button onClick={() => setPage((prev) => prev + 1)}>Next &rarr;</Button>
       </div>
     </div>
   );

@@ -46,6 +46,7 @@ const config: Config = {
       rowGap: "0.5rem",
       colGap: "0.75rem",
       xsGap: "0.25rem",
+      gap: "0.8rem",
     },
     borderRadius: {
       DEFAULT: "0.5rem",

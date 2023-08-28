@@ -75,7 +75,7 @@ export default function Page() {
             />
             <span>Draft</span>
           </label>
-          <label className="flex space-x-xsGap">
+          <label className="flex space-x-xsGap items-center">
             <input
               type="radio"
               value="active"
@@ -86,7 +86,7 @@ export default function Page() {
           </label>
         </div>
       </fieldset>
-      <Button onClick={handleSubmit}>{postId ? "수정" : "생성"}</Button>
+      <Button onClick={handleSubmit}>{postId ? "Edit" : "Create"}</Button>
     </div>
   );
 }
