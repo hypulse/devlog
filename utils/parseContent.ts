@@ -11,7 +11,11 @@ const extractTitle = (doc: Document): string => {
 };
 
 const extractSummary = (doc: Document): string => {
-  const fullText = doc.body.textContent || "";
+  const paragraphs = Array.from(doc.querySelectorAll("p")).map(
+    (p) => p.textContent
+  );
+
+  const fullText = paragraphs.join(" ").trim() || "";
 
   if (fullText.length > 200) {
     return fullText.slice(0, 200);
