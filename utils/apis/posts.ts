@@ -52,11 +52,7 @@ export const deletePost = async (id: string) => {
   });
 };
 
-export const searchPosts = async (
-  state: "active" | "snippet",
-  page: number = 1,
-  q: string = ""
-) => {
-  const url = `${API_BASE}/search?state=${state}&page=${page}&q=${q}`;
+export const searchPosts = async (q: string, page: number = 1) => {
+  const url = `${API_BASE}/search?q=${q}&page=${page}`;
   return await fetchAPI<Array<PostTypeGet>>(url);
 };

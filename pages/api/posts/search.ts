@@ -8,14 +8,8 @@ export default async function handler(
 ) {
   await connectToDatabase();
 
-  let { page = 1, limit = 10, state = "active", q = "" } = req.query;
+  let { page = 1, limit = 10, q = "" } = req.query;
   limit = Math.min(Number(limit), 50);
-
-  if (!["active", "snippet"].includes(state as string)) {
-    return res
-      .status(400)
-      .json({ error: true, message: "Invalid state provided" });
-  }
 
   if ((q as string).length < 2) {
     return res.status(400).json({
@@ -28,17 +22,15 @@ export default async function handler(
     try {
       const skipValue = (Number(page) - 1) * Number(limit);
       const queryOptions = {
-        state: state as string,
+        state: { $in: ["active", "snippet"] },
         content: new RegExp(q as string, "i"),
       };
 
-      let query = Post.find(queryOptions).skip(skipValue).limit(Number(limit));
-
-      if (state !== "snippet") {
-        query = query.select("-content");
-      }
-
-      const posts = await query.exec();
+      const posts = await Post.find(queryOptions)
+        .select("-content")
+        .skip(skipValue)
+        .limit(Number(limit))
+        .exec();
 
       res.status(200).json({ error: false, data: posts });
     } catch (error) {
