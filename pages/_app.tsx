@@ -34,6 +34,7 @@ const Header = () => {
         />
       </Link>
       <Link href="/">Home</Link>
+      <Link href="/snippets">Snippets</Link>
       <Link href="/about">About</Link>
       <ThemeToggler />
     </header>
