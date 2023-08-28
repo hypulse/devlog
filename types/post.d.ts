@@ -1,4 +1,4 @@
-export type PostState = "active" | "removed" | "draft";
+export type PostState = "active" | "snippet" | "removed" | "draft";
 
 export type PostTypeGet = {
   _id: string;
