@@ -80,23 +80,25 @@ export default function Page() {
       <table className="min-w-full">
         <thead>
           <tr>
-            <th className="p-gap bg-card">Date</th>
-            <th className="p-gap bg-card">Title</th>
-            <th className="p-gap bg-card">Actions</th>
+            <TH>Date</TH>
+            <TH>Title</TH>
+            <TH>Actions</TH>
           </tr>
         </thead>
         <tbody>
           {posts.map((post) => (
             <tr key={post._id}>
-              <td className="p-gap border-t border-border">
-                {new Date(post.createdAt).toLocaleString()}
-              </td>
-              <td className="p-gap border-t border-border">{post.title}</td>
-              <td className="p-gap border-t border-border space-x-colGap">
-                <Button onClick={() => handlePublish(post._id)}>Publish</Button>
-                <Button onClick={() => handleEdit(post._id)}>Edit</Button>
-                <Button onClick={() => handleDelete(post._id)}>Delete</Button>
-              </td>
+              <TD>{new Date(post.createdAt).toLocaleString()}</TD>
+              <TD>{post.title}</TD>
+              <TD>
+                <div className="flex gap-x-colGap gap-y-rowGap flex-wrap">
+                  <Button onClick={() => handlePublish(post._id)}>
+                    Publish
+                  </Button>
+                  <Button onClick={() => handleEdit(post._id)}>Edit</Button>
+                  <Button onClick={() => handleDelete(post._id)}>Delete</Button>
+                </div>
+              </TD>
             </tr>
           ))}
         </tbody>
@@ -112,3 +114,11 @@ export default function Page() {
     </div>
   );
 }
+
+const TH = ({ children }: { children: React.ReactNode }) => (
+  <th className="p-gap bg-card">{children}</th>
+);
+
+const TD = ({ children }: { children: React.ReactNode }) => (
+  <td className="p-gap border-t border-border">{children}</td>
+);
