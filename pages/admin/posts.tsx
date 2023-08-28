@@ -113,11 +113,11 @@ export default function Page() {
       </table>
 
       <div className="flex justify-center items-center gap-x-colGap">
-        <Button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
+        <button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
           &larr; Prev
-        </Button>
+        </button>
         <span>Page {page}</span>
-        <Button onClick={() => setPage((prev) => prev + 1)}>Next &rarr;</Button>
+        <button onClick={() => setPage((prev) => prev + 1)}>Next &rarr;</button>
       </div>
     </div>
   );
