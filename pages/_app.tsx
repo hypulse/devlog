@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
 const Header = () => {
   return (
     <header className="flex items-center max-w-6xl mx-auto p-cardPadding gap-x-elementGap mb-sectionGap">
-      <Link href="/admin" className="grow text-h3">
+      <Link href="/" className="grow text-h3">
         <img
           src="https://avatars.githubusercontent.com/u/90980422?v=4"
           alt="hypulse"
@@ -33,7 +33,6 @@ const Header = () => {
           }}
         />
       </Link>
-      <Link href="/">Home</Link>
       <Link href="/snippets">Snippets</Link>
       <Link href="/about">About</Link>
       <ThemeToggler />
@@ -44,7 +43,10 @@ const Header = () => {
 const Footer = () => {
   return (
     <footer className="flex justify-center text-xs mt-sectionGap p-containerPadding text-textSecondary">
-      Copyright &copy; {new Date().getFullYear()} hypulse. All rights reserved.
+      <Link href="/admin">
+        Copyright &copy; {new Date().getFullYear()} hypulse. All rights
+        reserved.
+      </Link>
     </footer>
   );
 };
