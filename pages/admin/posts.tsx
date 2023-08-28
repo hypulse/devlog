@@ -25,8 +25,8 @@ export default function Page() {
     fetchData();
   }, [state, page, limit]);
 
-  const handlePublish = async (id: string) => {
-    const { error, data, message } = await updatePostState(id, "active");
+  const changeState = async (id: string, state: PostState) => {
+    const { error, data, message } = await updatePostState(id, state);
     if (error || !data) {
       alert(message);
       return;
@@ -36,15 +36,6 @@ export default function Page() {
 
   const handleEdit = (id: string) => {
     router.push(`/admin/editor?id=${id}`);
-  };
-
-  const handleDelete = async (id: string) => {
-    const { error, data, message } = await updatePostState(id, "removed");
-    if (error || !data) {
-      alert(message);
-      return;
-    }
-    fetchData();
   };
 
   return (
@@ -57,7 +48,8 @@ export default function Page() {
             onChange={(e) => setState(e.target.value as PostState)}
             className="ml-xsGap"
           >
-            <option value="active">Active</option>
+            <option value="active">Article</option>
+            <option value="snippet">Snippet</option>
             <option value="draft">Draft</option>
             <option value="removed">Removed</option>
           </select>
@@ -95,11 +87,24 @@ export default function Page() {
               </TD>
               <TD>
                 <div className="flex gap-x-colGap gap-y-rowGap flex-wrap">
-                  <Button onClick={() => handlePublish(post._id)}>
-                    Publish
+                  <Button
+                    onClick={() => changeState(post._id, "active")}
+                    className="flex gap-x-xsGap items-center"
+                  >
+                    <RiFolder2Fill />
+                    <span>Article</span>
+                  </Button>
+                  <Button
+                    onClick={() => changeState(post._id, "snippet")}
+                    className="flex gap-x-xsGap items-center"
+                  >
+                    <RiFolder2Fill />
+                    <span>Snippet</span>
                   </Button>
                   <Button onClick={() => handleEdit(post._id)}>Edit</Button>
-                  <Button onClick={() => handleDelete(post._id)}>Delete</Button>
+                  <Button onClick={() => changeState(post._id, "removed")}>
+                    Delete
+                  </Button>
                 </div>
               </TD>
             </tr>
@@ -125,3 +130,20 @@ const TH = ({ children }: { children: React.ReactNode }) => (
 const TD = ({ children }: { children: React.ReactNode }) => (
   <td className="p-gap border-t border-border">{children}</td>
 );
+
+function RiFolder2Fill(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M22 11v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9h20Zm0-2H2V4a1 1 0 0 1 1-1h7.414l2 2H21a1 1 0 0 1 1 1v3Z"
+      ></path>
+    </svg>
+  );
+}
