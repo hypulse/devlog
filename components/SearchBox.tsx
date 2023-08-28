@@ -3,7 +3,7 @@ import IconButton from "./IconButton";
 import Input from "./Input";
 import { SVGProps, useRef } from "react";
 
-export default function SearchBox({ state }: { state: "active" | "snippet" }) {
+export default function SearchBox() {
   const ref = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -12,7 +12,7 @@ export default function SearchBox({ state }: { state: "active" | "snippet" }) {
 
     const q = ref.current?.value;
     if (q && q.length >= 2) {
-      router.push(`/search?state=${state}&q=${q}`);
+      router.push(`/search?q=${q}`);
     }
   };
 
