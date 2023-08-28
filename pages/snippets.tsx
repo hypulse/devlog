@@ -5,6 +5,7 @@ import { getPosts } from "@/utils/apis/posts";
 import { PostTypeGet } from "@/types/post";
 import Marked from "@/components/Marked";
 import Link from "next/link";
+import Pagination from "@/components/Pagination";
 
 export default function Page() {
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
@@ -62,11 +63,12 @@ export default function Page() {
                 <span className="text-textSecondary">edit</span>
               </Link>
             </div>
-            <Marked text={post.content || ""} className="mt-elementGap" />
+            <Marked text={post.content || ""} className="mt-gap" />
           </div>
         ))}
         {hasMore && <div ref={lastPostElementRef}>Loading...</div>}
       </div>
+      <Pagination page={page} setPage={setPage} />
     </div>
   );
 }
