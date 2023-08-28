@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import Pagination from "@/components/Pagination";
 import { PostState, PostTypeGet } from "@/types/post";
 import { getPosts, updatePostState } from "@/utils/apis/posts";
 import Link from "next/link";
@@ -39,7 +40,7 @@ export default function Page() {
   };
 
   return (
-    <div className="space-y-extraGap">
+    <div className="space-y-sectionGap">
       <div className="flex justify-between">
         <label className="flex items-center gap-x-xsGap">
           <span>State:</span>
@@ -112,13 +113,7 @@ export default function Page() {
         </tbody>
       </table>
 
-      <div className="flex justify-center items-center gap-x-colGap">
-        <button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
-          &larr; Prev
-        </button>
-        <span>Page {page}</span>
-        <button onClick={() => setPage((prev) => prev + 1)}>Next &rarr;</button>
-      </div>
+      <Pagination page={page} setPage={setPage} />
     </div>
   );
 }

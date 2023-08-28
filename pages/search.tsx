@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import { PostTypeGet } from "@/types/post";
 import { searchPosts } from "@/utils/apis/posts";
@@ -7,16 +8,16 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const router = useRouter();
-
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     const fetchData = async () => {
       const q = router.query.q;
       if (!q) return;
 
-      const { error, data } = await searchPosts(q as string, 1);
+      const { error, data } = await searchPosts(q as string, page);
 
       if (error || !data) {
         setLoading(false);
@@ -27,7 +28,7 @@ export default function Page() {
     };
 
     fetchData();
-  }, [router]);
+  }, [router, page]);
 
   const renderPosts = () => {
     if (loading) return <div>Loading...</div>;
@@ -41,6 +42,7 @@ export default function Page() {
     <div className="space-y-sectionGap">
       <SearchBox />
       <div className="space-y-extraGap">{renderPosts()}</div>
+      <Pagination page={page} setPage={setPage} />
     </div>
   );
 }
