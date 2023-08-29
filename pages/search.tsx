@@ -44,7 +44,6 @@ export default function Page() {
 
   return (
     <div className="space-y-sectionGap">
-      <SearchBox />
       <div className="space-y-extraGap">{renderPosts()}</div>
       <Pagination page={page} setPage={setPage} />
     </div>
