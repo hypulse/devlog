@@ -38,4 +38,8 @@ const parseContent = (content: string) => {
   };
 };
 
-export default parseContent;
+const parseSnippetContent = (content: string) => {
+  const doc = parseMarkdownToHTML(content);
+};
+
+export { parseContent, parseSnippetContent };
