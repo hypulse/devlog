@@ -18,7 +18,12 @@ export default function SearchBox() {
 
   return (
     <form className="flex items-center gap-x-colGap" onSubmit={handleSearch}>
-      <Input type="text" placeholder="Search..." className="grow" ref={ref} />
+      <Input
+        type="text"
+        placeholder="Search..."
+        className="grow min-w-0"
+        ref={ref}
+      />
       <IconButton type="submit">
         <RiSearchLine />
       </IconButton>
