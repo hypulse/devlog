@@ -3,7 +3,7 @@ import { PostTypeGet } from "@/types/post";
 import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import { getPosts } from "@/utils/apis/posts";
-import Card from "@/components/Card";
+import Feed from "@/components/Feed";
 
 export default function Page() {
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
@@ -28,14 +28,12 @@ export default function Page() {
 
   const renderPosts = () => {
     if (loading) return <div>Loading...</div>;
-    return posts.map((post) => <Card key={post._id} {...post} />);
+    return posts.map((post) => <Feed key={post._id} {...post} />);
   };
 
   return (
     <div className="space-y-sectionGap">
-      <SearchBox />
       <div className="space-y-extraGap">{renderPosts()}</div>
-      <Pagination page={page} setPage={setPage} />
     </div>
   );
 }
