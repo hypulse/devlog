@@ -21,7 +21,7 @@
     }
 
     code {
-      @apply text-caption;
+      @apply text-caption break-words whitespace-pre-wrap;
     }
   }
 
