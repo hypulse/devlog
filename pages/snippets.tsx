@@ -1,73 +1,40 @@
-import { useState, useEffect, useRef } from "react";
-import Card from "@/components/Card";
+import { useState, useEffect } from "react";
+import { PostTypeGet } from "@/types/post";
+import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import { getPosts } from "@/utils/apis/posts";
-import { PostTypeGet } from "@/types/post";
-import Marked from "@/components/Marked";
-import Link from "next/link";
-import Pagination from "@/components/Pagination";
+import Card from "@/components/Card";
 
 export default function Page() {
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastPostElementRef = useRef<HTMLDivElement | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    const loadMorePosts = async () => {
+    const fetchData = async () => {
       const { error, data } = await getPosts("snippet", page);
 
-      if (error || !data || data.length === 0) {
-        setHasMore(false);
+      if (error || !data) {
+        setLoading(false);
         return;
       }
 
-      setPosts((prevPosts) => [...prevPosts, ...data]);
+      setPosts(data);
+      setLoading(false);
     };
 
-    if (hasMore) {
-      loadMorePosts();
-    }
+    fetchData();
   }, [page]);
 
-  useEffect(() => {
-    if (observer.current) observer.current.disconnect();
-
-    const callback: IntersectionObserverCallback = (entries) => {
-      if (entries[0].isIntersecting && hasMore) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    };
-
-    observer.current = new IntersectionObserver(callback);
-    if (lastPostElementRef.current) {
-      observer.current.observe(lastPostElementRef.current);
-    }
-
-    return () => {
-      if (observer.current) observer.current.disconnect();
-    };
-  }, [posts, hasMore]);
+  const renderPosts = () => {
+    if (loading) return <div>Loading...</div>;
+    return posts.map((post) => <Card key={post._id} {...post} />);
+  };
 
   return (
     <div className="space-y-sectionGap">
       <SearchBox />
-      <div className="space-y-extraGap">
-        {posts.map((post) => (
-          <div key={post._id}>
-            <div className="flex items-center">
-              <h2 className="font-bold text-h2 grow">{post.title}</h2>
-              <Link href={`/admin/editor?id=${post._id}`}>
-                <span className="text-textSecondary">edit</span>
-              </Link>
-            </div>
-            <Marked text={post.content || ""} className="mt-gap" />
-          </div>
-        ))}
-        {hasMore && <div ref={lastPostElementRef}>Loading...</div>}
-      </div>
+      <div className="space-y-extraGap">{renderPosts()}</div>
       <Pagination page={page} setPage={setPage} />
     </div>
   );
