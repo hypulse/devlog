@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { PostTypeGet } from "@/types/post";
 import Pagination from "@/components/Pagination";
-import SearchBox from "@/components/SearchBox";
 import { getPosts } from "@/utils/apis/posts";
 import Feed from "@/components/Feed";
 
@@ -34,6 +33,7 @@ export default function Page() {
   return (
     <div className="space-y-sectionGap">
       <div className="space-y-extraGap">{renderPosts()}</div>
+      <Pagination page={page} setPage={setPage} />
     </div>
   );
 }
