@@ -6,14 +6,16 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
   const { quote, code } = extractFirstQuoteAndCode(content);
 
   return (
-    <div className="bg-card shadow pt-cardPadding px-cardPadding">
-      <h2 className="font-bold">{title}</h2>
+    <div className="bg-card shadow-md p-cardPadding">
+      <h2 className="font-bold text-h2 mb-elementGap">{title}</h2>
 
-      <p>{quote}</p>
+      <p className="mb-elementGap">{quote}</p>
 
-      <Marked text={code || ""} />
+      <div className="mb-elementGap">
+        <Marked text={code || ""} />
+      </div>
 
-      <div className="flex text-caption gap-x-colGap text-textSecondary">
+      <div className="flex text-caption gap-x-colGap text-textSecondary mb-elementGap">
         <span>{new Date(createdAt).toLocaleString()}</span>
         <span>&middot;</span>
         <Link href={`/admin/editor?id=${_id}`}>
