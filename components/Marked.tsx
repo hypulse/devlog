@@ -31,13 +31,9 @@ baseMarked.use({
   renderer,
 });
 
-const Marked = ({ text, className, ...props }: MarkedProps) => {
+const Marked = ({ text, ...props }: MarkedProps) => {
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: baseMarked(text) }}
-      className={mergeClasses(className, "markdown-body")}
-      {...props}
-    />
+    <div dangerouslySetInnerHTML={{ __html: baseMarked(text) }} {...props} />
   );
 };
 

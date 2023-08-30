@@ -58,7 +58,9 @@ export default function ({ data }: PageProps) {
         <button onClick={sharePost}>Share</button>
       </div>
       <p className="mt-elementGap text-primary">{summary}</p>
-      <Marked text={content || ""} className="mt-extraGap" />
+      <div className="mt-extraGap">
+        <Marked text={content || ""} className="markdown-body" />
+      </div>
     </div>
   );
 }
