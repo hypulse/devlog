@@ -1,51 +1,55 @@
 import { PostTypeGet } from "@/types/post";
+import Marked from "./Marked";
+import Link from "next/link";
 
 export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
-  const { paragraph, code } = extractFirstParagraphAndCode(content);
+  const { quote, code } = extractFirstQuoteAndCode(content);
 
-  return null;
-  // <div className="p-cardPadding pb-0 roundd-sm bg-card shadow">
-  //   <div className="flex justify-between items-center text-h2">
-  //     <div className="font-bold">{title}</div>
-  //   </div>
-  //   <div className="mt-rowGap">{paragraph}</div>
-  //   <div className="mt-gap">
-  //     <Marked text={code || ""} />
-  //   </div>
+  return (
+    <div className="bg-card shadow flex flex-col gap-y-rowGap">
+      <Link href={`/posts/${_id}`}>
+        <h2 className="font-bold text-h2 hover:text-primary">{title}</h2>
+      </Link>
 
-  //   <div className="text-textSecondary text-caption py-gap justify-between flex items-center gap-x-colGap">
-  //     <div className="text-caption">
-  //       {new Date(createdAt).toLocaleString()}
-  //     </div>
-  //     <span>edit</span>
-  //   </div>
+      <p>{quote}</p>
 
-  //   <div className="flex items-center border-t border-border">
-  //     <button className="p-gap flex items-center justify-center grow gap-x-xsGap">
-  //       <RiChat3Fill />
-  //       <span className="text-caption">Comment</span>
-  //     </button>
-  //     <button className="p-gap flex items-center justify-center grow gap-x-xsGap">
-  //       <RiShareForwardFill />
-  //       <span className="text-caption">Share</span>
-  //     </button>
-  //   </div>
-  // </div>
+      <Marked text={code || ""} />
+
+      <div className="flex text-caption gap-x-colGap text-textSecondary">
+        <span>{new Date(createdAt).toLocaleString()}</span>
+        <span>&middot;</span>
+        <Link href={`/admin/editor?id=${_id}`}>
+          <span>edit</span>
+        </Link>
+      </div>
+
+      {/* <div className="flex items-center border-t border-border">
+        <button className="p-gap flex items-center justify-center grow gap-x-xsGap">
+          <RiChat3Fill />
+          <span className="text-caption">Comment</span>
+        </button>
+        <button className="p-gap flex items-center justify-center grow gap-x-xsGap">
+          <RiShareForwardFill />
+          <span className="text-caption">Share</span>
+        </button>
+      </div> */}
+    </div>
+  );
 }
 
-function extractFirstParagraphAndCode(markdownString: string = "") {
-  const paragraphRegex = /^>([^\n]+)/m;
-  const codeRegex = /(```[\s\S]*?```)/;
+function extractFirstQuoteAndCode(markdown: string = "") {
+  const quoteRegex = /^>([^\n]+)/m;
+  const blockCodeRegex = /(```[\s\S]*?```)/;
 
-  const paragraphMatch = markdownString.match(paragraphRegex);
-  const codeMatch = markdownString.match(codeRegex);
+  const quoteMatch = markdown.match(quoteRegex);
+  const blockCodeMatch = markdown.match(blockCodeRegex);
 
-  const firstParagraph = paragraphMatch ? paragraphMatch[1].trim() : null;
-  const firstCode = codeMatch ? codeMatch[1].trim() : null;
+  const extractedQuote = quoteMatch ? quoteMatch[1].trim() : null;
+  const extractedCode = blockCodeMatch ? blockCodeMatch[1].trim() : null;
 
   return {
-    paragraph: firstParagraph,
-    code: firstCode,
+    quote: extractedQuote,
+    code: extractedCode,
   };
 }
 
