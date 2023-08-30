@@ -27,6 +27,7 @@ export default function Page() {
 
   const renderPosts = () => {
     if (loading) return <div>Loading...</div>;
+    if (posts.length === 0) return <div>No posts found.</div>;
     return posts.map((post) => <Feed key={post._id} {...post} />);
   };
 
