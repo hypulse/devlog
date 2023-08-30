@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import { PostState, PostTypePost } from "@/types/post";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
-import { parseContent } from "@/utils/parseContent";
+import parseContent from "@/utils/parseContent";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 
