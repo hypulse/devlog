@@ -1,12 +1,22 @@
 import { PostTypeGet } from "@/types/post";
 import Marked from "./Marked";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
+  const { push } = useRouter();
   const { quote, code } = extractFirstQuoteAndCode(content);
 
   return (
     <div className="bg-card shadow-md p-cardPadding">
+      <div className="flex text-caption gap-x-colGap text-textSecondary mb-xsGap">
+        <span>{new Date(createdAt).toLocaleString()}</span>
+        <span>&middot;</span>
+        <Link href={`/admin/editor?id=${_id}`}>
+          <span>edit</span>
+        </Link>
+      </div>
+
       <h2 className="font-bold text-h2 mb-elementGap">{title}</h2>
 
       <p className="mb-elementGap">{quote}</p>
@@ -15,16 +25,12 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
         <Marked text={code || ""} />
       </div>
 
-      <div className="flex text-caption gap-x-colGap text-textSecondary mb-elementGap">
-        <span>{new Date(createdAt).toLocaleString()}</span>
-        <span>&middot;</span>
-        <Link href={`/admin/editor?id=${_id}`}>
-          <span>edit</span>
-        </Link>
-      </div>
-
       <div className="flex border-t border-border flex-wrap">
-        <Button>
+        <Button
+          onClick={() => {
+            push(`/posts/${_id}`);
+          }}
+        >
           <RiChat3Fill />
           <span>Comment</span>
         </Button>
@@ -37,8 +43,17 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
   );
 }
 
-const Button = ({ children }: { children: React.ReactNode }) => (
-  <button className="flex grow items-center justify-center gap-x-xsGap p-gap">
+const Button = ({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+}) => (
+  <button
+    className="flex grow items-center justify-center gap-x-xsGap p-gap"
+    onClick={onClick}
+  >
     {children}
   </button>
 );
