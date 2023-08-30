@@ -23,7 +23,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
         </Link>
       </div>
 
-      <div className="flex border-t border-border">
+      <div className="flex border-t border-border flex-wrap">
         <Button>
           <RiChat3Fill />
           <span>Comment</span>
@@ -38,7 +38,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
 }
 
 const Button = ({ children }: { children: React.ReactNode }) => (
-  <button className="flex grow items-center justify-center gap-x-xsGap py-gap">
+  <button className="flex grow items-center justify-center gap-x-xsGap p-gap">
     {children}
   </button>
 );
