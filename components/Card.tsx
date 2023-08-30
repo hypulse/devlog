@@ -15,7 +15,7 @@ export default function Card({
       <Link href={`/posts/${_id}`}>
         <h2 className="font-bold text-h2 group-hover:text-primary">{title}</h2>
       </Link>
-      <p className="flex text-caption gap-x-colGap">
+      <div className="flex text-caption gap-x-colGap">
         <span>{timeSince(new Date(createdAt))}</span>
         <span>&middot;</span>
         <span>{estimateReadingTime(wordCount)}</span>
@@ -23,7 +23,7 @@ export default function Card({
         <Link href={`/admin/editor?id=${_id}`}>
           <span className="text-textSecondary">edit</span>
         </Link>
-      </p>
+      </div>
       <p className="line-clamp-3">{summary}</p>
     </div>
   );
