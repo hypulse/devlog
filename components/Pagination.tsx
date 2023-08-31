@@ -7,12 +7,18 @@ type PaginationProps = {
 
 export default function Pagination({ page, setPage }: PaginationProps) {
   return (
-    <div className="flex justify-center items-center gap-x-colGap">
-      <Button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
+    <div className="flex justify-center items-center gap-x-elementGap">
+      <Button
+        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+        className="bg-secondary"
+      >
         <RiArrowLeftLine />
       </Button>
       <span>Page {page}</span>
-      <Button onClick={() => setPage((prev) => prev + 1)}>
+      <Button
+        onClick={() => setPage((prev) => prev + 1)}
+        className="bg-secondary"
+      >
         <RiArrowRightLine />
       </Button>
     </div>
