@@ -2,61 +2,48 @@ import { PostTypeGet } from "@/types/post";
 import Marked from "./Marked";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Button from "./Button";
 
 export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
   const { push } = useRouter();
   const { quote, code } = extractFirstQuoteAndCode(content);
 
   return (
-    <div className="bg-card shadow-md p-cardPadding">
-      <div className="flex text-caption gap-x-colGap text-textSecondary mb-xsGap">
-        <span>{new Date(createdAt).toLocaleString()}</span>
+    <div className="bg-card shadow-md p-cardPadding rounded-sm">
+      <div className="flex text-caption gap-x-colGap">
+        <span className="text-textSecondary">
+          {new Date(createdAt).toLocaleString()}
+        </span>
         <span>&middot;</span>
         <Link href={`/admin/editor?id=${_id}`}>
-          <span>edit</span>
+          <span className="text-textSecondary">edit</span>
         </Link>
       </div>
 
-      <h2 className="font-bold text-h2 mb-elementGap">{title}</h2>
+      <h2 className="font-bold text-h2">{title}</h2>
 
-      <p className="mb-elementGap">{quote}</p>
+      <p className="text-textSecondary">{quote}</p>
 
-      <div className="mb-elementGap">
+      <div className="">
         <Marked text={code || ""} />
       </div>
 
-      <div className="flex border-t border-border flex-wrap">
+      <div className="flex justify-between border-t border-border">
         <Button
-          onClick={() => {
-            push(`/posts/${_id}`);
-          }}
+          className="flex items-center"
+          onClick={() => push(`/posts/${_id}`)}
         >
-          <RiChat3Fill />
-          <span>Comment</span>
+          <RiChat3Fill className="mr-xsGap" />
+          Comment
         </Button>
-        <Button>
-          <RiShareFill />
-          <span>Share</span>
+        <Button className="flex items-center">
+          <RiShareFill className="mr-xsGap" />
+          Share
         </Button>
       </div>
     </div>
   );
 }
-
-const Button = ({
-  children,
-  onClick,
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-}) => (
-  <button
-    className="flex grow items-center justify-center gap-x-xsGap p-gap"
-    onClick={onClick}
-  >
-    {children}
-  </button>
-);
 
 function extractFirstQuoteAndCode(markdown: string = "") {
   const quoteRegex = /^>([^\n]+)/m;
