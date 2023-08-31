@@ -16,7 +16,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
         </span>
         <span>&middot;</span>
         <Link href={`/admin/editor?id=${_id}`}>
-          <span className="text-textSecondary cursor-pointer">edit</span>
+          <span className="text-textSecondary">edit</span>
         </Link>
       </div>
 
