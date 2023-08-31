@@ -88,11 +88,11 @@
   @apply relative;
 
   .code-block-lang {
-    @apply absolute top-0 left-0 text-xs rounded-br-sm bg-secondary px-tagPaddingX;
+    @apply absolute top-0 left-0 text-xs rounded-br-sm bg-primary px-tagPaddingX;
   }
 
   .code-block-copy {
-    @apply absolute top-0 right-0 text-caption rounded-bl-sm bg-primary px-buttonPaddingX py-buttonPaddingY;
+    @apply absolute top-0 right-0 text-caption rounded-bl-sm bg-secondary px-buttonPaddingX py-buttonPaddingY;
   }
 
   code {
