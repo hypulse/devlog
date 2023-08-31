@@ -3,6 +3,8 @@ import { PostTypeGet } from "@/types/post";
 import Pagination from "@/components/Pagination";
 import { getPosts } from "@/utils/apis/posts";
 import Feed from "@/components/Feed";
+import Loading from "@/components/Loading";
+import NoResult from "@/components/NoResult";
 
 export default function Page() {
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
@@ -26,8 +28,8 @@ export default function Page() {
   }, [page]);
 
   const renderPosts = () => {
-    if (loading) return <div>Loading...</div>;
-    if (posts.length === 0) return <div>No posts found.</div>;
+    if (loading) return <Loading />;
+    if (posts.length === 0) return <NoResult />;
     return posts.map((post) => <Feed key={post._id} {...post} />);
   };
 

@@ -1,4 +1,6 @@
 import Card from "@/components/Card";
+import Loading from "@/components/Loading";
+import NoResult from "@/components/NoResult";
 import Pagination from "@/components/Pagination";
 import SearchBox from "@/components/SearchBox";
 import { PostTypeGet } from "@/types/post";
@@ -37,8 +39,8 @@ export default function Page() {
   }, [isReady, query.q, page]);
 
   const renderPosts = () => {
-    if (loading) return <div>Loading...</div>;
-    if (posts.length === 0) return <div>No search results found.</div>;
+    if (loading) return <Loading />;
+    if (posts.length === 0) return <NoResult />;
     return posts.map((post) => <Card key={post._id} {...post} />);
   };
 

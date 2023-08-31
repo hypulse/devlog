@@ -3,6 +3,7 @@ import Card from "@/components/Card";
 import SearchBox from "@/components/SearchBox";
 import { getPosts } from "@/utils/apis/posts";
 import { PostTypeGet } from "@/types/post";
+import Loading from "@/components/Loading";
 
 export default function Page() {
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
@@ -55,7 +56,11 @@ export default function Page() {
         {posts.map((post) => (
           <Card key={post._id} {...post} />
         ))}
-        {hasMore && <div ref={lastPostElementRef}>Loading...</div>}
+        {hasMore && (
+          <div ref={lastPostElementRef}>
+            <Loading />
+          </div>
+        )}
       </div>
     </div>
   );
