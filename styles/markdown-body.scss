@@ -88,7 +88,7 @@
   @apply relative;
 
   .code-block-lang {
-    @apply absolute top-0 left-0 text-xs font-bold rounded-br-sm bg-secondary px-tagPaddingX select-none leading-none;
+    @apply absolute top-0 right-0 text-xs font-bold rounded-bl-xs bg-secondary px-tagPaddingX select-none;
   }
 
   .code-block-copy {

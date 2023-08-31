@@ -51,6 +51,7 @@ const config: Config = {
     borderRadius: {
       DEFAULT: "0.5rem",
       sm: "0.375rem",
+      xs: "0.125rem",
       full: "9999px",
     },
     fontWeight: {

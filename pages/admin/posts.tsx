@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import { ButtonBase } from "@/components/Button";
 import Pagination from "@/components/Pagination";
 import { PostState, PostTypeGet } from "@/types/post";
 import { getPosts, updatePostState } from "@/utils/apis/posts";
@@ -74,7 +74,7 @@ export default function Page() {
       <table className="min-w-full">
         <thead>
           <tr>
-            <TH>Date</TH>
+            <TH>Created At</TH>
             <TH>Title</TH>
             <TH>Actions</TH>
           </tr>
@@ -87,31 +87,17 @@ export default function Page() {
                 <Link href={`/posts/${post._id}`}>{post.title}</Link>
               </TD>
               <TD>
-                <div className="flex gap-x-colGap gap-y-rowGap flex-wrap">
-                  <Button
-                    onClick={() => changeState(post._id, "active")}
-                    className="flex gap-x-xsGap items-center bg-primary"
-                  >
-                    <RiFolder2Fill />
+                <div className="flex flex-wrap gap-xsGap">
+                  <Button onClick={() => changeState(post._id, "active")}>
+                    <RiShareForward2Line />
                     <span>Article</span>
                   </Button>
-                  <Button
-                    onClick={() => changeState(post._id, "snippet")}
-                    className="flex gap-x-xsGap items-center bg-primary"
-                  >
-                    <RiFolder2Fill />
+                  <Button onClick={() => changeState(post._id, "snippet")}>
+                    <RiShareForward2Line />
                     <span>Snippet</span>
                   </Button>
-                  <Button
-                    onClick={() => handleEdit(post._id)}
-                    className="bg-primary"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() => changeState(post._id, "removed")}
-                    className="bg-primary"
-                  >
+                  <Button onClick={() => handleEdit(post._id)}>Editor</Button>
+                  <Button onClick={() => changeState(post._id, "removed")}>
                     Delete
                   </Button>
                 </div>
@@ -134,7 +120,14 @@ const TD = ({ children }: { children: React.ReactNode }) => (
   <td className="p-gap border-t border-border">{children}</td>
 );
 
-function RiFolder2Fill(props: React.SVGProps<SVGSVGElement>) {
+const Button = (payload: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+  <ButtonBase
+    {...payload}
+    className="border border-border flex items-center gap-x-xsGap px-tagPaddingX py-tagPaddingY rounded"
+  />
+);
+
+function RiShareForward2Line(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +138,7 @@ function RiFolder2Fill(props: React.SVGProps<SVGSVGElement>) {
     >
       <path
         fill="currentColor"
-        d="M22 11v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9h20Zm0-2H2V4a1 1 0 0 1 1-1h7.414l2 2H21a1 1 0 0 1 1 1v3Z"
+        d="M4 19h16v-5h2v6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-6h2v5ZM16.172 7l-3.95-3.95l1.414-1.414L20 8l-6.364 6.364l-1.414-1.415L16.172 9H5V7h11.172Z"
       ></path>
     </svg>
   );

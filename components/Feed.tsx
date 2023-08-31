@@ -9,8 +9,8 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
   const { quote, code } = extractFirstQuoteAndCode(content);
 
   return (
-    <div className="p-cardPadding bg-card shadow">
-      <h3 className="font-bold text-h3 mb-rowGap">{title}</h3>
+    <div className="p-cardPadding bg-card shadow rounded-xs overflow-hidden">
+      <h2 className="font-bold text-h2 mb-rowGap">{title}</h2>
 
       <p className="mb-elementGap text-textSecondary">{quote}</p>
 

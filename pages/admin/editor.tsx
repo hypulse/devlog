@@ -121,7 +121,7 @@ export default function Page() {
         </div>
       </fieldset>
       <Button onClick={handleSubmit} className="bg-primary">
-        {postId ? "Edit" : "Create"}
+        {postId ? "Update" : "Create"}
       </Button>
     </div>
   );
