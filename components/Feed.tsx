@@ -16,19 +16,19 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
         </span>
         <span>&middot;</span>
         <Link href={`/admin/editor?id=${_id}`}>
-          <span className="text-textSecondary">edit</span>
+          <span className="text-textSecondary cursor-pointer">edit</span>
         </Link>
       </div>
 
-      <h2 className="font-bold text-h2">{title}</h2>
+      <h2 className="font-bold text-h2 mt-elementGap">{title}</h2>
 
-      <p className="text-textSecondary">{quote}</p>
+      <p className="text-textSecondary mt-xsGap">{quote}</p>
 
-      <div className="">
+      <div className="mt-elementGap">
         <Marked text={code || ""} />
       </div>
 
-      <div className="flex justify-between border-t border-border">
+      <div className="flex justify-between border-t border-border mt-elementGap py-rowGap">
         <Button
           className="flex items-center"
           onClick={() => push(`/posts/${_id}`)}
