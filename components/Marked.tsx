@@ -10,9 +10,9 @@ interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
 const renderer: RendererObject = {
   code(code, lang) {
     lang = lang || "plaintext";
-    return `<div class="code-block">
+    return `<div class="code-block group">
     <div class="code-block-lang">${lang}</div>
-    <button class="code-block-copy">Copy</button>
+    <button class="code-block-copy group-hover:opacity-100"></button>
     <pre>
       <code class="hljs language-${lang}">{code}</code>
     </pre>
