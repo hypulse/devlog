@@ -41,13 +41,12 @@ export default function Page() {
 
   return (
     <div className="space-y-sectionGap">
-      <div className="flex justify-between">
-        <label className="flex items-center gap-x-xsGap">
-          <span>State:</span>
+      <div className="flex justify-between items-center">
+        <label className="flex flex-col">
+          <span className="text-textSecondary text-caption">State</span>
           <select
             value={state}
             onChange={(e) => setState(e.target.value as PostState)}
-            className="ml-xsGap"
           >
             <option value="active">Article</option>
             <option value="snippet">Snippet</option>
@@ -56,12 +55,13 @@ export default function Page() {
           </select>
         </label>
 
-        <label className="flex items-center gap-x-xsGap">
-          <span>Posts per page:</span>
+        <label className="flex flex-col">
+          <span className="text-textSecondary text-caption">
+            Limit per page
+          </span>
           <select
             value={limit}
             onChange={(e) => setLimit(parseInt(e.target.value, 10))}
-            className="ml-xsGap"
           >
             <option value={5}>5</option>
             <option value={10}>10</option>
