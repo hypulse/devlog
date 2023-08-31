@@ -16,7 +16,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
 
       {code && <Marked text={code || ""} className="mb-elementGap" />}
 
-      <div className="flex items-center flex-row-reverse justify-between flex-wrap">
+      <div className="flex items-center flex-row-reverse justify-between flex-wrap gap-y-rowGap">
         <Button
           onClick={() => push(`/posts/${_id}`)}
           className="flex items-center bg-primary"
@@ -24,7 +24,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
           <RiChat3Fill className="mr-xsGap" />
           <span>Comment</span>
         </Button>
-        <div className="flex text-caption gap-x-colGap">
+        <div className="flex text-caption gap-x-colGap flex-wrap">
           <span className="text-textSecondary">
             {new Date(createdAt).toLocaleString()}
           </span>
