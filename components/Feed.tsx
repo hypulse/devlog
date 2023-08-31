@@ -12,9 +12,9 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
     <div className="p-cardPadding bg-card shadow rounded-xs overflow-hidden">
       <h2 className="font-bold text-h2 mb-rowGap">{title}</h2>
 
-      <p className="mb-elementGap text-textSecondary">{quote}</p>
+      {quote && <p className="mb-elementGap text-textSecondary">{quote}</p>}
 
-      <Marked text={code || ""} className="mb-elementGap" />
+      {code && <Marked text={code || ""} className="mb-elementGap" />}
 
       <div className="flex items-center flex-row-reverse justify-between flex-wrap">
         <Button
