@@ -120,7 +120,9 @@ export default function Page() {
           </label>
         </div>
       </fieldset>
-      <Button onClick={handleSubmit}>{postId ? "Edit" : "Create"}</Button>
+      <Button onClick={handleSubmit} className="bg-primary">
+        {postId ? "Edit" : "Create"}
+      </Button>
     </div>
   );
 }

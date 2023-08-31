@@ -6,7 +6,7 @@ export default function Page() {
     <div className="flex flex-col gap-y-elementGap">
       <Input type="text" placeholder="email" />
       <Input type="text" placeholder="password" />
-      <Button>Login</Button>
+      <Button className="bg-primary">Login</Button>
     </div>
   );
 }

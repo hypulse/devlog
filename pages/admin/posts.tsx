@@ -90,20 +90,28 @@ export default function Page() {
                 <div className="flex gap-x-colGap gap-y-rowGap flex-wrap">
                   <Button
                     onClick={() => changeState(post._id, "active")}
-                    className="flex gap-x-xsGap items-center"
+                    className="flex gap-x-xsGap items-center bg-primary"
                   >
                     <RiFolder2Fill />
                     <span>Article</span>
                   </Button>
                   <Button
                     onClick={() => changeState(post._id, "snippet")}
-                    className="flex gap-x-xsGap items-center"
+                    className="flex gap-x-xsGap items-center bg-primary"
                   >
                     <RiFolder2Fill />
                     <span>Snippet</span>
                   </Button>
-                  <Button onClick={() => handleEdit(post._id)}>Edit</Button>
-                  <Button onClick={() => changeState(post._id, "removed")}>
+                  <Button
+                    onClick={() => handleEdit(post._id)}
+                    className="bg-primary"
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={() => changeState(post._id, "removed")}
+                    className="bg-primary"
+                  >
                     Delete
                   </Button>
                 </div>
