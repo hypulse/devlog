@@ -9,26 +9,31 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
   const { quote, code } = extractFirstQuoteAndCode(content);
 
   return (
-    <div className="p-cardPadding rounded-sm overflow-hidden bg-card shadow">
+    <div className="p-cardPadding bg-card shadow">
       <h3 className="font-bold text-h3 mb-rowGap">{title}</h3>
-      <div className="text-textSecondary text-caption mb-gap flex flex-wrap gap-x-colGap">
-        <span>{new Date(createdAt).toLocaleString()}</span>
-        <span>&middot;</span>
-        <Link href={`/admin/editor?id=${_id}`}>
-          <span className="text-textSecondary">edit</span>
-        </Link>
+
+      <p className="mb-elementGap text-textSecondary">{quote}</p>
+
+      <Marked text={code || ""} className="mb-elementGap" />
+
+      <div className="flex items-center flex-row-reverse justify-between flex-wrap">
+        <Button
+          onClick={() => push(`/posts/${_id}`)}
+          className="flex items-center bg-primary"
+        >
+          <RiChat3Fill className="mr-xsGap" />
+          <span>Comment</span>
+        </Button>
+        <div className="flex text-caption gap-x-colGap">
+          <span className="text-textSecondary">
+            {new Date(createdAt).toLocaleString()}
+          </span>
+          <span>&middot;</span>
+          <Link href={`/admin/editor?id=${_id}`}>
+            <span className="text-textSecondary">edit</span>
+          </Link>
+        </div>
       </div>
-      <p className="mb-gap">{quote}</p>
-      <div className="mb-gap">
-        <Marked text={code || ""} />
-      </div>
-      <Button
-        onClick={() => push(`/posts/${_id}`)}
-        className="flex items-center"
-      >
-        <RiChat3Fill className="mr-xsGap" />
-        <span>Comment</span>
-      </Button>
     </div>
   );
 }
