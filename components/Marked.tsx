@@ -1,7 +1,8 @@
 import { HTMLAttributes } from "react";
 import { RendererObject } from "marked";
-import mergeClasses from "@/utils/mergeClasses";
 import baseMarked from "@/utils/baseMarked";
+import { useEffect, useRef } from "react";
+import copyToClipboard from "@/utils/copyToClipboard";
 
 interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
@@ -32,8 +33,46 @@ baseMarked.use({
 });
 
 const Marked = ({ text, ...props }: MarkedProps) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const lastClickedButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const handleCopyClick = (e: Event) => {
+      const target = e.target as HTMLButtonElement;
+
+      if (!target.classList.contains("code-block-copy")) return;
+
+      lastClickedButtonRef.current = target;
+
+      const codeBlock = target.nextElementSibling as HTMLPreElement;
+
+      if (codeBlock) {
+        const code = codeBlock.innerText;
+        copyToClipboard(code);
+
+        if (lastClickedButtonRef.current) {
+          lastClickedButtonRef.current.focus();
+        }
+      }
+    };
+
+    containerRef.current.addEventListener("click", handleCopyClick);
+
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeEventListener("click", handleCopyClick);
+      }
+    };
+  }, []);
+
   return (
-    <div dangerouslySetInnerHTML={{ __html: baseMarked(text) }} {...props} />
+    <div
+      ref={containerRef}
+      dangerouslySetInnerHTML={{ __html: baseMarked(text) }}
+      {...props}
+    />
   );
 };
 
