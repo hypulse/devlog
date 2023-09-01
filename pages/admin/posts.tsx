@@ -43,7 +43,9 @@ export default function Page() {
     <div className="space-y-sectionGap">
       <div className="flex items-center justify-between">
         <label className="flex flex-col">
-          <span className="text-textSecondary text-caption">State</span>
+          <span className="text-textSecondary text-caption mb-xsGap">
+            State
+          </span>
           <select
             value={state}
             onChange={(e) => setState(e.target.value as PostState)}
@@ -56,7 +58,7 @@ export default function Page() {
         </label>
 
         <label className="flex flex-col">
-          <span className="text-textSecondary text-caption">
+          <span className="text-textSecondary text-caption mb-xsGap">
             Limit per page
           </span>
           <select
@@ -87,7 +89,7 @@ export default function Page() {
                 <Link href={`/posts/${post._id}`}>{post.title}</Link>
               </TD>
               <TD>
-                <div className="flex flex-wrap gap-xsGap">
+                <div className="flex flex-wrap gap-x-colGap gap-y-rowGap">
                   <Button onClick={() => changeState(post._id, "active")}>
                     <RiShareForward2Line />
                     <span>Article</span>
@@ -113,11 +115,11 @@ export default function Page() {
 }
 
 const TH = ({ children }: { children: React.ReactNode }) => (
-  <th className="p-gap bg-card">{children}</th>
+  <th className="p-cellPadding bg-card">{children}</th>
 );
 
 const TD = ({ children }: { children: React.ReactNode }) => (
-  <td className="p-gap border-t border-border">{children}</td>
+  <td className="p-cellPadding border-t border-border">{children}</td>
 );
 
 const Button = (payload: React.ButtonHTMLAttributes<HTMLButtonElement>) => (

@@ -71,7 +71,7 @@ export default function Page() {
       alert(result.message);
       return;
     } else {
-      alert("Success");
+      alert("Success saving post");
     }
 
     push(`/admin/editor?id=${result.data._id}`);
@@ -87,7 +87,7 @@ export default function Page() {
       />
       <input type="file" onChange={handleFileChange}></input>
       <fieldset>
-        <legend className="text-caption text-textSecondary">
+        <legend className="text-caption text-textSecondary mb-xsGap">
           Select state
         </legend>
         <div className="flex space-x-colGap">

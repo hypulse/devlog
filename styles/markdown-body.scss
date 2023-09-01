@@ -88,19 +88,19 @@
   @apply relative;
 
   .code-block-lang {
-    @apply absolute top-0 right-0 text-xs font-bold rounded-bl-xs bg-secondary px-tagPaddingX select-none;
+    @apply absolute top-0 right-0 text-xs rounded-bl-xs bg-secondary px-tagPaddingX select-none;
   }
 
   .code-block-copy {
-    @apply absolute bottom-gap right-gap text-caption font-bold rounded-sm bg-border opacity-0 px-tagPaddingX py-tagPaddingY;
+    @apply absolute bottom-cellPadding right-cellPadding bg-black/50 text-white rounded-sm text-caption opacity-0 px-buttonPaddingX py-buttonPaddingY;
   }
 
   .code-block-copy::after {
-    content: "Get code";
+    content: "📋 Copy";
   }
 
   .code-block-copy:focus::after {
-    content: "Copied!";
+    content: "✅ Copied!";
   }
 
   code {
