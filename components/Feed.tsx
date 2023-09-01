@@ -30,9 +30,9 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
 
       {quote && <p>{quote}</p>}
 
-      <div className="flex">
-        <Link href={`/posts/${_id}`} className="text-primary">
-          Comment
+      <div className="flex justify-end">
+        <Link href={`/posts/${_id}`} className="text-primary font-bold">
+          Read more
         </Link>
       </div>
     </div>
