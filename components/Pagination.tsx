@@ -1,4 +1,4 @@
-import Button from "./Button";
+import IconButton from "./IconButton";
 
 type PaginationProps = {
   page: number;
@@ -7,20 +7,14 @@ type PaginationProps = {
 
 export default function Pagination({ page, setPage }: PaginationProps) {
   return (
-    <div className="flex justify-center items-center gap-x-elementGap">
-      <Button
-        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-        className="bg-secondary"
-      >
+    <div className="flex justify-center items-center gap-x-colGap">
+      <IconButton onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
         <RiArrowLeftLine />
-      </Button>
+      </IconButton>
       <span>Page {page}</span>
-      <Button
-        onClick={() => setPage((prev) => prev + 1)}
-        className="bg-secondary"
-      >
+      <IconButton onClick={() => setPage((prev) => prev + 1)}>
         <RiArrowRightLine />
-      </Button>
+      </IconButton>
     </div>
   );
 }
