@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import Marked from "@/components/Marked";
 import { PostTypeGet } from "@/types/post";
-import copyToClipboard from "@/utils/copyToClipboard";
 import { getPost } from "@/utils/apis/posts";
+import sharePost from "@/utils/sharePost";
 
 type PageProps = {
   data: PostTypeGet;
@@ -28,25 +28,6 @@ export default function ({ data }: PageProps) {
   const { title, createdAt, summary, content } = data;
   const createdAtDate = new Date(createdAt);
 
-  const sharePost = async () => {
-    const shareData = {
-      title,
-      text: summary,
-      url: window.location.href,
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        return;
-      } catch (error) {
-        console.error("Error sharing:", error);
-      }
-    }
-
-    copyToClipboard(shareData.url);
-  };
-
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="font-bold text-h1">{title}</h1>
@@ -55,7 +36,13 @@ export default function ({ data }: PageProps) {
           {createdAtDate.toLocaleString()}
         </time>
         <span>&middot;</span>
-        <button onClick={sharePost}>Share</button>
+        <button
+          onClick={() => {
+            sharePost(title, summary || "");
+          }}
+        >
+          Share
+        </button>
       </div>
       <p className="mt-elementGap text-primary">{summary}</p>
       <Marked text={content || ""} className="markdown-body mt-extraGap" />
