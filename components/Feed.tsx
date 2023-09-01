@@ -1,39 +1,38 @@
 import { PostTypeGet } from "@/types/post";
-import { useRouter } from "next/router";
 import Marked from "./Marked";
-import Button from "./Button";
 import Link from "next/link";
+import sharePost from "@/utils/sharePost";
 
 export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
-  const { push } = useRouter();
   const { quote, code } = extractFirstQuoteAndCode(content);
 
   return (
-    <div className="p-cardPadding bg-card shadow rounded-xs overflow-hidden">
-      <h2 className="font-bold text-h2 mb-rowGap">{title}</h2>
+    <div className="flex flex-col gap-y-rowGap bg-card rounded-xs p-cardPadding shadow">
+      <h2 className="font-bold text-h2">{title}</h2>
 
-      {quote && <p className="mb-elementGap text-textSecondary">{quote}</p>}
-
-      {code && <Marked text={code || ""} className="mb-elementGap" />}
-
-      <div className="flex items-center flex-row-reverse justify-between flex-wrap gap-y-rowGap">
-        <Button
-          onClick={() => push(`/posts/${_id}`)}
-          className="flex items-center bg-primary"
+      <div className="flex text-caption gap-x-colGap">
+        <span>{new Date(createdAt).toLocaleString()}</span>
+        <span>&middot;</span>
+        <button
+          onClick={() => {
+            sharePost(title, quote || "");
+          }}
         >
-          <RiChat3Fill className="mr-xsGap" />
-          <span>Comment</span>
-        </Button>
-        <div className="flex text-caption gap-x-colGap flex-wrap">
-          <span className="text-textSecondary">
-            {new Date(createdAt).toLocaleString()}
-          </span>
-          <span>&middot;</span>
-          <Link href={`/admin/editor?id=${_id}`}>
-            <span className="text-textSecondary">edit</span>
-          </Link>
-        </div>
+          Share
+        </button>
+        <span>&middot;</span>
+        <Link href={`/admin/editor?id=${_id}`}>
+          <span className="text-textSecondary">Edit</span>
+        </Link>
       </div>
+
+      {code && <Marked text={code || ""} />}
+
+      {quote && <p>{quote}</p>}
+
+      <Link href={`/posts/${_id}`} className="text-primary">
+        Comment
+      </Link>
     </div>
   );
 }

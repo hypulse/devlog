@@ -15,15 +15,17 @@ export default function Card({
       <Link href={`/posts/${_id}`}>
         <h2 className="font-bold text-h2 group-hover:text-primary">{title}</h2>
       </Link>
+
       <div className="flex text-caption gap-x-colGap">
         <span>{timeSince(new Date(createdAt))}</span>
         <span>&middot;</span>
         <span>{estimateReadingTime(wordCount)}</span>
         <span>&middot;</span>
         <Link href={`/admin/editor?id=${_id}`}>
-          <span className="text-textSecondary">edit</span>
+          <span className="text-textSecondary">Edit</span>
         </Link>
       </div>
+
       <p className="line-clamp-3">{summary}</p>
     </div>
   );
