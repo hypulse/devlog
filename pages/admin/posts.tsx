@@ -5,7 +5,6 @@ import { getPosts, updatePostState } from "@/utils/apis/posts";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import DefaultButton from "@/components/Button";
 
 export default function Page() {
   const router = useRouter();
@@ -42,7 +41,7 @@ export default function Page() {
 
   return (
     <div className="space-y-sectionGap">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <label className="flex flex-col">
           <span className="text-textSecondary text-caption">State</span>
           <select
@@ -107,16 +106,6 @@ export default function Page() {
           ))}
         </tbody>
       </table>
-
-      <div className="flex justify-end">
-        <DefaultButton
-          className="bg-primary flex items-center gap-x-xsGap"
-          onClick={() => router.push("/admin/editor")}
-        >
-          <RiEdit2Fill />
-          <span>New Post</span>
-        </DefaultButton>
-      </div>
 
       <Pagination page={page} setPage={setPage} />
     </div>
