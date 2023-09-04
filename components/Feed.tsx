@@ -1,7 +1,7 @@
 import { PostTypeGet } from "@/types/post";
 import Marked from "./Marked";
 import Link from "next/link";
-import Button, { ButtonBase } from "./Button";
+import { ButtonBase } from "./Button";
 import sharePost from "@/utils/sharePost";
 
 export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
