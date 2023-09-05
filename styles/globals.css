@@ -51,10 +51,15 @@ a:hover {
   @apply underline;
 }
 
-select {
+select,
+option {
   @apply bg-transparent;
 }
 
-option {
-  @apply bg-background;
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
 }

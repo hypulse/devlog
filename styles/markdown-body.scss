@@ -1,6 +1,13 @@
 @use "sass:meta";
 
+.html-body,
 .markdown-body {
+  h1,
+  h2,
+  h3 {
+    @apply font-bold mt-elementGap;
+  }
+
   h4,
   h5,
   h6,
@@ -15,12 +22,7 @@
   }
 
   h1 {
-    @apply hidden;
-  }
-
-  h2,
-  h3 {
-    @apply font-bold mt-elementGap;
+    @apply text-h1;
   }
 
   h2 {
@@ -74,18 +76,24 @@
   li {
     @apply leading-tight list-inside mt-xsGap;
   }
+}
 
-  ul {
-    @apply list-disc;
-  }
-
-  ol {
-    @apply list-decimal;
+.markdown-body {
+  h1 {
+    @apply hidden;
   }
 }
 
 .code-block {
   @apply relative;
+
+  body.light & {
+    @include meta.load-css("highlight.js/styles/github");
+  }
+
+  body.dark & {
+    @include meta.load-css("highlight.js/styles/monokai");
+  }
 
   .code-block-lang {
     @apply absolute top-0 right-0 text-xs rounded-bl-xs bg-secondary px-tagPaddingX select-none;
@@ -96,22 +104,14 @@
   }
 
   .code-block-copy::after {
-    content: "📋 Copy";
+    content: "Copy";
   }
 
   .code-block-copy:focus::after {
-    content: "✅ Copied!";
+    content: "Copied!";
   }
 
   code {
     @apply text-caption break-words whitespace-pre-wrap;
-  }
-
-  body.light & {
-    @include meta.load-css("highlight.js/styles/github");
-  }
-
-  body.dark & {
-    @include meta.load-css("highlight.js/styles/monokai");
   }
 }
