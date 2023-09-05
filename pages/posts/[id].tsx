@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import Marked from "@/components/Marked";
+import MarkedViewer from "@/components/MarkedViewer";
 import { PostTypeGet } from "@/types/post";
 import { getPost } from "@/utils/apis/posts";
 import sharePost from "@/utils/sharePost";
@@ -45,7 +45,10 @@ export default function ({ data }: PageProps) {
         </button>
       </div>
       <p className="mt-elementGap text-primary">{summary}</p>
-      <Marked text={content || ""} className="markdown-body mt-extraGap" />
+      <MarkedViewer
+        text={content || ""}
+        className="markdown-body mt-extraGap"
+      />
     </div>
   );
 }

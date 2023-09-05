@@ -47,7 +47,7 @@ marked.use(
   }
 );
 
-const Marked = ({ text, ...props }: MarkedProps) => {
+const MarkedViewer = ({ text, ...props }: MarkedProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const lastClickedButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -91,4 +91,4 @@ const Marked = ({ text, ...props }: MarkedProps) => {
   );
 };
 
-export default Marked;
+export default MarkedViewer;

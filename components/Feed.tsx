@@ -1,5 +1,5 @@
 import { PostTypeGet } from "@/types/post";
-import Marked from "./Marked";
+import MarkedViewer from "./MarkedViewer";
 import Link from "next/link";
 import { ButtonBase } from "./Button";
 import sharePost from "@/utils/sharePost";
@@ -25,7 +25,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
       {quote && <p>{quote}</p>}
 
       {code && (
-        <Marked
+        <MarkedViewer
           text={code || ""}
           className="rounded overflow-hidden border border-border"
         />
