@@ -2,14 +2,17 @@ import Button from "@/components/Button";
 import { PostState, PostTypePost } from "@/types/post";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
 import parseContent from "@/utils/parseContent";
+import { Marked } from "marked";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
+import MdEditor from "react-markdown-editor-lite";
+import "react-markdown-editor-lite/lib/index.css";
 
 export default function Page() {
   const { isReady, query, push } = useRouter();
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [state, setState] = useState<PostState>("draft");
   const [postId, setPostId] = useState<string | null>(null);
+  const mdEditor = useRef<MdEditor>(null);
 
   useEffect(() => {
     if (isReady && query.id) {
@@ -19,15 +22,21 @@ export default function Page() {
     }
   }, [isReady, query.id]);
 
+  function getMdValue() {
+    return mdEditor?.current?.getMdValue() || "";
+  }
+
+  function setMdValue(value: string) {
+    mdEditor?.current?.setText(value);
+  }
+
   const fetchPost = async (postId: string) => {
     const { error, data, message } = await getPost(postId);
     if (error || !data) {
       alert(message);
       return;
     }
-    if (textareaRef.current) {
-      textareaRef.current.value = data.content || "";
-    }
+    setMdValue(data.content || "");
     setState(data.state);
   };
 
@@ -38,8 +47,8 @@ export default function Page() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      if (typeof reader.result === "string" && textareaRef.current) {
-        textareaRef.current.value = reader.result;
+      if (typeof reader.result === "string") {
+        setMdValue(reader.result);
       }
     };
 
@@ -52,7 +61,7 @@ export default function Page() {
   };
 
   const handleSubmit = async () => {
-    const content = textareaRef.current?.value || "";
+    const content = getMdValue();
     const { title, summary, wordCount } = parseContent(content);
 
     const updatedPost: PostTypePost = {
@@ -78,49 +87,65 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col gap-y-elementGap">
-      <textarea
-        ref={textareaRef}
-        placeholder="Write your markdown content here..."
-        className="bg-transparent border rounded outline-none p-inputPadding border-border placeholder-textSecondary"
-        rows={20}
+    <div className="space-y-elementGap">
+      <MdEditor
+        ref={mdEditor}
+        style={{ height: "500px" }}
+        renderHTML={(text) => new Marked().parse(text) as string}
       />
-      <input type="file" onChange={handleFileChange}></input>
-      <fieldset>
-        <legend className="text-caption text-textSecondary mb-xsGap">
-          Select state
-        </legend>
-        <div className="flex space-x-colGap">
-          <label className="flex space-x-xsGap">
-            <input
-              type="radio"
-              value="draft"
-              checked={state === "draft"}
-              onChange={() => setState("draft")}
-            />
-            <span>Draft</span>
-          </label>
-          <label className="flex space-x-xsGap items-center">
-            <input
-              type="radio"
-              value="active"
-              checked={state === "active"}
-              onChange={() => setState("active")}
-            />
-            <span>Article</span>
-          </label>
-          <label className="flex space-x-xsGap items-center">
-            <input
-              type="radio"
-              value="snippet"
-              checked={state === "snippet"}
-              onChange={() => setState("snippet")}
-            />
-            <span>Snippet</span>
+      <div className="flex items-center justify-between flex-wrap gap-y-rowGap">
+        <fieldset>
+          <legend className="text-caption text-textSecondary mb-xsGap">
+            Select state
+          </legend>
+          <div className="flex space-x-colGap">
+            <label className="flex space-x-xsGap">
+              <input
+                type="radio"
+                value="draft"
+                checked={state === "draft"}
+                onChange={() => setState("draft")}
+              />
+              <span>Draft</span>
+            </label>
+            <label className="flex space-x-xsGap items-center">
+              <input
+                type="radio"
+                value="active"
+                checked={state === "active"}
+                onChange={() => setState("active")}
+              />
+              <span>Article</span>
+            </label>
+            <label className="flex space-x-xsGap items-center">
+              <input
+                type="radio"
+                value="snippet"
+                checked={state === "snippet"}
+                onChange={() => setState("snippet")}
+              />
+              <span>Snippet</span>
+            </label>
+          </div>
+        </fieldset>
+        <div>
+          <input
+            type="file"
+            id="fileInput"
+            onChange={handleFileChange}
+            style={{
+              display: "none",
+            }}
+          ></input>
+          <label
+            htmlFor="fileInput"
+            className="border border-border flex items-center gap-x-xsGap px-tagPaddingX py-tagPaddingY rounded cursor-pointer"
+          >
+            파일 선택
           </label>
         </div>
-      </fieldset>
-      <Button onClick={handleSubmit} className="bg-primary">
+      </div>
+      <Button onClick={handleSubmit} className="bg-primary w-full">
         {postId ? "Update" : "Create"}
       </Button>
     </div>
