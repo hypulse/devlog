@@ -1,7 +1,7 @@
-import baseMarked from "./baseMarked";
+import { Marked } from "marked";
 
 const parseMarkdownToHTML = (markdown: string): Document => {
-  const htmlContent = baseMarked(markdown);
+  const htmlContent = new Marked().parse(markdown) as string;
   const parser = new DOMParser();
   return parser.parseFromString(htmlContent, "text/html");
 };
