@@ -39,6 +39,6 @@ export default async function handler(
         .json({ error: true, message: "Failed to retrieve posts" });
     }
   } else {
-    res.status(400).json({ error: true, message: "Invalid request method" });
+    res.status(405).json({ error: true, message: "Invalid request method" });
   }
 }

@@ -62,7 +62,7 @@ export default async function handler(
       break;
 
     default:
-      res.status(400).json({ error: true, message: "Invalid request method" });
+      res.status(405).json({ error: true, message: "Invalid request method" });
       break;
   }
 }
