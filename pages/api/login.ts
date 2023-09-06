@@ -28,7 +28,7 @@ export default async function handler(
         "Set-Cookie",
         `token=${token}; path=/; expires=${new Date(
           Date.now() + EXPIRES_IN * 1000
-        )}; HttpOnly; Secure`
+        ).toUTCString()}; HttpOnly; Secure`
       );
 
       res.status(200).json({ error: false });
