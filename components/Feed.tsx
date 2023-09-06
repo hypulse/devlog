@@ -12,7 +12,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-h2">{title}</h2>
         <ButtonBase
-          className="border border-primary text-primary px-tagPaddingX py-tagPaddingY rounded-full flex items-center gap-x-xsGap"
+          className="border border-primary text-primary px-tagPaddingX py-tagPaddingY rounded-full flex items-center gap-x-xsGap opacity-50 hover:opacity-100"
           onClick={() => {
             sharePost(title, quote || "");
           }}

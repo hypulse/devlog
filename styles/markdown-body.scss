@@ -104,11 +104,11 @@
   }
 
   .code-block-copy::after {
-    content: "Copy";
+    content: "Copy 📋";
   }
 
   .code-block-copy:focus::after {
-    content: "Copied!";
+    content: "Copied ✅";
   }
 
   code {
