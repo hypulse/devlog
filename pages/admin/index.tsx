@@ -1,5 +1,20 @@
-export const getServerSideProps = async () => {
-  if (false) {
+import verifyUser from "@/server/verifyUser";
+import { GetServerSidePropsContext } from "next";
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const token = context.req.cookies.token;
+
+  try {
+    verifyUser(token);
+    return {
+      redirect: {
+        destination: "/admin/posts",
+        permanent: false,
+      },
+    };
+  } catch (error) {
     return {
       redirect: {
         destination: "/admin/login",
@@ -7,12 +22,6 @@ export const getServerSideProps = async () => {
       },
     };
   }
-  return {
-    redirect: {
-      destination: "/admin/posts",
-      permanent: false,
-    },
-  };
 };
 
 export default function Page() {
