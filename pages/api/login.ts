@@ -33,6 +33,7 @@ export default async function handler(
 
       res.status(200).json({ error: false });
     } catch (error) {
+      console.log(error);
       res.status(400).json({ error: true, message: "Authentication failed" });
     }
   } else {

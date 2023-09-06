@@ -15,6 +15,7 @@ export default async function handler(
         .status(200)
         .json({ error: false, message: "Logged out successfully" });
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: true, message: "Failed to log out" });
     }
   } else {
