@@ -1,7 +1,18 @@
-import { CallbackError, Document, Schema, model, models } from "mongoose";
+import {
+  CallbackError,
+  Document,
+  Model,
+  Schema,
+  model,
+  models,
+} from "mongoose";
 import bcrypt from "bcrypt";
 
 const SALT_ROUNDS = 10;
+
+interface IUserModel extends Model<UserDocument> {
+  login({ email, password }: LoginParams): Promise<UserDocument>;
+}
 
 interface UserDocument extends Document {
   email: string;
@@ -49,6 +60,8 @@ userSchema.statics.login = async function ({ email, password }: LoginParams) {
   return user;
 };
 
-const User = models.User || model("User", userSchema);
+const User =
+  (models.User as IUserModel) ||
+  model<UserDocument, IUserModel>("User", userSchema);
 
-module.exports = User;
+export default User;
