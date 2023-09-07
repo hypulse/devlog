@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { marked } from "marked";
+import { Marked } from "marked";
 import { useEffect, useRef } from "react";
 import copyToClipboard from "@/utils/copyToClipboard";
 import { markedHighlight } from "marked-highlight";
@@ -7,15 +7,11 @@ import hljs from "highlight.js";
 import { mangle } from "marked-mangle";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 
-interface MarkedProps extends HTMLAttributes<HTMLDivElement> {
+interface MarkedViewerProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
 }
 
-marked.setOptions({
-  gfm: true,
-});
-
-marked.use(
+const marked = new Marked(
   mangle(),
   gfmHeadingId(),
   markedHighlight({
@@ -25,20 +21,11 @@ marked.use(
     },
   }),
   {
+    gfm: false,
     renderer: {
       code(code, lang) {
         lang = lang || "plaintext";
-        return `<div class="code-block group">
-      <div class="code-block-lang">${lang}</div>
-      <button class="code-block-copy group-hover:opacity-100"></button>
-      <pre>
-        <code class="hljs language-${lang}">{code}</code>
-      </pre>
-    </div>`
-          .replace(/\s+</g, "<")
-          .replace(/>[\s\n]+</g, "><")
-          .trim()
-          .replace("{code}", code);
+        return `<div class="code-block group"><div class="code-block-lang">${lang}</div><button class="code-block-copy group-hover:opacity-100"></button><pre><code class="hljs language-${lang}">${code}</code></pre></div>`;
       },
       codespan(code) {
         return `<code class="hljs">${code}</code>`;
@@ -47,7 +34,7 @@ marked.use(
   }
 );
 
-const MarkedViewer = ({ text, ...props }: MarkedProps) => {
+const MarkedViewer = ({ text, ...props }: MarkedViewerProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const lastClickedButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -85,7 +72,7 @@ const MarkedViewer = ({ text, ...props }: MarkedProps) => {
   return (
     <div
       ref={containerRef}
-      dangerouslySetInnerHTML={{ __html: marked(text) }}
+      dangerouslySetInnerHTML={{ __html: marked.parse(text) as string }}
       {...props}
     />
   );
