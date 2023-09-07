@@ -31,7 +31,7 @@ export default async function handler(
         ).toUTCString()}; HttpOnly; Secure`
       );
 
-      res.status(200).json({ error: false });
+      res.status(200).json({ error: false, message: "Logged in successfully" });
     } catch (error) {
       console.log(error);
       res.status(400).json({ error: true, message: "Authentication failed" });
