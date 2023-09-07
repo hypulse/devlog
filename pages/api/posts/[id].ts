@@ -1,5 +1,6 @@
 import Post from "@/server/Models/Post";
 import connectToDatabase from "@/server/connectToDatabase";
+import verifyUser from "@/server/verifyUser";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -7,6 +8,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   await connectToDatabase();
+
+  const token = req.cookies.token;
 
   const {
     query: { id },
@@ -17,11 +20,17 @@ export default async function handler(
     case "GET":
       try {
         const post = await Post.findById(id);
+
         if (!post) {
           return res
             .status(404)
             .json({ error: true, message: "Post not found" });
         }
+
+        if (["removed", "draft"].includes(post.state)) {
+          verifyUser(token);
+        }
+
         res.status(200).json({ error: false, data: post });
       } catch (error) {
         res
@@ -32,6 +41,8 @@ export default async function handler(
 
     case "PATCH":
       try {
+        verifyUser(token);
+
         const post = await Post.findByIdAndUpdate(id, req.body, {
           new: true,
           runValidators: true,
@@ -49,6 +60,8 @@ export default async function handler(
 
     case "DELETE":
       try {
+        verifyUser(token);
+
         const deletedPost = await Post.deleteOne({ _id: id });
         if (!deletedPost) {
           return res
