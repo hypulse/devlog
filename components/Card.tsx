@@ -17,7 +17,9 @@ export default function Card({
       </Link>
 
       <div className="flex text-caption gap-x-colGap">
-        <span>{timeSince(new Date(createdAt))}</span>
+        <time dateTime={new Date(createdAt).toISOString()}>
+          {timeSince(new Date(createdAt))}
+        </time>
         <span>&middot;</span>
         <span>{estimateReadingTime(wordCount)}</span>
         <span>&middot;</span>

@@ -36,7 +36,9 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
       )}
 
       <div className="flex text-caption gap-x-colGap text-textSecondary">
-        <span>{new Date(createdAt).toLocaleString()}</span>
+        <time dateTime={new Date(createdAt).toISOString()}>
+          {new Date(createdAt).toLocaleString()}
+        </time>
         <span>&middot;</span>
         <Link href={`/admin/editor?id=${_id}`}>
           <span>Edit</span>

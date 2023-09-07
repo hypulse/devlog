@@ -38,14 +38,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export default function ({ data }: { data: PostTypeGet }) {
   const { title, createdAt, summary, content } = data;
-  const createdAtDate = new Date(createdAt);
 
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="font-bold text-h1">{title}</h1>
       <div className="flex mt-elementGap gap-x-colGap">
-        <time dateTime={createdAtDate.toISOString()}>
-          {createdAtDate.toLocaleString()}
+        <time dateTime={new Date(createdAt).toISOString()}>
+          {new Date(createdAt).toLocaleString()}
         </time>
         <span>&middot;</span>
         <button
