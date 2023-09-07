@@ -29,7 +29,7 @@ const postSchema = new Schema<PostDocument>(
     },
     state: {
       type: String,
-      enum: ["active", "removed", "draft", "snippet"],
+      enum: ["active", "snippet", "removed", "draft"],
       default: "draft",
       required: true,
     },
