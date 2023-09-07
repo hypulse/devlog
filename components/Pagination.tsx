@@ -3,16 +3,27 @@ import IconButton from "./IconButton";
 type PaginationProps = {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  lastPage: number;
 };
 
-export default function Pagination({ page, setPage }: PaginationProps) {
+export default function Pagination({
+  page,
+  setPage,
+  lastPage,
+}: PaginationProps) {
   return (
     <div className="flex justify-center items-center gap-x-colGap">
-      <IconButton onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
+      <IconButton
+        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+        className={`${page === 1 ? "opacity-50" : ""}`}
+      >
         <RiArrowLeftLine />
       </IconButton>
       <span>Page {page}</span>
-      <IconButton onClick={() => setPage((prev) => prev + 1)}>
+      <IconButton
+        onClick={() => setPage((prev) => Math.min(prev + 1, lastPage))}
+        className={`${page === lastPage ? "opacity-50" : ""}`}
+      >
         <RiArrowRightLine />
       </IconButton>
     </div>

@@ -32,7 +32,14 @@ export default async function handler(
         .limit(Number(limit))
         .exec();
 
-      res.status(200).json({ error: false, data: posts });
+      const lastPage = Math.ceil(
+        (await Post.countDocuments(queryOptions).exec()) / Number(limit)
+      );
+
+      res.status(200).json({
+        error: false,
+        data: { posts, lastPage },
+      });
     } catch (error) {
       res
         .status(500)
