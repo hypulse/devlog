@@ -1,10 +1,32 @@
 import { ButtonBase } from "@/components/Button";
 import Pagination from "@/components/Pagination";
+import verifyUser from "@/server/verifyUser";
 import { PostState, PostTypeGet } from "@/types/post";
 import { getPosts, updatePostState } from "@/utils/apis/posts";
+import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const token = context.req.cookies.token;
+
+  try {
+    verifyUser(token);
+    return {
+      props: {},
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+        permanent: false,
+      },
+    };
+  }
+};
 
 export default function Page() {
   const router = useRouter();

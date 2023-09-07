@@ -1,8 +1,29 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import verifyUser from "@/server/verifyUser";
+import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 
-export default function Page() {
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const token = context.req.cookies.token;
+
+  try {
+    verifyUser(token);
+    return {
+      props: {
+        loggedIn: true,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+    };
+  }
+};
+
+export default function Page({ loggedIn }: { loggedIn?: boolean }) {
   const { push } = useRouter();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,8 +55,35 @@ export default function Page() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("/api/logout", {
+        method: "POST",
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+
+      push("/");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to logout");
+    }
+  };
+
+  if (loggedIn) {
+    return (
+      <Button className="bg-primary mb-rowGap" onClick={handleLogout}>
+        Sign out
+      </Button>
+    );
+  }
+
   return (
-    <form onSubmit={handleLogin} className="flex flex-col">
+    <form className="flex flex-col" onSubmit={handleLogin}>
       <Input
         type="text"
         name="email"
@@ -51,7 +99,7 @@ export default function Page() {
       />
 
       <Button type="submit" className="bg-primary mb-rowGap">
-        <span>Sign in</span>
+        Sign in
       </Button>
     </form>
   );

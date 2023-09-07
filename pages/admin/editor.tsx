@@ -1,12 +1,34 @@
 import Button from "@/components/Button";
+import verifyUser from "@/server/verifyUser";
 import { PostState, PostTypePost } from "@/types/post";
 import { createPost, getPost, updatePost } from "@/utils/apis/posts";
 import parseContent from "@/utils/parseContent";
 import { Marked } from "marked";
+import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const token = context.req.cookies.token;
+
+  try {
+    verifyUser(token);
+    return {
+      props: {},
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+        permanent: false,
+      },
+    };
+  }
+};
 
 export default function Page() {
   const { isReady, query, push } = useRouter();
