@@ -34,6 +34,7 @@ export default function Page() {
   const [state, setState] = useState<PostState>("active");
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
+  const [lastPage, setLastPage] = useState<number>(1);
 
   const fetchData = async () => {
     const { error, data, message } = await getPosts(state, page, limit);
@@ -41,7 +42,8 @@ export default function Page() {
       alert(message);
       return;
     }
-    setPosts(data);
+    setPosts(data.posts);
+    setLastPage(data.lastPage);
   };
 
   useEffect(() => {
@@ -131,7 +133,7 @@ export default function Page() {
         </tbody>
       </table>
 
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} setPage={setPage} lastPage={lastPage} />
     </div>
   );
 }

@@ -17,12 +17,12 @@ export default function Page() {
     const loadMorePosts = async () => {
       const { error, data } = await getPosts("active", page);
 
-      if (error || !data || data.length === 0) {
+      if (error || !data || data.posts.length === 0) {
         setHasMore(false);
         return;
       }
 
-      setPosts((prevPosts) => [...prevPosts, ...data]);
+      setPosts((prevPosts) => [...prevPosts, ...data.posts]);
     };
 
     if (hasMore) {

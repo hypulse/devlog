@@ -10,6 +10,7 @@ export default function Page() {
   const [posts, setPosts] = useState<Array<PostTypeGet>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
+  const [lastPage, setLastPage] = useState<number>(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +21,8 @@ export default function Page() {
         return;
       }
 
-      setPosts(data);
+      setPosts(data.posts);
+      setLastPage(data.lastPage);
       setLoading(false);
     };
 
@@ -36,7 +38,7 @@ export default function Page() {
   return (
     <div className="space-y-sectionGap">
       <div className="space-y-extraGap">{renderPosts()}</div>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} setPage={setPage} lastPage={lastPage} />
     </div>
   );
 }

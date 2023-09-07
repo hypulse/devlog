@@ -9,7 +9,7 @@ export const getPosts = async (
   limit: number = 10
 ) => {
   const url = `${API_BASE}?state=${state}&page=${page}&limit=${limit}`;
-  return await fetchAPI<Array<PostTypeGet>>(url);
+  return await fetchAPI<{ posts: Array<PostTypeGet>; lastPage: number }>(url);
 };
 
 export const getPost = async (id: string) => {
