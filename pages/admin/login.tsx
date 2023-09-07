@@ -76,7 +76,7 @@ export default function Page({ loggedIn }: { loggedIn?: boolean }) {
 
   if (loggedIn) {
     return (
-      <Button className="bg-primary mb-rowGap" onClick={handleLogout}>
+      <Button className="bg-primary mb-rowGap w-full" onClick={handleLogout}>
         Sign out
       </Button>
     );
