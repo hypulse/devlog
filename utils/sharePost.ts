@@ -1,10 +1,10 @@
 import copyToClipboard from "./copyToClipboard";
 
-const sharePost = async (title: string, summary: string) => {
+const sharePost = async (title: string, summary: string, url?: string) => {
   const shareData = {
     title,
     text: summary,
-    url: window.location.href,
+    url: url || window.location.href,
   };
 
   if (navigator.share) {
@@ -17,6 +17,7 @@ const sharePost = async (title: string, summary: string) => {
   }
 
   copyToClipboard(shareData.url);
+  alert("Link copied to clipboard!");
 };
 
 export default sharePost;

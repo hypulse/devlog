@@ -14,7 +14,11 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
         <ButtonBase
           className="border border-primary text-primary px-tagPaddingX py-tagPaddingY rounded-full flex items-center gap-x-xsGap opacity-50 hover:opacity-100"
           onClick={() => {
-            sharePost(title, quote || "");
+            sharePost(
+              title,
+              quote || "",
+              window.location.origin + "/posts/" + _id
+            );
           }}
         >
           <RiShareForwardFill />
