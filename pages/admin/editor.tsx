@@ -44,6 +44,43 @@ export default function Page() {
     }
   }, [isReady, query.id]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+        e.preventDefault();
+        handleTemporarySave();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  function handleTemporarySave() {
+    const currentTime = new Date().toISOString();
+
+    const newSaveObject = {
+      id: currentTime,
+      timestamp: currentTime,
+      content: getMdValue(),
+    };
+
+    const savedPostsString = localStorage.getItem("auto_saved_posts");
+    const savedPosts = savedPostsString ? JSON.parse(savedPostsString) : [];
+
+    while (savedPosts.length > 5) {
+      savedPosts.shift();
+    }
+
+    savedPosts.push(newSaveObject);
+    localStorage.setItem("auto_saved_posts", JSON.stringify(savedPosts));
+
+    alert("Temporarily saved at " + currentTime);
+  }
+
   function getMdValue() {
     return mdEditor?.current?.getMdValue() || "";
   }
@@ -100,11 +137,11 @@ export default function Page() {
 
     if (result.error || !result.data) {
       alert(result.message);
+      handleTemporarySave();
       return;
-    } else {
-      alert("Success saving post");
     }
 
+    alert("Success saving post");
     push(`/admin/editor?id=${result.data._id}`);
   };
 
