@@ -18,6 +18,11 @@ export default async function handler(
         throw new Error("Invalid email address");
       }
 
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        throw new Error("User with this email already exists");
+      }
+
       const user = new User({ email, password });
       await user.save();
 
