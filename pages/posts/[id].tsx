@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import MarkedViewer from "@/components/MarkedViewer";
 import { PostTypeGet } from "@/types/post";
-import { getPost } from "@/utils/apis/posts";
 import sharePost from "@/utils/sharePost";
 import getAllPostIds from "@/server/getAllPostIds";
 import connectToDatabase from "@/server/connectToDatabase";
+import fetchAPI from "@/utils/fetchAPI";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   await connectToDatabase();
@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return { notFound: true };
   }
 
-  const { error, data } = await getPost(postId);
+  const { error, data } = await fetchAPI<PostTypeGet>(`/posts/${postId}`);
 
   if (error || !data) {
     return { notFound: true };
