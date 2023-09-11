@@ -23,6 +23,7 @@ const Button = forwardRef<
     />
   );
 });
+ButtonBase.displayName = "ButtonBase";
 
 export default Button;
 export { ButtonBase };
