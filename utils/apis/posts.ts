@@ -1,7 +1,7 @@
 import { PostState, PostTypeGet, PostTypePost } from "@/types/post";
 import fetchAPI from "../fetchAPI";
 
-const API_BASE = `${window.location.origin}/api/posts`;
+const API_BASE = `/api/posts`;
 
 export const getPosts = async (
   state: PostState = "active",
