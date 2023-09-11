@@ -11,6 +11,8 @@ export default function Pagination({
   setPage,
   lastPage,
 }: PaginationProps) {
+  lastPage = Math.max(lastPage, 1);
+
   return (
     <div className="flex justify-center items-center gap-x-colGap">
       <IconButton
