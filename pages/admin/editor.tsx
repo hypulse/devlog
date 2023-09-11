@@ -162,7 +162,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col gap-y-elementGap">
-      <div className="flex items-center justify-end gap-x-colGap mb-rowGap">
+      <div className="flex items-center justify-between">
         <FileInput handleFileChange={handleFileChange} />
         <button
           className="border border-border flex items-center gap-x-xsGap px-tagPaddingX py-tagPaddingY rounded cursor-pointer"
