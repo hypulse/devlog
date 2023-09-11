@@ -113,7 +113,7 @@ export default function Page() {
                 <Link href={`/posts/${post._id}`}>{post.title}</Link>
               </TD>
               <TD>
-                <div className="flex flex-wrap gap-x-colGap gap-y-rowGap">
+                <div className="flex flex-wrap gap-xsGap">
                   <Button onClick={() => changeState(post._id, "active")}>
                     <RiShareForward2Line />
                     <span>Article</span>
