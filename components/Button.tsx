@@ -7,6 +7,7 @@ const ButtonBase = forwardRef<
 >(({ ...props }, ref) => {
   return <button ref={ref} {...props} />;
 });
+ButtonBase.displayName = "ButtonBase";
 
 const Button = forwardRef<
   HTMLButtonElement,
@@ -23,7 +24,7 @@ const Button = forwardRef<
     />
   );
 });
-ButtonBase.displayName = "ButtonBase";
+Button.displayName = "Button";
 
 export default Button;
 export { ButtonBase };

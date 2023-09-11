@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return { props: { data } };
 };
 
-export default function ({ data }: { data: PostTypeGet }) {
+export default function Page({ data }: { data: PostTypeGet }) {
   const { title, createdAt, summary, content } = data;
 
   return (
