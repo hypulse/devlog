@@ -1,54 +1,25 @@
-import {
-  GetServerSidePropsContext,
-  GetStaticPaths,
-  GetStaticProps,
-} from "next";
+import { GetServerSidePropsContext } from "next";
 import MarkedViewer from "@/components/MarkedViewer";
 import { PostTypeGet } from "@/types/post";
 import sharePost from "@/utils/sharePost";
-import getAllPostIds from "@/server/getAllPostIds";
 import connectToDatabase from "@/server/connectToDatabase";
 import fetchAPI from "@/utils/fetchAPI";
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   await connectToDatabase();
-//   const posts = await getAllPostIds();
-
-//   const paths = posts.map((postId) => ({
-//     params: { id: postId.toString() },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: "blocking",
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const postId = context.params?.id;
-
-//   if (typeof postId !== "string" || !postId) {
-//     return { notFound: true };
-//   }
-
-//   const { error, data } = await fetchAPI<PostTypeGet>(`/posts/${postId}`);
-
-//   if (error || !data) {
-//     return { notFound: true };
-//   }
-
-//   return { props: { data } };
-// };
-
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const postId = context.params?.id;
+  await connectToDatabase();
 
+  const protocol = context.req.headers["x-forwarded-proto"] || "http";
+  const host = context.req.headers.host;
+  const baseUrl = `${protocol}://${host}`;
+
+  const postId = context.params?.id;
   if (typeof postId !== "string" || !postId) {
     return { notFound: true };
   }
 
-  const { error, data } = await fetchAPI<PostTypeGet>(`/posts/${postId}`);
-
+  const { error, data } = await fetchAPI<PostTypeGet>(
+    `${baseUrl}/api/posts/${postId}`
+  );
   if (error || !data) {
     return { notFound: true };
   }
@@ -63,7 +34,10 @@ export default function Page({ data }: { data: PostTypeGet }) {
     <div className="max-w-2xl mx-auto">
       <h1 className="font-bold text-h1">{title}</h1>
       <div className="flex mt-elementGap gap-x-colGap">
-        <time dateTime={new Date(createdAt).toISOString()}>
+        <time
+          dateTime={new Date(createdAt).toISOString()}
+          suppressHydrationWarning
+        >
           {new Date(createdAt).toLocaleString()}
         </time>
         <span>&middot;</span>
