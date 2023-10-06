@@ -164,7 +164,36 @@ export default function Page() {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (data: any) => {
-        resolve(data.target.result);
+        const img = new Image();
+        img.src = data.target.result;
+        img.onload = function () {
+          let canvasWidth = img.width;
+          let canvasHeight = img.height;
+
+          const aspectRatio = img.width / img.height;
+          const maxWidth = 1024;
+          const maxHeight = 768;
+          const quality = 0.8;
+
+          if (canvasWidth > maxWidth) {
+            canvasWidth = maxWidth;
+            canvasHeight = maxWidth / aspectRatio;
+          }
+
+          if (canvasHeight > maxHeight) {
+            canvasHeight = maxHeight;
+            canvasWidth = maxHeight * aspectRatio;
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = canvasWidth;
+          canvas.height = canvasHeight;
+
+          const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+          ctx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+
+          resolve(canvas.toDataURL("image/jpeg", quality));
+        };
       };
       reader.readAsDataURL(file);
     });
