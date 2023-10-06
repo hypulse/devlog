@@ -160,6 +160,16 @@ export default function Page() {
     push(`/admin/editor?id=${result.data._id}`);
   };
 
+  const onImageUpload = (file: any) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (data: any) => {
+        resolve(data.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   return (
     <div className="flex flex-col gap-y-elementGap">
       <div className="flex items-center justify-between">
@@ -175,6 +185,7 @@ export default function Page() {
         ref={mdEditor}
         style={{ height: "500px" }}
         renderHTML={(text) => new Marked().parse(text) as string}
+        onImageUpload={onImageUpload}
       />
       <SelectPostState state={state} setState={setState} />
       <Button onClick={handleSubmit} className="bg-primary">
