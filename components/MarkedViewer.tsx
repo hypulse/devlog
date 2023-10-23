@@ -21,7 +21,7 @@ const marked = new Marked(
     },
   }),
   {
-    gfm: false,
+    gfm: true,
     renderer: {
       code(code, lang) {
         lang = lang || "plaintext";
