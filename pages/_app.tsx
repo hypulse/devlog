@@ -5,10 +5,15 @@ import type { AppProps } from "next/app";
 import Link from "next/link";
 import "@/styles/globals.css";
 import "@/styles/markdown-body.scss";
+import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
+      <Head>
+        <title>Hypulse Devlog</title>
+        <meta property="og:title" content="Hypulse Devlog" key="title" />
+      </Head>
       <PageLayout>
         <Header />
         <Component {...pageProps} />

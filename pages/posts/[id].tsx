@@ -6,6 +6,7 @@ import connectToDatabase from "@/server/connectToDatabase";
 import fetchAPI from "@/utils/fetchAPI";
 import { useEffect, useRef } from "react";
 import useTheme from "@/hooks/useTheme";
+import Head from "next/head";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   await connectToDatabase();
@@ -31,9 +32,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 export default function Page({ data }: { data: PostTypeGet }) {
   const { title, createdAt, summary, content } = data;
+  const titleWithSuffix = `${title} - Hypulse Devlog`;
 
   return (
     <div className="max-w-2xl mx-auto">
+      <Head>
+        <title>{titleWithSuffix}</title>
+        <meta property="og:title" content={titleWithSuffix} key="title" />
+      </Head>
       <h1 className="font-bold text-h1">{title}</h1>
       <div className="flex mt-elementGap gap-x-colGap">
         <time
