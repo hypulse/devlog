@@ -27,6 +27,7 @@ export default async function handler(
         };
 
         let query = Post.find(queryOptions)
+          .sort("-updatedAt")
           .skip(skipValue)
           .limit(Number(limit));
 
