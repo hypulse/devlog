@@ -4,6 +4,8 @@ import { PostTypeGet } from "@/types/post";
 import sharePost from "@/utils/sharePost";
 import connectToDatabase from "@/server/connectToDatabase";
 import fetchAPI from "@/utils/fetchAPI";
+import { useEffect, useRef } from "react";
+import useTheme from "@/hooks/useTheme";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   await connectToDatabase();
@@ -54,6 +56,37 @@ export default function Page({ data }: { data: PostTypeGet }) {
         text={content || ""}
         className="markdown-body mt-extraGap"
       />
+      <Utterances />
     </div>
   );
 }
+
+const Utterances = () => {
+  const { theme } = useTheme();
+  const utterances = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!utterances.current || !document.body.classList.contains("rendered")) {
+      return;
+    }
+    const _utterances = utterances.current;
+
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.setAttribute("repo", "hypulse/devlog-comments");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", `github-${theme}`);
+    script.setAttribute("crossorigin", "anonymous");
+    script.async = true;
+
+    utterances.current.appendChild(script);
+
+    return () => {
+      if (_utterances && _utterances.children && _utterances.children[0]) {
+        _utterances.removeChild(_utterances.children[0]);
+      }
+    };
+  }, [utterances, theme]);
+
+  return <div ref={utterances} className="mt-sectionGap" />;
+};
