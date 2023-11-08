@@ -1,5 +1,6 @@
 import Post from "@/server/Models/Post";
 import connectToDatabase from "@/server/connectToDatabase";
+import connectToDatabase2 from "@/server/Migration/connectToDatabase";
 import verifyUser from "@/server/verifyUser";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -7,6 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await connectToDatabase2();
   await connectToDatabase();
 
   const token = req.cookies.token;
