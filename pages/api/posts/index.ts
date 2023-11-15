@@ -1,6 +1,5 @@
-import Post from "@/server/Models/Post";
-import connectToDatabase from "@/server/connectToDatabase";
-import connectToDatabase2 from "@/server/Migration/connectToDatabase";
+import Post from "@/server/Migration/Models/Post";
+import connectToDatabase from "@/server/Migration/connectToDatabase";
 import verifyUser from "@/server/verifyUser";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,7 +7,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  await connectToDatabase2();
   await connectToDatabase();
 
   const token = req.cookies.token;
@@ -23,28 +21,30 @@ export default async function handler(
           verifyUser(token);
         }
 
-        const skipValue = (Number(page) - 1) * Number(limit);
-        const queryOptions = {
+        const offset = (Number(page) - 1) * Number(limit);
+        const where = {
           state: state as string,
         };
 
-        let query = Post.find(queryOptions)
-          .sort("-updatedAt")
-          .skip(skipValue)
-          .limit(Number(limit));
-
+        let attributes;
         if (state !== "snippet") {
-          query = query.select("-content");
+          attributes = { exclude: ["content"] };
         }
 
-        const posts = await query.exec();
+        const posts = await Post.findAll({
+          where: where,
+          limit: Number(limit),
+          offset: offset,
+          order: [["updatedAt", "DESC"]],
+          attributes: attributes,
+        });
 
-        const lastPage = Math.ceil(
-          (await Post.countDocuments(queryOptions).exec()) / Number(limit)
-        );
+        const totalPosts = await Post.count({ where: where });
+        const lastPage = Math.ceil(totalPosts / Number(limit));
 
         res.status(200).json({ error: false, data: { posts, lastPage } });
       } catch (error) {
+        console.log(error);
         res
           .status(400)
           .json({ error: true, message: "Failed to retrieve posts" });
