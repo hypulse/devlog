@@ -4,7 +4,7 @@ import timeSince from "@/utils/timeSince";
 import Link from "next/link";
 
 export default function Card({
-  _id,
+  id,
   title,
   summary,
   createdAt,
@@ -12,7 +12,7 @@ export default function Card({
 }: PostTypeGet) {
   return (
     <div className="flex flex-col gap-y-rowGap group">
-      <Link href={`/posts/${_id}`}>
+      <Link href={`/posts/${id}`}>
         <h2 className="font-bold text-h2 group-hover:text-primary">{title}</h2>
       </Link>
 
@@ -23,7 +23,7 @@ export default function Card({
         <span>&middot;</span>
         <span>{estimateReadingTime(wordCount)}</span>
         <span>&middot;</span>
-        <Link href={`/admin/editor?id=${_id}`}>
+        <Link href={`/admin/editor?id=${id}`}>
           <span className="text-textSecondary">Edit</span>
         </Link>
       </div>

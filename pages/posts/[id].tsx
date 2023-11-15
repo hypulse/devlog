@@ -2,14 +2,14 @@ import { GetServerSidePropsContext } from "next";
 import MarkedViewer from "@/components/MarkedViewer";
 import { PostTypeGet } from "@/types/post";
 import sharePost from "@/utils/sharePost";
-import connectToDatabase from "@/server/connectToDatabase";
 import fetchAPI from "@/utils/fetchAPI";
 import { useEffect, useRef } from "react";
 import useTheme from "@/hooks/useTheme";
 import Head from "next/head";
+import connectToDatabase from "@/server/Migration/connectToDatabase";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  await connectToDatabase();
+  connectToDatabase();
 
   const protocol = context.req.headers["x-forwarded-proto"] || "http";
   const host = context.req.headers.host;

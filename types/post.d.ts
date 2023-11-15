@@ -1,7 +1,7 @@
 export type PostState = "active" | "snippet" | "removed" | "draft";
 
 export type PostTypeGet = {
-  _id: string;
+  id: string;
   title: string;
   summary?: string;
   wordCount?: number;

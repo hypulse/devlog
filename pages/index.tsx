@@ -54,7 +54,7 @@ export default function Page() {
       <SearchBox />
       <div className="space-y-extraGap">
         {posts.map((post) => (
-          <Card key={post._id} {...post} />
+          <Card key={post.id} {...post} />
         ))}
         {hasMore && (
           <div ref={lastPostElementRef}>
