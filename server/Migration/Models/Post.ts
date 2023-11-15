@@ -1,32 +1,28 @@
-import { Model, DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../sequelize";
 
-export enum PostState {
-  Active = "active",
-  Snippet = "snippet",
-  Removed = "removed",
-  Draft = "draft",
+enum PostState {
+  ACTIVE = "active",
+  SNIPPET = "snippet",
+  REMOVED = "removed",
+  DRAFT = "draft",
 }
 
-class Post extends Model {
-  public id!: number;
-  public title!: string;
-  public summary?: string;
-  public wordCount?: number;
-  public content?: string;
-  public state!: PostState;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-}
+class Post extends Model {}
 
 Post.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     summary: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     wordCount: {
@@ -40,7 +36,7 @@ Post.init(
     state: {
       type: DataTypes.ENUM,
       values: Object.values(PostState),
-      defaultValue: PostState.Draft,
+      defaultValue: PostState.DRAFT,
       allowNull: false,
     },
   },
@@ -50,7 +46,3 @@ Post.init(
     timestamps: true,
   }
 );
-
-Post.sync();
-
-export default Post;
