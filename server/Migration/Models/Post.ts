@@ -46,3 +46,5 @@ Post.init(
     timestamps: true,
   }
 );
+
+export default Post;
