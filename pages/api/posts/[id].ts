@@ -1,5 +1,5 @@
-import Post from "@/server/Models/Post";
-import connectToDatabase from "@/server/connectToDatabase";
+import Post from "@/server/Migration/Models/Post";
+import connectToDatabase from "@/server/Migration/connectToDatabase";
 import verifyUser from "@/server/verifyUser";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -19,7 +19,7 @@ export default async function handler(
   switch (method) {
     case "GET":
       try {
-        const post = await Post.findById(id);
+        const post: any = await Post.findByPk(id as string);
 
         if (!post) {
           return res
@@ -43,16 +43,18 @@ export default async function handler(
       try {
         verifyUser(token);
 
-        const post = await Post.findByIdAndUpdate(id, req.body, {
-          new: true,
-          runValidators: true,
+        const post = await Post.update(req.body, {
+          where: { id: id },
+          returning: true,
         });
-        if (!post) {
+
+        if (!post[1][0]) {
           return res
             .status(404)
             .json({ error: true, message: "Post not found" });
         }
-        res.status(200).json({ error: false, data: post });
+
+        res.status(200).json({ error: false, data: post[1][0] });
       } catch (error) {
         res.status(400).json({ error: true, message: "Failed to update post" });
       }
@@ -62,12 +64,14 @@ export default async function handler(
       try {
         verifyUser(token);
 
-        const deletedPost = await Post.deleteOne({ _id: id });
+        const deletedPost = await Post.destroy({ where: { id: id } });
+
         if (!deletedPost) {
           return res
             .status(404)
             .json({ error: true, message: "Post not found" });
         }
+
         res.status(200).json({ error: false, data: {} });
       } catch (error) {
         res.status(400).json({ error: true, message: "Failed to delete post" });
