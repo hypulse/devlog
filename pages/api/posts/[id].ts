@@ -54,11 +54,6 @@ export default async function handler(
         }
 
         const updatedPost = await Post.findByPk(id as string);
-        if (!updatedPost) {
-          return res
-            .status(404)
-            .json({ error: true, message: "Post not found after update" });
-        }
 
         res.status(200).json({ error: false, data: updatedPost });
       } catch (error) {
