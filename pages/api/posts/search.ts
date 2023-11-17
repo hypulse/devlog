@@ -1,6 +1,7 @@
-import Post from "@/server/Models/Post";
-import connectToDatabase from "@/server/connectToDatabase";
+import Post from "@/server/Migration/Models/Post";
+import connectToDatabase from "@/server/Migration/connectToDatabase";
 import { NextApiRequest, NextApiResponse } from "next";
+import { Op } from "sequelize";
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,27 +21,28 @@ export default async function handler(
 
   if (req.method === "GET") {
     try {
-      const skipValue = (Number(page) - 1) * Number(limit);
-      const queryOptions = {
-        state: { $in: ["active", "snippet"] },
-        content: new RegExp(q as string, "i"),
+      const offset = (Number(page) - 1) * Number(limit);
+      const whereCondition = {
+        state: { [Op.in]: ["active", "snippet"] },
+        content: { [Op.like]: `%${q}%` },
       };
 
-      const posts = await Post.find(queryOptions)
-        .select("-content")
-        .skip(skipValue)
-        .limit(Number(limit))
-        .exec();
+      const posts = await Post.findAll({
+        where: whereCondition,
+        attributes: { exclude: ["content"] },
+        limit: Number(limit),
+        offset: offset,
+      });
 
-      const lastPage = Math.ceil(
-        (await Post.countDocuments(queryOptions).exec()) / Number(limit)
-      );
+      const totalPosts = await Post.count({ where: whereCondition });
+      const lastPage = Math.ceil(totalPosts / Number(limit));
 
       res.status(200).json({
         error: false,
         data: { posts, lastPage },
       });
     } catch (error) {
+      console.log(error);
       res
         .status(500)
         .json({ error: true, message: "Failed to retrieve posts" });
