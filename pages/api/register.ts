@@ -1,4 +1,4 @@
-import User from "@/server/Models/User";
+import User from "@/server/Migration/Models/User";
 import connectToDatabase from "@/server/connectToDatabase";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -18,13 +18,12 @@ export default async function handler(
         throw new Error("Invalid email address");
       }
 
-      const existingUser = await User.findOne({ email });
+      const existingUser = await User.findOne({ where: { email } });
       if (existingUser) {
         throw new Error("User with this email already exists");
       }
 
-      const user = new User({ email, password });
-      await user.save();
+      await User.create({ email, password });
 
       res
         .status(201)

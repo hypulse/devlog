@@ -1,7 +1,7 @@
-import User from "@/server/Models/User";
-import connectToDatabase from "@/server/connectToDatabase";
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
+import connectToDatabase from "@/server/Migration/connectToDatabase";
+import User from "@/server/Migration/Models/User";
 
 const EXPIRES_IN = 60 * 60;
 
@@ -17,7 +17,7 @@ export default async function handler(
       const user = await User.login({ email, password });
 
       const token = jwt.sign(
-        { id: user._id },
+        { id: user.id },
         process.env.JWT_SECRET as string,
         {
           expiresIn: EXPIRES_IN,
