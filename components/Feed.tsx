@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ButtonBase } from "./Button";
 import sharePost from "@/utils/sharePost";
 
-export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
+export default function Feed({ id, title, createdAt, content }: PostTypeGet) {
   const { quote, code } = extractFirstQuoteAndCode(content);
 
   return (
@@ -17,7 +17,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
             sharePost(
               title,
               quote || "",
-              window.location.origin + "/posts/" + _id
+              window.location.origin + "/posts/" + id
             );
           }}
         >
@@ -40,7 +40,7 @@ export default function Feed({ _id, title, createdAt, content }: PostTypeGet) {
           {new Date(createdAt).toLocaleString()}
         </time>
         <span>&middot;</span>
-        <Link href={`/admin/editor?id=${_id}`}>
+        <Link href={`/admin/editor?id=${id}`}>
           <span>Edit</span>
         </Link>
       </div>

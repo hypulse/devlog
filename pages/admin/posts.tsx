@@ -107,23 +107,23 @@ export default function Page() {
         </thead>
         <tbody>
           {posts.map((post) => (
-            <tr key={post._id}>
+            <tr key={post.id}>
               <TD>{new Date(post.createdAt).toLocaleString()}</TD>
               <TD>
-                <Link href={`/posts/${post._id}`}>{post.title}</Link>
+                <Link href={`/posts/${post.id}`}>{post.title}</Link>
               </TD>
               <TD>
                 <div className="flex flex-wrap gap-xsGap">
-                  <Button onClick={() => changeState(post._id, "active")}>
+                  <Button onClick={() => changeState(post.id, "active")}>
                     <RiShareForward2Line />
                     <span>Article</span>
                   </Button>
-                  <Button onClick={() => changeState(post._id, "snippet")}>
+                  <Button onClick={() => changeState(post.id, "snippet")}>
                     <RiShareForward2Line />
                     <span>Snippet</span>
                   </Button>
-                  <Button onClick={() => handleEdit(post._id)}>Editor</Button>
-                  <Button onClick={() => changeState(post._id, "removed")}>
+                  <Button onClick={() => handleEdit(post.id)}>Editor</Button>
+                  <Button onClick={() => changeState(post.id, "removed")}>
                     Delete
                   </Button>
                 </div>

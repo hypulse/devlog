@@ -157,7 +157,7 @@ export default function Page() {
     }
 
     alert("Success saving post");
-    push(`/admin/editor?id=${result.data._id}`);
+    push(`/admin/editor?id=${result.data.id}`);
   };
 
   const onImageUpload = (file: any) => {

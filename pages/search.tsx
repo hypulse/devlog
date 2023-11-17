@@ -42,7 +42,7 @@ export default function Page() {
   const renderPosts = () => {
     if (loading) return <Loading />;
     if (posts.length === 0) return <NoResult />;
-    return posts.map((post) => <Card key={post._id} {...post} />);
+    return posts.map((post) => <Card key={post.id} {...post} />);
   };
 
   return (
