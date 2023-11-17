@@ -32,12 +32,16 @@ export default async function handler(
       const { error, code, data: user } = await User.login({ email, password });
 
       if (code === 401) {
-        await redisClient.incr(`login-fail:${email}`);
+        const failCount = await redisClient.incr(`login-fail:${email}`);
         redisClient.expire(`login-fail:${email}`, REDIS_EXPIRES_IN);
+
+        console.log(`login-fail:${email}`, failCount);
       }
 
       if (error) {
         throw new Error("Authentication failed");
+      } else {
+        await redisClient.del(`login-fail:${email}`);
       }
 
       const token = jwt.sign(
