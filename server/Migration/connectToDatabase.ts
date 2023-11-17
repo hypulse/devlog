@@ -1,8 +1,9 @@
+import redisClient from "./redis";
 import sequelize from "./sequelize";
 
 async function connectToDatabase(): Promise<void> {
   try {
-    await sequelize.authenticate();
+    Promise.all([sequelize.authenticate(), redisClient.connect()]);
   } catch (error) {
     throw error;
   }
