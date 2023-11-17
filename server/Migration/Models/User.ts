@@ -7,12 +7,15 @@ const SALT_ROUNDS = 10;
 class User extends Model {
   static async login({ email, password }: { email: string; password: string }) {
     const user: any = await User.findOne({ where: { email } });
-    if (!user) throw new Error("No user associated with this email address.");
+    if (!user) return { error: true, code: 404 };
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) throw new Error("Incorrect password.");
+    if (!isPasswordValid) return { error: true, code: 401 };
 
-    return user;
+    return {
+      data: user,
+      error: false,
+    };
   }
 }
 
