@@ -1,5 +1,5 @@
 import User from "@/server/Migration/Models/User";
-import connectToDatabase from "@/server/connectToDatabase";
+import connectToDatabase from "@/server/Migration/connectToDatabase";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const ALLOWED_EMAIL = "sjinsilval28@naver.com";
