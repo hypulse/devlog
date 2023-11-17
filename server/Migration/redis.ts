@@ -1,7 +1,7 @@
-import Redis from "redis";
+import { createClient } from "@redis/client";
 
-const redisClient = Redis.createClient({
-  url: "redis://redis:6379",
+const redisClient = createClient({
+  url: "redis://localhost:6379",
 });
 
 export default redisClient;
