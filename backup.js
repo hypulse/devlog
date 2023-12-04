@@ -45,9 +45,6 @@ downloadPosts()
   .then(async (data) => {
     await savePostsAsMarkdown(data);
   })
-  .then(() => {
-    uploadToGithub();
-  })
   .catch((err) => {
     console.log(err);
   });
