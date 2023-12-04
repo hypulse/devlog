@@ -1,4 +1,3 @@
-const { exec } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
@@ -39,14 +38,6 @@ function savePostAsMarkdown(post) {
         resolve();
       }
     });
-  });
-}
-
-function uploadToGithub() {
-  exec("", (error, stdout, stderr) => {
-    if (error) throw new Error(error);
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
   });
 }
 
