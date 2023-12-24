@@ -16,6 +16,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const baseUrl = `${protocol}://${host}`;
 
   const postId = context.params?.id;
+  console.log(postId);
+  console.log(typeof postId);
   if (typeof postId !== "string" || !postId) {
     return { notFound: true };
   }
