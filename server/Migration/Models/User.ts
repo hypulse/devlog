@@ -33,6 +33,7 @@ User.init(
   {
     sequelize: sequelize,
     modelName: "User",
+    timestamps: false,
     hooks: {
       beforeSave: async (user: any) => {
         if (user.changed("password")) {
