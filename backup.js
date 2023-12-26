@@ -8,7 +8,7 @@ if (!fs.existsSync(saveDir)) {
 }
 
 async function downloadPosts() {
-  const response = await fetch("/api/backup");
+  const response = await fetch(`${process.env.API_PREFIX}/api/backup`);
   const { error, data } = await response.json();
   if (error) throw new Error(error);
   return data;

@@ -17,7 +17,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const { error, data } = await fetchAPI<PostTypeGet>(
-    `http://devlog:3000/api/posts/${postId}`
+    `${process.env.API_PREFIX}/api/posts/${postId}`
   );
   if (error || !data) {
     return { notFound: true };
