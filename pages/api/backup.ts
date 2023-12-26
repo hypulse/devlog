@@ -1,6 +1,5 @@
 import Post from "@/server/Migration/Models/Post";
 import connectToDatabase from "@/server/Migration/connectToDatabase";
-import verifyUser from "@/server/verifyUser";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -10,7 +9,10 @@ export default async function handler(
   await connectToDatabase();
 
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  console.log(ip);
+  if (ip !== "127.0.0.1") {
+    res.status(401).json({ error: true, message: "Unauthorized" });
+    return;
+  }
 
   switch (req.method) {
     case "GET":
