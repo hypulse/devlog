@@ -19,6 +19,7 @@ export default async function fetchAPI<T>(
       throw new Error(`Server returned a ${response.status} status.`);
     }
   } catch (err) {
+    console.error(err);
     let message: string;
     if (err instanceof Error) {
       if (err.name === "AbortError") {
