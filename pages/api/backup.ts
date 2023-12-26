@@ -9,12 +9,12 @@ export default async function handler(
 ) {
   await connectToDatabase();
 
-  const token = req.cookies.token;
+  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  console.log(ip);
 
   switch (req.method) {
     case "GET":
       try {
-        verifyUser(token);
         const articles = await Post.findAll({
           where: {
             state: "active",
