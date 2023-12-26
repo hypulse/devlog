@@ -11,20 +11,12 @@ import connectToDatabase from "@/server/Migration/connectToDatabase";
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   connectToDatabase();
 
-  const protocol = context.req.headers["x-forwarded-proto"] || "http";
-  const host = context.req.headers.host;
-  const baseUrl = `${protocol}://${host}`;
-
   const postId = context.params?.id;
-  console.log(postId);
-  console.log(typeof postId);
   if (typeof postId !== "string" || !postId) {
     return { notFound: true };
   }
 
-  const { error, data } = await fetchAPI<PostTypeGet>(
-    `${baseUrl}/api/posts/${postId}`
-  );
+  const { error, data } = await fetchAPI<PostTypeGet>(`/api/posts/${postId}`);
   if (error || !data) {
     return { notFound: true };
   }
