@@ -23,7 +23,7 @@ function deleteOldFolders(baseFolder) {
     }
 
     folders.forEach((folder) => {
-      if (folder !== today) {
+      if (folder !== today && folder !== ".git") {
         fs.rm(
           path.join(baseFolder, folder),
           { recursive: true, force: true },
