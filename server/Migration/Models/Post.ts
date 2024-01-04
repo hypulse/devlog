@@ -47,9 +47,4 @@ Post.init(
   }
 );
 
-Post.addHook("beforeUpdate", (post, options) => {
-  // @ts-ignore
-  post.changed("createdAt", false);
-});
-
 export default Post;
