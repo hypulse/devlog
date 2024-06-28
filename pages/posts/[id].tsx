@@ -31,7 +31,7 @@ export default function Page({ data }: { data: PostTypeGet }) {
   const titleWithSuffix = `${title} - Hypulse Devlog`;
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-sm mx-auto">
       <Head>
         <title>{titleWithSuffix}</title>
         <meta property="og:title" content={titleWithSuffix} key="title" />
